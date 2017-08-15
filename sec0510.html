@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<title>Debugging</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Debugging
+<br>(Section 5.10 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<p>
+Every programmer knows that debugging is hard.
+Great debuggers, though,
+can make the job look simple.
+Distraught programmers describe a bug that
+they've been chasing for hours,
+the master asks a few questions,
+and minutes later the programmers
+are staring at the faulty code.
+The expert debugger never forgets that
+there has to be a logical explanation,
+no matter how mysterious the system's behavior
+may seem when first observed.
+
+<p>
+That attitude is illustrated in an anecdote from
+IBM's Yorktown Heights Research Center.
+A programmer had recently installed a new workstation.
+All was fine when he was sitting down,
+but he couldn't log in to the system when he was standing up.
+That behavior was one hundred percent repeatable:
+he could always log in when sitting and never when standing.
+
+<p>
+Most of us just sit back and marvel at such a story.
+How could that workstation know whether
+the poor guy was sitting or standing?
+Good debuggers, though, know that there has to be a reason.
+Electrical theories are the easiest to hypothesize.
+Was there a loose wire under the carpet,
+or problems with static electricity?
+But electrical problems are rarely
+one-hundred-percent consistent.
+An alert colleague finally asked the right question:
+how did the programmer log in when he was sitting
+and when he was standing?
+Hold your hands out and try it yourself.
+
+<p>
+The problem was in the keyboard:
+the tops of two keys were switched.
+When the programmer was seated he was a
+touch typist and the problem went unnoticed,
+but when he stood he was led astray by hunting and pecking.
+With this hint and a convenient screwdriver,
+the expert debugger swapped the two wandering keytops
+and all was well.
+
+<p>
+A banking system built in Chicago
+had worked correctly for many months,
+but unexpectedly quit the first time
+it was used on international data.
+Programmers spent days scouring the code,
+but they couldn't find any stray command
+that would quit the program.
+When they observed the behavior more closely,
+they found that the program quit
+as they entered data for the country of Ecuador.
+Closer inspection showed that when
+the user typed the name of the capital city (Quito),
+the program interpreted that as a request to quit the run!
+
+<p>
+Bob Martin once watched a system ``work once twice''.
+It handled the first transaction correctly,
+then exhibited a minor flaw in all later transactions.
+When the system was rebooted,
+it once again correctly processed the first transaction,
+and failed on all subsequent transactions.
+When Martin characterized the behavior as
+having ``worked once twice'',
+the developers immediately knew to look for
+a variable that was initialized correctly
+when the program was loaded,
+but was not reset properly after the first transaction.
+
+<p>
+In all cases the right questions guided wise programmers
+to nasty bugs in short order:
+``What do you do differently sitting and standing?
+May I watch you logging in each way?''
+``Precisely what did you type before the program quit?''
+``Did the program ever work correctly before
+it started failing?
+How many times?''
+
+<p>
+Rick Lemons
+said that the best lesson he ever had
+in debugging was watching a magic show.
+The magician did a half-dozen impossible tricks,
+and Lemons found himself tempted to believe them.
+He then reminded himself that the impossible isn't possible,
+and probed each stunt to resolve its apparent inconsistency.
+He started with what he knew to be bedrock truth -- the
+laws of physics -- and worked from there
+to find a simple explanation for each trick.
+This attitude makes Lemons one of the best debuggers
+I've ever seen.
+
+<p>
+The best book I've seen on debugging is
+<i>The Medical Detectives</i>
+by Berton Roueche',
+published by Penguin in 1991.
+The heroes in the book debug complex systems,
+ranging from mildly sick people to very sick towns.
+The problem-solving methods they use are directly applicable
+to debugging computer systems.
+These true stories are as spellbinding as any fiction.
+
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 2000
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 28 Feb 2000
+</BODY>
+</HTML>
+

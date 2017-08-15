@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<title>A Small Matter of Programming</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>A Small Matter of Programming
+<br>(A Sketch of Column 5 of
+<font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+So far, you've done everything right.
+You dug deep to define the right problem.
+You balanced the true requirements with
+a careful selection of algorithms and data structures.
+You used the techniques of program verification
+to write elegant pseudocode that you're
+pretty sure is correct.
+How do you incorporate the
+resulting gem into your big system?
+All that's left is, well,
+a small matter of programming.
+
+<p>
+Programmers are optimists,
+and they are tempted to take the easy path:
+code up the function,
+slip it into the system,
+and fervently hope that it runs.
+Sometimes that works.
+But the other 999 times out of 1000,
+it leads to disaster:
+one has to grope around in the huge system
+to manipulate the little function.
+
+<p>
+Wise programmers instead build
+<i>scaffolding</i>
+to give them easy access to the function.
+This column is devoted to implementing the
+binary search described in pseudocode in the last column
+as a trustworthy C function.
+(The code would be very similar in C++ or Java,
+and the approach works for most other languages.)
+Once we have the code,
+we'll probe it with scaffolding,
+then move on to test it more thoroughly
+and conduct experiments on its running time.
+For a tiny function, our path is long.
+The result, though, is a program we can trust.
+
+<h3>The Rest of the Column</h3>
+
+<P>
+<br>5.1 From Pseudocode to C
+<br>5.2 A Test Harness
+<br>5.3 The Art of Assertion
+<br>5.4 Automated Testing
+<br>5.5 Timing
+<br>5.6 The Complete Program
+<br>5.7 Principles
+<br>5.8 Problems
+<br>5.9 Further Reading
+<br>5.10 <a href="sec0510.html">Debugging</a>
+
+
+<P>
+The <a href="code.html#col05">code for Column 5</a>
+contains code for testing and timing search functions.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 28 Feb 2000
+</BODY>
+</HTML>
+

@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<title>Principles</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Principles
+<br>(Section 15.4 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<p>
+<i>String Problems.</i>
+How does your compiler look up a variable name
+in its symbol table?
+How does your help system quickly search that whole
+CD-ROM as you type in each character of your query string?
+How does a web search engine look up a phrase?
+These real problems use some of the techniques
+that we've glimpsed in the toy problems of this column.
+
+<p>
+<i>Data Structures for Strings.</i>
+We've seen several of the most important data structures
+used for representing strings.
+<DL>
+
+<DT><DD>
+<i>Hashing.</i>
+This structure is fast on the average and simple to implement.
+
+<br><br><DT><DD>
+<i>Balanced Trees.</i>
+These structures guarantee good performance even
+on perverse inputs,
+and are nicely packaged in most implementations of
+the C++ Standard Template Library's <i>set</i>s and <i>map</i>s.
+
+<br><br><DT><DD>
+<i>Suffix Arrays.</i>
+Initialize an array of pointers to every character
+(or every word) in your text,
+sort them,
+and you have a suffix array.
+You can then scan through it to find near strings
+or use binary search to look up words or phrases.
+
+</DL>
+
+Section 13.8 uses several additional structures
+to represent the words in a dictionary.
+
+<p>
+<i>Libraries or Custom-Made Components?</i>
+The <i>set</i>s, <i>map</i>s and <i>string</i>s of the C++ STL
+were very convenient to use,
+but their general and powerful interface meant
+that they were not as efficient as a
+special-purpose hash function.
+Other library components were very efficient:
+hashing used <i>strcmp</i> and suffix arrays used <i>qsort</i>.
+I peeked at the library implementations
+of <i>bsearch</i> and <i>strcmp</i> to build
+the binary search and the <i>wordncmp</i> functions
+in the Markov program.
+
+
+<p><a href="sec155.html">Next: Section 15.5. Problems.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Wed 18 Oct 2000
+</BODY>
+</HTML>
+

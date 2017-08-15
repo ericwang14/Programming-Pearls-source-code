@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<title>Sorting Algorithm Animations from Programming Pearls</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Sorting Algorithm Animations from
+<br><font color="#a52a2a">Programming Pearls</font></h1>
+
+<p>
+Column 11 describes Insertion Sort and two Quicksorts
+(a simple version and the typical version using 2-way partitioning).
+Column 14 describes Heapsort.
+This page animates those algorithms and
+two additional simple sorting algorithms
+from the Solutions to Column 11:
+Selection Sort and Shell Sort.
+</p>
+
+<p>
+To view an animation,
+hit the run button below.
+Each dot represents an element in the array;
+the x-value is the element's index and
+the y-value is the element's value.
+Thus a random array is a uniform smear of points,
+and a sorted array is a trail of points wandering
+from the bottom left to the top right.
+</p>
+
+<p>
+To experiment with the algorithms,
+select a value of n,
+an input distribution,
+and a sorting algorithm before hitting run.
+For each algorithm,
+be sure to start with a small value of n,
+and work up to larger values.
+WARNING!
+There is no way to stop an animation in progress
+(this is a simple Java program) other than by
+terminating your browser.
+Enjoy!
+</p>
+
+<hr>
+<applet
+code=SortAnim
+width=650
+height=400>
+</applet>
+<hr>
+
+<p>
+This animation shows the essential algorithms,
+but has few bells and whistles.
+Most of the algorithms sort the array a[0..n-1].
+<b>BEWARE!</b>
+The Heapsort takes a sleazy shortcut around the problem
+of zero-indexed arrays:
+it sorts the array a[1..n-1],
+and leaves a[0] dangling in mid-air.
+</p>
+
+</ul>
+The code for this animation is
+<a href="SortAnim.java">SortAnim.java</a>,
+available with the rest of the
+<a href="code.html">source code</a>.
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Fri 14 July 2000
+</BODY>
+</HTML>

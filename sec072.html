@@ -1,0 +1,183 @@
+<HTML>
+<HEAD>
+<title>Performance Estimates</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Performance Estimates
+<br>(Section 7.2 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+Let's turn now to a quick calculation in computing.
+Nodes in your data structure
+(it might be a linked list or a hash table)
+hold an integer and a pointer to a node:
+<DL><DT><DD><TT><PRE>
+struct node { int i; struct node *p; };
+</PRE></TT></DL>
+Back-of-the-envelope quiz:
+will two million such nodes fit in the main memory
+of your 128-megabyte computer?
+
+<P>
+Looking at my system performance monitor shows that
+my 128-megabyte machine typically has about 85 megabytes free.
+(I've verified that by running the vector rotation code
+from Column 2 to see when the disk starts thrashing.)
+But how much memory will a node take?
+In the old days of 16-bit machines,
+a pointer and an integer would take four bytes.
+As I write this edition of the book,
+32-bit integers and pointers are most common,
+so I would expect the answer to be eight bytes.
+But every now and then I compile in 64-bit mode,
+so it might take sixteen bytes.
+We can find out the answer for any particular system
+with a single line of C:
+<DL><DT><DD><TT><PRE>
+printf("sizeof(struct node)=%d\n", sizeof(struct node));
+</PRE></TT></DL>
+My system represented each record in eight bytes,
+as I expected.
+The 16 megabytes should fit comfortably into the
+85 megabytes of free memory.
+
+<P>
+So when I used two million of those eight-byte records,
+why did my 128-megabyte machine start thrashing like crazy?
+They key is that I allocated them dynamically,
+using the C <i>malloc</i> function
+(similar to the C++ <i>new</i> operator).
+I had assumed that the eight-byte records might have another
+8 bytes of overhead;
+I expected the nodes to take a total of about 32 megabytes.
+In fact, each node had 40 bytes of overhead
+to consume a total of 48 bytes per record.
+The two million records therefore used a total of 96 megabytes.
+(On other systems and compilers, though,
+the records had just 8 bytes of overhead each.)
+
+<P>
+<a href="appmodels.html">Appendix 3</a>
+describes a program that explores
+the memory cost of several common structures.
+The first lines it produces are made with the
+<i>sizeof</i> operator:
+<DL><DT><DD><TT><PRE>
+sizeof(char)=1  sizeof(short)=2  sizeof(int)=4
+sizeof(float)=4  sizeof(struct *)=4  sizeof(long)=4
+sizeof(double)=8
+</PRE></TT></DL>
+I expected precisely those values from my 32-bit compiler.
+Further experiments measured the differences between
+successive pointers returned by the storage allocator;
+this is a plausible guess at record size.
+(One should always verify such rough guesses with other tools.)
+I now understand that,
+with this space-hogging allocator,
+records between 1 and 12 bytes will consume 48 bytes of memory,
+records between 13 and 28 bytes will consume 64 bytes,
+and so forth.
+We will return to this space model in Columns 10 and 13.
+
+<P>
+Let's try one more quick computing quiz.
+You know that the run time of your numerical algorithm
+is dominated by its <i>n</i><sup>3</sup> square root operations,
+and <i>n</i>=1000 in this application.
+About how long will your program take to compute
+the one billion square roots?
+
+<P>
+To find the answer on my system,
+I'd start with this little C program:
+<DL><DT><DD><TT><PRE>
+#include <math.h>
+int main(void)
+{   int i, n = 1000000;
+    float fa;
+    for (i = 0; i < n; i++)
+        fa = sqrt(10.0);
+    return 0;
+}
+</PRE></TT></DL>
+I ran the program with a command to report how much
+time it takes
+(I check such times with an old digital watch
+that I keep next to my computer;
+it has a broken band but a working stopwatch).
+I found that the program took
+about 0.2 seconds to computer one million square roots,
+2 seconds to compute ten million,
+and 20 seconds to compute 100 million.
+I would guess that it will take
+about 200 seconds to compute a billion square roots.
+
+<P>
+But will a square root in a real program take 200 nanoseconds?
+It might be much slower:
+perhaps the square root function cached the most
+recent argument as a starting value.
+Calling such a function repeatedly with the same argument might
+give it an unrealistic advantage.
+Then again, in practice the function might be much faster:
+I compiled the program with optimization disabled
+(optimization removed the main loop,
+so it always ran in zero time).
+<a href="appmodels.html">Appendix 3</a>
+describes how to expand this tiny
+program to produce a one-page description
+of the time costs of primitive C operations for a given system.
+
+<P>
+How fast is networking?
+To find out,
+I typed <i>ping machine-name</i>.
+It takes a few milliseconds to <i>ping</i> a machine in
+the same building,
+so that represents the startup time.
+On a good day,
+I can <i>ping</i> a machine on the other coast of the
+United States in about 70 milliseconds
+(traversing the 5000 miles of the round-trip voyage
+at the speed of light
+accounts for about 27 of those milliseconds);
+on a bad day,
+I get timed out after waiting 1000 milliseconds.
+Measuring the time to copy a large file shows
+that a ten-megabit Ethernet moves about a
+megabyte a second
+(that is, it achieves about 80 percent of its
+potential bandwidth).
+Similarly, a hundred-megabit Ethernet with the
+wind at its back moves ten megabytes a second.
+
+<P>
+Little experiments can put key parameters
+at your fingertips.
+Database designers should know the times for
+reading and writing records,
+and for joins of various forms.
+Graphics programmers should know the cost
+of key screen operations.
+The short time required to do such little experiments
+today will be more than paid in the time you
+save by making wise decisions tomorrow.
+
+
+<p><a href="sec073.html">Next: Section 7.3. Safety Factors.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 9 Aug 1999
+</BODY>
+</HTML>
+

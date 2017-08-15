@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<title>Solutions to Column 7</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Solutions
+<br>(To Column 7 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+These solutions include guesses at constants
+that may be off by a factor of two
+from their correct values as this book goes to press,
+but not much further.
+
+<P>
+1. The Passaic River does not flow at 200 miles per hour,
+even when falling 80 feet over
+the beautiful Great Falls in Patterson, New Jersey.
+I suspect that the engineer really told the reporter that the
+engorged river was flowing at 200 miles
+<i>per day</i>,
+five times faster than its typical 40 miles per day,
+which is just under a leisurely 2 miles per hour.
+
+<p>
+2.
+An old removable disk holds 100 megabytes.
+An ISDN line transmits 112 kilobits per second,
+or about 50 megabytes per hour.
+This gives a cyclist with a disk in his pocket
+about two hours to pedal,
+or a 15-mile radius of superiority.
+For a more interesting race,
+put a hundred DVDs in the cyclist's backpack,
+and his bandwidth goes up by a factor of 17,000;
+upgrade the line to ATM at 155 megabits per second,
+for a factor of 1400 increase.
+This gives the cyclist another factor of 12,
+or one day to pedal.
+(The day after I wrote this paragraph,
+I walked into a colleague's office to see
+200 5-gigabyte write-once media platters
+in a pile on his desk.
+In 1999,
+a terabyte of unwritten media was a stunning sight.)
+
+<p>
+3. A floppy disk contains 1.44 megabytes.
+Flat out, my typing is about fifty words (or 300 bytes)
+per minute.
+I can therefore fill a floppy in 4800 minutes,
+or 80 hours.
+(The input text for this book is only half a megabyte,
+but it took me substantially longer than three days to type it.)
+
+<p>
+4. I was hoping for answers along the lines of
+a ten-nanosecond instruction takes a hundredth of a second,
+an 11 millisecond disk rotation (at 5400 rpm) takes 3 hours,
+a 20 msec seek takes 6 hours,
+and the two seconds to type my name takes about a month.
+A clever reader wrote,
+``How long does it take?
+Exactly the same time as before,
+if the clock slows down, too.''
+
+<p>
+5. For the rate between 5 and 10 percent,
+the Rule-of-72 estimate is accurate to within one percent.
+
+<p>
+6. Since 72/1.33 is approximately 54,
+we would expect the population to double by 2052
+(the UN estimates happily call for the rate
+to drop substantially).
+
+<p>
+9. Ignoring slowdown due to queueing,
+20 milliseconds (of seek time) per disk operation gives
+2 seconds per transaction or 1800 transactions per hour.
+
+<p>
+10. One could estimate the local death rate by counting death notices
+in a newspaper and estimating the population of the area they represent.
+An easier approach uses Little's Law
+and an estimate of life expectancy;
+if the life expectancy is 70 years, for instance,
+then $1/70$ or 1.4% of the population dies each year.
+
+<p>
+11. Peter Denning's proof of Little's Law has two parts.
+``First, define <i>lambda=A/T</i>, the arrival rate,
+where A is the number of arrivals
+during an observation period of length <i>T</i>.
+Define <i>X=C/T</i>, the output rate,
+where <i>C</i> is the number of completions during <i>T</i>.
+Let <i>n(t)</i> denote the number in the system at time <i>t</i> in [0,<i>T</i>].
+Let <i>W</i> be the area under <i>n(t)</i>, in units of `item-seconds',
+representing the total aggregated waiting time
+over all items in the system during the observation period.
+The mean response time per item completed is
+defined as <i>R=W/C</i>,
+in units of (item-seconds)/(item).
+The mean number in the system is the average height of n(t)
+and is <i>L</i> = <i>W/T</i>,
+in units of (item-seconds)/(second).
+It is now obvious that <i>L=RX</i>.
+This formulation is in terms of the output rate only.
+There is no requirement for `flow balance', i.e.,
+that flow in equal flow out (in symbols, <i>lambda=X</i>).
+If you add that assumption,
+the formula becomes <i>L=lambda*R</i>,
+which is the form encountered in queueing and system theory.''
+
+<P>
+12. When I read that a quarter has ``an average life of 30 years'',
+that number seemed high to me;
+I didn't recall seeing that many old quarters.
+I therefore dug into my pocket,
+and found a dozen quarters.
+Here are their ages in years:
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3  4  5  7  9  9  12  17  17  19  20  34
+<br>
+The average age is 13 years,
+which is perfectly consistent with a quarter having
+an average life of about twice that
+(over this rather uniform distribution of ages).
+Had I come up with a dozen quarters
+all less than five years old,
+I might have dug further into the topic.
+This time, though,
+I guessed that the paper had got it right.
+
+<p>
+The same article reported that ``there will be a minimum of
+750 million New Jersey quarters made'' and also that a new state
+quarter would be issued every 10 weeks.
+That multiplies to about four billion quarters per year,
+or a dozen new quarters for each
+resident of the United States.
+A life of 30 years per quarter means that each person
+has 360 quarters out there.
+That is too many for pockets alone,
+but it is plausible if we include piles of change
+at home and in cars,
+and a lot in cash registers and banks.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Sun 15 Aug 1999
+</BODY>
+</HTML>
+

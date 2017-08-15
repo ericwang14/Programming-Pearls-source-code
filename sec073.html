@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<title>Safety Factors</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Safety Factors
+<br>(Section 7.3 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+The output of any calculation is only as good as its input.
+With good data, simple calculations can yield
+accurate answers that are sometimes quite useful.
+Don Knuth once wrote a disk sorting package,
+only to find that it took twice
+the time predicted by his calculations.
+Diligent checking uncovered the flaw:
+due to a software bug, the
+system's one-year-old disks had run at only
+half their advertised speed for their entire lives.
+When the bug was fixed,
+Knuth's sorting package behaved as predicted
+and every other disk-bound program also ran faster.
+
+<P>
+Often, though,
+sloppy input is enough to get into the right ballpark.
+(The estimation quiz in Appendix 2 may help you to
+judge the quality of your guesses.)
+If you guess about twenty percent here and fifty percent there
+and still find that a design is a hundred
+times above or below specification,
+additional accuracy isn't needed.
+But before placing too much confidence
+in a twenty percent margin of error,
+consider Vic Vyssotsky's advice from
+a talk he has given on several occasions.
+
+<P>
+``Most of you'', says Vyssotsky,
+``probably recall pictures of `Galloping Gertie', the Tacoma
+Narrows Bridge which tore itself apart in a windstorm in 1940.
+Well, suspension bridges had been ripping themselves
+apart that way for eighty years or so before Galloping Gertie.
+It's an aerodynamic lift phenomenon,
+and to do a proper engineering calculation of the forces,
+which involve drastic nonlinearities,
+you have to use the mathematics and concepts of
+Kolmogorov to model the eddy spectrum.
+Nobody really knew how to do this correctly in detail until
+the 1950's or thereabouts.
+So, why hasn't the Brooklyn Bridge torn itself apart,
+like Galloping Gertie?
+
+<P>
+``It's because John Roebling had sense enough to know what he
+<i>didn't</i> know.
+His notes and letters on the design of the
+Brooklyn Bridge still exist,
+and they are a fascinating example of a good engineer
+recognizing the limits of his knowledge.
+He knew about aerodynamic lift on suspension bridges;
+he had watched it.
+And he knew he didn't know enough to model it.
+So he designed the stiffness of the truss on the Brooklyn Bridge
+roadway to be
+<i> six times</i>
+what a normal calculation based on known static and dynamic
+loads would have called for.
+And, he specified a network of
+diagonal stays running down to the roadway,
+to stiffen the entire bridge structure.
+Go look at those sometime; they're almost unique.
+
+<P>
+``When Roebling was asked whether his proposed bridge wouldn't
+collapse like so many others, he said, `No, because I designed it
+six times as strong as it needs to be, to prevent that from happening.'
+
+<P>
+``Roebling was a good engineer,
+and he built a good bridge,
+by employing a huge safety factor to compensate for his ignorance.
+Do we do that?
+I submit to you that in calculating performance of our real-time
+software systems we ought to derate them by a factor of two,
+or four, or six,
+to compensate for our ignorance.
+In making reliability/availability commitments,
+we ought to stay back from the objectives we <i>think</i>
+we can meet by a factor of ten,
+to compensate for our ignorance.
+In estimating size and cost and schedule,
+we should be conservative by a factor of two
+or four to compensate for our ignorance.
+We should design the way John Roebling did,
+and not the way his contemporaries did -- so far as I know,
+none of the suspension bridges built by Roebling's contemporaries
+in the United States still stands,
+and a quarter of all the bridges of any type
+built in the U.S. in the 1870's collapsed within ten years of
+their construction.
+
+<P>
+``Are we engineers, like John Roebling?  I wonder.''
+
+
+<p><a href="sec074.html">Next: Section 7.4. Little's Law.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 9 Aug 1999
+</BODY>
+</HTML>
+

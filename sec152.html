@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+<title>Phrases</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Phrases
+<br>(Section 15.2 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<p>
+Words are the basic component of documents,
+and many important problems can be solved by
+searching for words.
+Sometimes, however,
+I search long strings
+(my documents, or help files, or web pages,
+or even the entire web)
+for phrases,
+such as ``substring searching'' or
+``implicit data structures''.
+
+<p>
+How would you search through a large body of text
+to find ``a phrase of several words''?
+If you had never seen the body of text before,
+you would have no choice but to start at the beginning
+and scan through the whole input;
+most algorithms texts describe many approaches to this
+``substring searching problem''.
+
+<p>
+Suppose, though,
+that you had a chance to preprocess the body of
+text before performing searches.
+You could make a hash table (or search tree)
+to index every distinct word of the document,
+and store a list of every occurrence of each word.
+Such an ``inverted index'' allows a program to
+look up a given word quickly.
+One can look up phrases by intersecting the
+lists of the words they contain,
+but this is subtle to implement and potentially slow.
+(<a href="http://gatekeeper.dec.com/pub/DEC/SRC/publications/sites/talk/AltaVista_Technical-abs.html">Some web search engines</a>
+do, however,
+take exactly this approach.)
+
+<p>
+We'll turn now to a powerful data structure
+and apply it to a small problem:
+given an input file of text,
+find the longest duplicated substring of characters in it.
+For instance, the longest repeated string in
+``Ask not what your country can do for you,
+but what you can do for your country''
+is `` can do for you'',
+with `` your country'' a close second place.
+How would you write a program to solve this problem?
+
+<p>
+<a href="longdups.html">[Click for more examples of
+long repeated strings]</a>
+
+<p>
+This problem is reminiscent of the anagram
+problem that we saw in Section 2.4.
+If the input string is stored in <i>c[0..n-1]</i>,
+then we could start by comparing every pair of substrings
+using pseudocode like this
+<DL><DT><DD><TT><PRE>
+maxlen = -1
+for i = [0, n)
+    for j = (i, n)
+        if (thislen = comlen(&c[i], &c[j])) > maxlen
+            maxlen = thislen
+            maxi = i
+            maxj = j
+</PRE></TT></DL>
+The <i>comlen</i> function returns the length that its two
+parameter strings have in common,
+starting with their first characters:
+<DL><DT><DD><TT><PRE>
+int comlen(char *p, char *q)
+    i = 0
+    while *p && (*p++ == *q++)
+        i++
+    return i
+</PRE></TT></DL>
+Because this algorithm looks at all pairs of substrings,
+it takes time proportional to <i>n</i><sup>2</sup>, at least.
+We might be able to speed it up by using a hash table
+to search for words in the phrases,
+but we'll instead take an entirely new approach.
+
+<p>
+Our program will process at most <i>MAXN</i> characters,
+which it stores in the array <i>c</i>:
+<DL><DT><DD><TT><PRE>
+#define MAXN 5000000
+char c[MAXN], *a[MAXN];
+</PRE></TT></DL>
+We'll use a simple data structure known as a ``suffix array'';
+the structure has been used at least since the 1970's,
+though the term was introduced in the 1990's.
+The structure is an array <i>a</i> of pointers to characters.
+As we read the input,
+we initialize <i>a</i> so that each element points to the
+corresponding character in the input string:
+<DL><DT><DD><TT><PRE>
+while (ch = getchar()) != EOF
+    a[n] = &c[n]
+    c[n++] = ch
+c[n] = 0
+</PRE></TT></DL>
+The final element of <i>c</i> contains a null character,
+which terminates all strings.
+
+<p>
+The element <i>a[0]</i> points to the entire string;
+the next element points to the suffix of the array
+beginning with the second character, and so on.
+On the input string ``banana'',
+the array will represent these suffixes:
+<DL><DT><DD><TT><PRE>
+a[0]: banana
+a[1]: anana
+a[2]: nana
+a[3]: ana
+a[4]: na
+a[5]: a
+</PRE></TT></DL>
+The pointers in the array <i>a</i> together point to every
+suffix in the string,
+hence the name ``suffix array''.
+
+<p>
+If a long string occurs twice in the array <i>c</i>,
+it appears in two different suffixes.
+We will therefore sort the array to bring together
+equal suffixes
+(just as sorting brought together anagrams in Section 2.4).
+The ``banana'' array sorts to
+<DL><DT><DD><TT><PRE>
+a[0]: a
+a[1]: ana
+a[2]: anana
+a[3]: banana
+a[4]: na
+a[5]: nana
+</PRE></TT></DL>
+We can then scan through this array comparing adjacent
+elements to find the longest repeated string,
+which in this case is ``ana''.
+
+<p>
+We'll sort the suffix array with the <i>qsort</i> function:
+<DL><DT><DD><TT><PRE>
+qsort(a, n, sizeof(char *), pstrcmp)
+</PRE></TT></DL>
+The <i>pstrcmp</i> comparison function adds one level of
+indirection to the library <i>strcmp</i> function.
+This scan through the array uses the <i>comlen</i> function
+to count the number of letters
+that two adjacent words have in common:
+<DL><DT><DD><TT><PRE>
+for i = [0, n)
+    if comlen(a[i], a[i+1]) > maxlen
+        maxlen = comlen(a[i], a[i+1])
+        maxi = i
+printf("%.*s\n", maxlen, a[maxi])
+</PRE></TT></DL>
+The <i>printf</i> statement uses the ``*'' precision
+to print <i>maxlen</i> characters of the string.
+
+<p>
+<a name="longdupexample">
+I ran
+<a href="longdup.c">the resulting program</a>
+to find the longest repeated string in the 807,503 characters in
+Samuel Butler's translation of Homer's
+<i>Iliad</i>.
+The program took 4.8 seconds to locate this string:
+<DL><DT><DD>
+whose sake so many of the Achaeans have
+died at Troy, far from their homes?
+Go about at once among the host,
+and speak fairly to them, man by man,
+that they draw not their ships into the sea.
+</DL>
+The text first occurs when Juno suggests it
+to Minerva as an argument that might keep
+the Greeks (Achaeans) from departing from Troy;
+it occurs shortly thereafter when Minerva
+repeats the argument verbatim to Ulysses.
+On this and other typical text files of <i>n</i> characters,
+the algorithm runs in O(<i>n</i> log <i>n</i>) time,
+due to sorting.
+
+<p>
+<a href="longdups.html">[Click for more examples of
+long repeated strings]</a>
+
+<p>
+Suffix arrays represent every substring in
+</i>n</i> characters of input text using the text itself
+and <i>n</i> additional pointers.
+Problem
+<a href="sec155.html#p6">6</a>
+investigates how suffix arrays
+can be used to solve the substring searching problem.
+We'll turn now to a more subtle application of suffix arrays.
+
+
+<p><a href="sec153.html">Next: Section 15.3. Generating Random Text.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Wed 18 Oct 2000
+</BODY>
+</HTML>
+

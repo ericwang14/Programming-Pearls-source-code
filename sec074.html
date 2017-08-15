@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+<title>Little's Law</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Little's Law
+<br>(Section 7.4 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+Most back-of-the-envelope calculations use
+obvious rules:
+total cost is unit cost times number of units.
+Sometimes, though, one needs a more subtle insight.
+Bruce Weide
+wrote the following note about a surprisingly versatile rule.
+
+<P>
+``The `operational analysis' introduced by Denning and Buzen (see
+<i>Computing Surveys 10</i>,
+3, November 1978, 225-261) is much more general than
+queueing network models of computer systems.
+Their exposition is excellent, but
+because of the article's limited focus,
+they didn't explore the generality of Little's Law.
+The proof methods have nothing to do with queues
+or with computer systems.
+Imagine <i>any</i> system in which things enter and leave.
+Little's Law states that
+`The average number of things in the system
+is the product of the average rate at which things leave
+the system and the average time each one spends in the system.'
+(And if there is a gross `flow balance' of things entering and
+leaving, the exit rate is also the entry rate.)
+
+<p>
+``I teach this technique of performance analysis in my
+computer architecture classes at Ohio State University.
+But I try to emphasize that the result is a general law of systems
+theory, and can be applied to many other kinds of systems.
+For instance, if you're in line waiting to get into a popular
+nightspot, you might figure out how long you'll have to
+wait by standing there for a while and trying to estimate
+the rate at which people are entering.
+With Little's Law, though, you could reason,
+`This place holds about 60 people,
+and the average Joe will be in there about 3 hours,
+so we're entering at the rate of about 20 people an hour.
+The line has 20 people in it,
+so that means we'll wait about an hour.
+Let's go home and read
+<i>Programming Pearls</i>
+instead.'
+You get the picture.''
+
+<P>
+Peter Denning
+succinctly phrases this rule as
+``The average number of objects in a queue is the product of the
+entry rate and the average holding time.''
+He applies it to his wine cellar:
+``I have 150 cases of wine in my basement and I consume
+(and purchase) 25 cases per year.
+How long do I hold each case?
+Little's Law tells me to divide 150 cases
+by 25 cases/year, which gives 6 years per case.''
+
+<P>
+He then turns to more serious applications.
+``The response-time formula for a multi-user system can be proved
+using Little's Law and flow balance.
+Assume <i>n</i> users of average think time <i>z</i> are connected
+to an arbitrary system with response time <i>r</i>.
+Each user cycles between thinking and waiting-for-response,
+so the total number of jobs in the meta-system
+(consisting of users and the computer system)
+is fixed at <i>n</i>.
+If you cut the path from the system's output to the users,
+you see a meta-system with average load <i>n</i>,
+average response time <i>z</i>+<i>r</i>,
+and throughput <i>x</i> (measured in jobs per time unit).
+Little's Law says <i>n</i> = <i>x</i>*(<i>z</i>+<i>r</i>),
+and solving for <i>r</i> gives <i>r</i> = <i>n</i>/<i>x</i> - <i>z</i>.''
+
+
+<p><a href="sec075.html">Next: Section 7.5. Principles.</a>
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 9 Aug 1999
+</BODY>
+</HTML>
+

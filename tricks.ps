@@ -1,0 +1,1166 @@
+%!PS-Adobe-2.0
+%%Copyright: Copyright (c) 1993 AT&T, All Rights Reserved
+%%Version: 3.4
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+/DpostDict 200 dict def
+DpostDict begin
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 prologue for troff files.
+%
+
+/#copies 1 store
+/Prologue (dpost.ps) def
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/landscapepage {
+	landscape not {
+		0 height scaling div neg translate	% not quite
+		90 rotate
+	} if
+} bind def
+
+/portraitpage {
+	landscape {
+		width scaling div 0 translate	% not quite
+		-90 rotate
+	} if
+} bind def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+end
+%%EndProlog
+%%BeginSetup
+DpostDict begin
+mark
+/rotation 1 def
+/gotpagebbox true def
+/linewidth 0.5 def
+/xoffset 0 def
+/yoffset 0 def
+/#copies 1 store
+/magnification 1 def
+%%FormsPerPage: 1
+/formsperpage 1 def
+%%Patch from lp
+%%EndPatch from lp
+/landscape false def
+/resolution 720 def
+setup
+2 setdecoding
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 drawing procedures for dpost. Automatically pulled in when
+% needed.
+%
+
+/inpath false def
+/savematrix matrix def
+
+/Dl {
+	inpath
+		{pop pop neg lineto}
+		{newpath neg moveto neg lineto stroke}
+	ifelse
+} bind def
+
+/De {
+	/y1 exch 2 div def
+	/x1 exch 2 div def
+	/savematrix savematrix currentmatrix def
+	neg exch x1 add exch translate
+	x1 y1 scale
+	0 0 1 0 360
+	inpath
+		{1 0 moveto arc savematrix setmatrix}
+		{newpath arc savematrix setmatrix stroke}
+	ifelse
+} bind def
+
+/Da {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arc}
+		{newpath arc stroke}
+	ifelse
+} bind def
+
+/DA {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arcn}
+		{newpath arcn stroke}
+	ifelse
+} bind def
+
+/Ds {
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	/y0 exch def
+	/x0 exch def
+	x0 5 x1 mul add 6 div
+	y0 5 y1 mul add -6 div
+	x2 5 x1 mul add 6 div
+	y2 5 y1 mul add -6 div
+	x1 x2 add 2 div
+	y1 y2 add -2 div
+	inpath
+		{curveto}
+		{newpath x0 x1 add 2 div y0 y1 add -2 div moveto curveto stroke}
+	ifelse
+} bind def
+end
+%%EndSetup
+%%Page: 1 1
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+1 pagesetup
+20 H f
+(Tricks of the Programming Trade)4 2930 1 1415 960 t
+(Jon Bentley)1 1050 1 3080 2052 t
+(Bell Labs)1 826 1 3080 2292 t
+(Problem Definition)1 1638 1 1080 3372 t
+(The Back of the Envelope)4 2302 1 1080 3612 t
+(Debugging)1080 3852 w
+(Other Tricks)1 1090 1 1080 4092 t
+20 CW f
+(www.programmingpearls.com/tricks)1296 5167 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-1)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 1 1
+%%Page: 2 2
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+2 pagesetup
+20 H f
+(Three Kinds of Knowledge)3 2356 1 1882 960 t
+(General)720 1560 w
+(1. Science)1 938 1 1008 2040 t
+(2. Project Management)2 2076 1 1008 2520 t
+(3. ``Tricks of the Trade'')4 2072 1 1008 3000 t
+(Examples from Medicine)2 2194 1 720 3480 t
+(1. Chemistry, Biology)2 1894 1 1008 3960 t
+(2. Operating teams, Medical records)4 3234 1 1008 4440 t
+(3. Blood samples)2 1540 1 1008 4920 t
+(Examples from Software)2 2184 1 720 5400 t
+(1. Program veri\256cation, algorithm design)4 3590 1 1008 5880 t
+(2. Team organization, scheduling)3 2958 1 1008 6360 t
+(3. This talk)2 970 1 1008 6840 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-2)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 2 2
+%%Page: 3 3
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+3 pagesetup
+20 H f
+(About This Talk)2 1394 1 2507 960 t
+(Goals)720 1560 w
+(For the listeners: a few amusing stories, and a)8 4106 1 1008 2040 t
+(prod to think about tricks.)4 2244 1 1008 2280 t
+(For the talker: more stories and tricks.)6 3366 1 1008 2760 t
+(Rules)720 3240 w
+(Mandatory: real-time thought, some discussion.)4 4216 1 1008 3720 t
+(Illegal: note taking, verbal answers from table-)6 4094 1 1008 4200 t
+(lookup.)1008 4440 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-3)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 3 3
+%%Page: 4 4
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+4 pagesetup
+20 H f
+(Problem De\256nition)1 1638 1 2385 960 t
+(Context)720 1560 w
+(A public opinion polling \256rm wishes to draw a)8 3992 1 1008 2040 t
+(random sample from a \(hardcopy\) list of pre-)7 3956 1 1008 2280 t
+(cincts.)1008 2520 w
+(The User's Idea)2 1416 1 720 3000 t
+20 HI f
+(Input:)1008 3480 w
+20 H f
+(The user types)2 1328 1 1568 3480 t
+20 HI f
+(n)2952 3480 w
+20 H f
+(precinct names \(10-)2 1772 1 3120 3480 t
+(character strings\) and an integer)4 2890 1 1008 3720 t
+20 HI f
+(m)3954 3720 w
+20 S f
+(<)4169 3720 w
+20 HI f
+(n)4312 3720 w
+20 H f
+(. Typi-)1 612 1 4424 3720 t
+(cally,)1008 3960 w
+20 HI f
+(m)1520 3960 w
+20 S f
+(~)1774 3920 w
+(~)1774 3970 w
+20 H f
+(20 and)1 616 1 1972 3960 t
+20 HI f
+(n)2644 3960 w
+20 S f
+(~)2844 3920 w
+(~)2844 3970 w
+20 H f
+(200.)3042 3960 w
+20 HI f
+(Output:)1008 4440 w
+20 H f
+(Random selection of)2 1830 1 1724 4440 t
+20 HI f
+(m)3610 4440 w
+20 H f
+(names.)3832 4440 w
+(A Better Problem)2 1528 1 720 4920 t
+20 HI f
+(Input:)1008 5400 w
+20 H f
+(Integers)1568 5400 w
+20 HI f
+(m)2350 5400 w
+20 H f
+(and)2572 5400 w
+20 HI f
+(n)2964 5400 w
+20 H f
+(.)3076 5400 w
+20 HI f
+(Output:)1008 5880 w
+20 H f
+(A sorted list of)3 1272 1 1724 5880 t
+20 HI f
+(m)3052 5880 w
+20 H f
+(integers in the range)3 1832 1 3274 5880 t
+(1..)1008 6120 w
+20 HI f
+(n)1232 6120 w
+20 H f
+( example, if)2 1026(. For)1 468 2 1344 6120 t
+20 HI f
+(m)2894 6120 w
+20 S f
+(=)3109 6120 w
+20 H f
+(3 and)1 504 1 3252 6120 t
+20 HI f
+(n)3812 6120 w
+20 S f
+(=)3973 6120 w
+20 H f
+(8, the output)2 1120 1 4116 6120 t
+(might be 2, 3, 5.)4 1442 1 1008 6360 t
+(Better Yet)1 894 1 720 6840 t
+20 HI f
+(Input:)1008 7320 w
+20 H f
+(A hardcopy list of precincts.)4 2454 1 1568 7320 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-4)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 4 4
+%%Page: 5 5
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+5 pagesetup
+20 H f
+(Another Randomizing Problem)2 2732 1 1838 960 t
+(The Problem)1 1148 1 720 1560 t
+(For)1008 2040 w
+20 HI f
+(N)1364 2040 w
+20 S f
+(=)1557 2040 w
+20 H f
+(72 psychological subjects, randomly per-)4 3624 1 1700 2040 t
+(mute order of experimenters \(1, 2, 3\) and stress)8 4250 1 1008 2280 t
+(conditions \(High, Medium, Low\).)3 2864 1 1008 2520 t
+(Output of the Program)3 1988 1 1008 3000 t
+20 CW f
+(1 3L 2M 1H)3 1200 1 1584 3295 t
+(2 3H 1M 2L)3 1200 1 1584 3530 t
+(3 1L 2H 3M)3 1200 1 1584 3765 t
+(4 1M 2L 3H)3 1200 1 1584 4000 t
+(...)1824 4235 w
+20 H f
+(A More Elegant Solution)3 2166 1 720 4775 t
+14 H f
+1800 5555 1800 6275 Dl
+2520 5555 1800 5555 Dl
+2520 6275 2520 5555 Dl
+1800 6275 2520 6275 Dl
+2160 5339 1800 5555 Dl
+2880 5339 2160 5339 Dl
+2880 6059 2880 5339 Dl
+2520 6275 2880 6059 Dl
+2880 5339 2520 5555 Dl
+(123)2043 5943 w
+(132)2583 5835 w
+(213)2223 5475 w
+3240 5555 3240 6275 Dl
+3960 5555 3240 5555 Dl
+3960 6275 3960 5555 Dl
+3240 6275 3960 6275 Dl
+3600 5339 3240 5555 Dl
+4320 5339 3600 5339 Dl
+4320 6059 4320 5339 Dl
+3960 6275 4320 6059 Dl
+4320 5339 3960 5555 Dl
+(LMH)3453 5943 w
+(LHM)3993 5835 w
+(MLH)3633 5475 w
+20 H f
+(Why it failed)2 1092 1 1008 6911 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-5)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 5 5
+%%Page: 6 6
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+6 pagesetup
+20 H f
+(A Quiz)1 602 1 2903 960 t
+(How much water \257ows out of the Mississippi River)8 4444 1 720 1560 t
+(per day?)1 782 1 720 1800 t
+20 HI f
+(One Possible Answer.)2 1974 1 720 2640 t
+20 H f
+(The river is about a mile)5 2140 1 2806 2640 t
+(wide, twenty feet deep, and \257ows at \256ve miles per)9 4420 1 720 2880 t
+(hour.)720 3120 w
+(1 mile)1 566 1 1152 3480 t
+20 S f
+(\264)1806 3480 w
+20 H f
+(1)2004 3480 w
+20 HI f
+(/)2132 3480 w
+20 H f
+(250 mile)1 790 1 2204 3480 t
+20 S f
+(\264)3082 3480 w
+20 H f
+(120 miles)1 890 1 3280 3480 t
+20 HI f
+(/)4186 3480 w
+20 H f
+(day)4258 3480 w
+20 S f
+(~)1512 3800 w
+(~)1512 3850 w
+20 H f
+(1)1710 3840 w
+20 HI f
+(/)1838 3840 w
+20 H f
+(2 mile)1 566 1 1910 3840 t
+17 H f
+(3)2490 3760 w
+20 HI f
+(/)2617 3840 w
+20 H f
+(day)2689 3840 w
+(It discharges roughly one-half cubic mile per day.)7 4362 1 720 4200 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-6)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 6 6
+%%Page: 7 7
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+7 pagesetup
+20 H f
+(Two Answers Are Better Than One)5 3112 1 1504 960 t
+( much as \257ows in.)4 1594( As)1 346(How much water \257ows out?)4 2452 3 720 1560 t
+(The Mississippi basin is about 1000 by 1000 miles,)8 4518 1 720 2040 t
+(and the annual runoff from rainfall is about one foot.)9 4604 1 720 2280 t
+(Yearly drainage is)2 1606 1 720 2520 t
+(1000 miles)1 1002 1 936 2880 t
+20 S f
+(\264)2026 2880 w
+20 H f
+(1000 miles)1 1002 1 2224 2880 t
+20 S f
+(\264)3314 2880 w
+20 H f
+(1)3512 2880 w
+20 HI f
+(/)3640 2880 w
+20 H f
+(5000 mile)1 902 1 3712 2880 t
+20 HI f
+(/)4630 2880 w
+20 H f
+(year)4702 2880 w
+20 S f
+(~)1440 3200 w
+(~)1440 3250 w
+20 H f
+(200 miles)1 890 1 1638 3240 t
+17 H f
+(3)2542 3160 w
+20 HI f
+(/)2669 3240 w
+20 H f
+(year)2741 3240 w
+(so daily out\257ow is)3 1572 1 720 3600 t
+(200 miles)1 890 1 936 3960 t
+17 H f
+(3)1840 3880 w
+20 HI f
+(/)1967 3960 w
+20 H f
+(year)2039 3960 w
+22 HI f
+(/)2517 3960 w
+20 H f
+(400 days)1 848 1 2667 3960 t
+20 HI f
+(/)3531 3960 w
+20 H f
+(year)3603 3960 w
+20 S f
+(~)1440 4280 w
+(~)1440 4330 w
+20 H f
+(1)1638 4320 w
+20 HI f
+(/)1766 4320 w
+20 H f
+(2 mile)1 566 1 1838 4320 t
+17 H f
+(3)2418 4240 w
+20 HI f
+(/)2545 4320 w
+20 H f
+(day)2617 4320 w
+20 HI f
+(A cheating triple check:)3 2076 1 720 5160 t
+20 H f
+(An almanac reports that the)4 2468 1 2852 5160 t
+(river's discharge is 640,000 cubic feet per second,)7 4464 1 720 5400 t
+(or 0.4 cubic miles per day.)5 2342 1 720 5640 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-7)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 7 7
+%%Page: 8 8
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+8 pagesetup
+20 H f
+(Tabular Computation)1 1874 1 2123 960 t
+(How much water \257ows in per year?)6 3120 1 720 1560 t
+14 H f
+(1000 miles)1 751 1 1824 2002 t
+2628 2244 2628 1884 Dl
+(1000 miles)1 751 1 2688 2002 t
+3492 2244 3492 1884 Dl
+(1)3669 2002 w
+(5000)3552 2182 w
+(mile)4012 2002 w
+(year)4004 2182 w
+4356 2064 1764 2064 Dl
+20 H f
+(Cancel terms.)1 1236 1 720 2640 t
+14 H f
+(1000 miles)1 751 1 1392 3082 t
+2196 3324 2196 2964 Dl
+(1000 miles)1 751 1 2256 3082 t
+3060 3324 3060 2964 Dl
+(1)3237 3082 w
+(5000)3120 3262 w
+(mile)3580 3082 w
+(year)3572 3262 w
+3924 3324 3924 2964 Dl
+(200 mile)1 677 1 4023 3082 t
+12 H f
+(3)4697 3010 w
+14 H f
+1741 2978 1353 3129 Dl
+2173 2978 1785 3129 Dl
+2605 2978 2217 3129 Dl
+3037 2978 2649 3129 Dl
+3469 2978 3081 3129 Dl
+3469 3158 3081 3309 Dl
+3901 2978 3513 3129 Dl
+4788 3144 1332 3144 Dl
+20 H f
+(Multiply by 1 year = 400 days \(almost\).)7 3438 1 720 3720 t
+14 H f
+(1000 miles)1 751 1 960 4162 t
+1764 4404 1764 4044 Dl
+(1000 miles)1 751 1 1824 4162 t
+2628 4404 2628 4044 Dl
+(1)2805 4162 w
+(5000)2688 4342 w
+(mile)3148 4162 w
+(year)3140 4342 w
+3492 4404 3492 4044 Dl
+(200 mile)1 677 1 3591 4162 t
+12 H f
+(3)4265 4090 w
+14 H f
+1309 4058 921 4209 Dl
+1741 4058 1353 4209 Dl
+2173 4058 1785 4209 Dl
+2605 4058 2217 4209 Dl
+3037 4058 2649 4209 Dl
+3037 4238 2649 4389 Dl
+3469 4058 3081 4209 Dl
+3492 4404 3492 4044 Dl
+(400)4455 4342 w
+4356 4404 4356 4044 Dl
+(year)4868 4162 w
+(days)4856 4342 w
+5220 4224 900 4224 Dl
+20 H f
+(Cancel again.)1 1228 1 720 4800 t
+14 H f
+(1000 miles)1 751 1 780 5242 t
+1584 5484 1584 5124 Dl
+(1000 miles)1 751 1 1644 5242 t
+2448 5484 2448 5124 Dl
+(1)2625 5242 w
+(5000)2508 5422 w
+(mile)2968 5242 w
+(year)2960 5422 w
+3312 5484 3312 5124 Dl
+(200 mile)1 677 1 3411 5242 t
+12 H f
+(3)4085 5170 w
+14 H f
+1129 5138 741 5289 Dl
+1561 5138 1173 5289 Dl
+1993 5138 1605 5289 Dl
+2425 5138 2037 5289 Dl
+2857 5138 2469 5289 Dl
+2857 5318 2469 5469 Dl
+3289 5138 2901 5289 Dl
+3312 5484 3312 5124 Dl
+(400)4275 5422 w
+4176 5484 4176 5124 Dl
+(year)4688 5242 w
+(days)4676 5422 w
+(1)5217 5242 w
+(2)5217 5422 w
+5040 5484 5040 5124 Dl
+5472 5304 720 5304 Dl
+3289 5318 2901 5469 Dl
+3721 5138 3333 5289 Dl
+4585 5318 4197 5469 Dl
+5017 5138 4629 5289 Dl
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-8)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 557 726
+%%EndPage: 8 8
+%%Page: 9 9
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+9 pagesetup
+20 H f
+(Reminders About Quick Calculations)3 3266 1 1427 960 t
+20 HI f
+(How To Do Them.)3 1626 1 720 1560 t
+20 H f
+(Two answers are better than one.)5 2992 1 1080 1860 t
+(Tabular computations.)1 1986 1 1080 2100 t
+(Dimension checks.)1 1682 1 1080 2340 t
+(Quick checks.)1 1248 1 1080 2580 t
+(Common sense.)1 1460 1 1080 2820 t
+(Rules of thumb.)2 1406 1 1080 3060 t
+(Safety factors)1 1228 1 1080 3300 t
+20 HI f
+(When To Do Them.)3 1750 1 720 3840 t
+20 H f
+(After a system has been designed, before start-)7 4232 1 1008 4320 t
+(ing implementation.)1 1796 1 1008 4560 t
+(Before any ef\256ciency improvements.)3 3234 1 1008 5040 t
+(Cost-bene\256ts analysis.)1 2018 1 1008 5520 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-9)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 9 9
+%%Page: 10 10
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+10 pagesetup
+20 H f
+(Exercises)2770 960 w
+(When is a cyclist with removable media faster than a)9 4672 1 720 1560 t
+(high-speed data line?)2 1922 1 720 1800 t
+(A newspaper asserts that a quarter has ``an average)8 4656 1 720 2280 t
+( that reasonable?)2 1554( Is)1 268(life of 30 years''.)3 1450 3 720 2520 t
+(An advertisement asserts that a salesperson drives)6 4552 1 720 3000 t
+( that reasonable?)2 1554( Is)1 268(a car 100,000 miles in a year.)6 2634 3 720 3240 t
+( How)1 512(How many tons of people are in this room?)8 3816 2 720 3720 t
+( room?)1 624( Of)1 324(many cubic feet of people?)4 2402 3 720 3960 t
+(If every person in this city threw a ping pong ball into)11 4666 1 720 4440 t
+(this room, how deep would we be?)6 3092 1 720 4680 t
+(How long to read a CD-ROM?)5 2674 1 720 5160 t
+(How much money will Americans spend on soft)7 4202 1 720 5640 t
+(drinks this year?)2 1460 1 720 5880 t
+( many words a)3 1304( How)1 512(How many words in a book?)5 2520 3 720 6360 t
+( many hours per week do)5 2254( How)1 512(minute do you read?)3 1832 3 720 6600 t
+(you watch television?)2 1908 1 720 6840 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-10)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 10 10
+%%Page: 11 11
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+11 pagesetup
+20 H f
+(Rules of Thumb)2 1416 1 2352 960 t
+20 S f
+(p)720 1560 w
+20 H f
+(seconds is a nanocentury.)3 2334 1 886 1560 t
+(Rule of 72)2 916 1 720 2040 t
+(Little's Law)1 992 1 720 2520 t
+( of X accounts for 90% of)6 2246( 10%)1 514(90-10 \(80-20\) Rules.)2 1840 3 720 3000 t
+(Y: \(population, beer\) \(code, run time\) \(code, func-)7 4396 1 720 3240 t
+(tion\))720 3480 w
+(The cheapest, fastest and most reliable components)6 4656 1 720 3960 t
+(of a computer system are those that aren't there.)8 4332 1 720 4200 t
+(Whenever possible, steal code.)3 2790 1 720 4680 t
+([The Test of Negation] Don't include a sentence in)8 4456 1 720 5160 t
+(documentation if its negation is obviously false.)6 4186 1 720 5400 t
+([The Principle of Least Astonishment] Make a user)7 4486 1 720 5880 t
+(interface as consistent and as predictable as possi-)7 4554 1 720 6120 t
+(ble.)720 6360 w
+([KISS] Keep it simple, stupid.)4 2590 1 720 6840 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-11)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 11 11
+%%Page: 12 12
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+12 pagesetup
+20 H f
+(Approaches to Debugging)2 2324 1 1898 960 t
+(Program Veri\256cation)1 1816 1 720 1560 t
+(Don't make any mistakes.)3 2296 1 1008 2040 t
+(Theory of Test Data Selection)4 2656 1 720 2520 t
+(Uncover all mistakes.)2 1904 1 1008 3000 t
+(Advanced Debuggers)1 1932 1 720 3480 t
+(Use 'em if you have 'em.)5 2196 1 1008 3960 t
+(The Right Attitude)2 1608 1 720 4440 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-12)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 12 12
+%%Page: 13 13
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+13 pagesetup
+20 H f
+(Debugging Steubenville, Ohio)2 2658 1 1731 960 t
+( 's)1 167( \302)1 -23(From Roueche)1 1326 3 720 1560 t
+20 HI f
+(Medical Detectives)1 1682 1 2246 1560 t
+20 H f
+(\(Penguin,)3984 1560 w
+(1991\))720 1800 w
+(Background)720 2280 w
+(36 cases of salmonella from December, 1980)6 4038 1 1008 2760 t
+(through February, 1982)2 2100 1 1008 3000 t
+(A Good Debugger)2 1620 1 720 3480 t
+(``I was prepared for hard work, for plenty of old-)9 4194 1 1008 3960 t
+(fashioned shoe-leather epidemiology.'')2 3426 1 1008 4200 t
+(A Key Hint)2 948 1 720 4680 t
+(``In such outbreaks, there is always a common)7 4104 1 1008 5160 t
+(denominator \320 an eating place, a wedding)6 3820 1 1008 5400 t
+(reception, a picnic, a dinner party, a church)7 3840 1 1008 5640 t
+( in which everybody is)4 1962(social. Something)1 1640 2 1008 5880 t
+(involved.'')1008 6120 w
+(Dominant age group: 20-29)3 2446 1 1008 6600 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-13)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 13 13
+%%Page: 14 14
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+14 pagesetup
+20 H f
+(Debugging Computer Systems)2 2732 1 1838 960 t
+(Some Puzzles)1 1282 1 720 1560 t
+(A banking system ``quits'' on international data.)6 4174 1 1008 2040 t
+(The programmer can't log in standing up.)6 3660 1 1008 2520 t
+(The program worked once twice.)4 2910 1 1008 3000 t
+(The program works when the programmers are)6 4190 1 1008 3480 t
+(in the room, but fails half the time when they)9 3930 1 1008 3720 t
+(aren't.)1008 3960 w
+(A Moral)1 690 1 720 4440 t
+(Debugging is usually unbelieving.)3 2980 1 1008 4920 t
+(The key is skepticism: the magician.)5 3210 1 1008 5400 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-14)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 14 14
+%%Page: 15 15
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+15 pagesetup
+20 H f
+(Tricks of the Trade)3 1672 1 2368 960 t
+(Ten Design Hints)2 1538 1 720 1560 t
+(Work on the right problem.)4 2364 1 1080 1860 t
+(Explore the design space of solutions.)5 3384 1 1080 2100 t
+(Look at the data.)3 1500 1 1080 2340 t
+(Use the back of the envelope.)5 2660 1 1080 2580 t
+(Exploit symmetry.)1 1580 1 1080 2820 t
+(Design with components.)2 2242 1 1080 3060 t
+(Build prototypes.)1 1496 1 1080 3300 t
+(Make tradeoffs when you have to.)5 3016 1 1080 3540 t
+(Keep it simple.)2 1316 1 1080 3780 t
+(Strive for elegance.)2 1730 1 1080 4020 t
+(Nurturing Trickiness)1 1780 1 720 4560 t
+(Observe)1080 4860 w
+(Read)1080 5100 w
+(Discuss)1080 5340 w
+(Practice)1080 5580 w
+(Re\257ect)1080 5820 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2000-15)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 15 15
+%%Trailer
+DpostDict begin
+done
+end
+%%Pages: 15
+%%DocumentFonts: Courier Helvetica Times-Italic Times-Roman Symbol Helvetica-Oblique

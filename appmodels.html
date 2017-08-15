@@ -1,0 +1,331 @@
+<HTML>
+<HEAD>
+<title>Cost Models for Time and Space</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Cost Models for Time and Space
+<br>(Appendix 3 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+
+<P>
+<a href="sec072.html">Section 7.2</a>
+describes two little programs
+for estimating the time and space consumed
+by various primitive operations.
+This appendix shows how those can grow into
+useful programs for generating one-page time
+and space estimates.
+The complete source code for both programs
+can be found at this book's web site.
+
+<P>
+The program <a href="spacemod.cpp">spacemod.cpp</a> produces a
+model of the space consumed by various constructs
+in C++.
+The first part of the program uses a sequence
+of statements like
+<DL><DT><DD><TT><PRE>
+cout << "sizeof(char)=" << sizeof(char);
+cout << " sizeof(short)=" << sizeof(short);
+</PRE></TT></DL>
+to give precise measurements of primitive objects:
+<DL><DT><DD><TT><PRE>
+sizeof(char)=1  sizeof(short)=2  sizeof(int)=4
+sizeof(float)=4  sizeof(struct *)=4  sizeof(long)=4
+sizeof(double)=8
+</PRE></TT></DL>
+
+<P>
+The program also defines a dozen structures,
+using the simple naming convention illustrated
+in these examples:
+<DL><DT><DD><TT><PRE>
+struct structc { char c; };
+struct structic { int i; char c; };
+struct structip { int i; structip *p; };
+struct structdc { double d; char c; };
+struct structc12 { char c[12]; };
+</PRE></TT></DL>
+The program uses a macro to report the
+<i>sizeof</i> the structure,
+and then to estimate the number of bytes that
+<i>new</i> allocates in a report like this:
+<DL><DT><DD><TT><PRE>
+structc    1   48 48 48 48 48 48 48 48 48 48
+structic   8   48 48 48 48 48 48 48 48 48 48
+structip   8   48 48 48 48 48 48 48 48 48 48
+structdc   16  64 64 64 64 64 64 64 64 64 64
+structcd   16  64 64 64 64 64 64 64 64 64 64
+structcdc  24  -3744 4096 64 64 64 64 64 64 64 64
+structiii  12  48 48 48 48 48 48 48 48 48 48
+</PRE></TT></DL>
+The first number is given by <i>sizeof</i>,
+and the next ten numbers report the differences
+between successive pointers returned by <i>new</i>.
+This output is typical:
+most of the numbers are quite consistent,
+but the allocator skips around every now and then.
+
+<P>
+This macro makes one line of the report:
+<DL><DT><DD><TT><PRE>
+#define MEASURE(T, text) {                \
+    cout << text << "\t";                 \
+    cout << sizeof(T) << "\t";            \
+    int lastp = 0;                        \
+    for (int i = 0; i < 11; i++) {        \
+        T *p = new T;                     \
+        int thisp = (int) p;              \
+        if (lastp != 0)                   \
+            cout << " " << thisp - lastp; \
+        lastp = thisp;                    \
+    }                                     \
+    cout << "\n";                         \
+}
+</PRE></TT></DL>
+The macro is called with the structure name
+followed by the same name in quotes,
+so it can be printed: 
+<DL><DT><DD><TT><PRE>
+MEASURE(structc, "structc");
+</PRE></TT></DL>
+(My first draft used a C++ template
+parameterized by structure type,
+but measurements were led wildly astray by
+artifacts of the C++ implementation.)
+
+<P>
+This table summarizes the output of the program on my machine:
+<br>
+
+<TABLE COLS=3 BORDER=ON ALIGN=CENTER>
+<THEAD>
+<TR><TH>STRUCTURE<TH><i>sizeof</><TH><i>new</i> size</TR>
+</THEAD>
+<TBODY>
+<TR><TD><i>int</i>		<TD>4	<TD>48</TR>
+<TR><TD><i>structc</i>		<TD>1	<TD>48</TR>
+<TR><TD><i>structic</i>		<TD>8	<TD>48</TR>
+<TR><TD><i>structip</i>		<TD>8	<TD>48</TR>
+<TR><TD><i>structdc</i>		<TD>16	<TD>64</TR>
+<TR><TD><i>structcd</i>		<TD>16	<TD>64</TR>
+<TR><TD><i>structcdc</i>	<TD>24	<TD>64</TR>
+<TR><TD><i>structiii</i>	<TD>12	<TD>48</TR>
+<TR><TD><i>structiic</i>	<TD>12	<TD>48</TR>
+<TR><TD><i>structc12</i>	<TD>12	<TD>48</TR>
+<TR><TD><i>structc13</i>	<TD>13	<TD>64</TR>
+<TR><TD><i>structc28</i>	<TD>28	<TD>64</TR>
+<TR><TD><i>structc29</i>	<TD>29	<TD>80</TR>
+</TBODY>
+</TABLE>
+
+The left column of numbers helps us to estimate
+the <i>sizeof</i> structures.
+We start by summing the <i>sizeof</i> the types;
+that explains the 8 bytes for <i>structip</i>.
+We must also account for the alignment;
+although its components sum to 10 bytes
+(two <i>char</i>s and a <i>double</i>),
+<i>structcdc</i> consumes 24 bytes.
+
+<P>
+The right column gives us insight into the space overhead
+of the <i>new</i> operator.
+It appears that any structure with a <i>sizeof</i> 12 bytes
+or less will consume 48 bytes.
+Structures with 13 through 28 bytes consume 64 bytes.
+In general,
+the allocated block size will be a multiple of 16,
+with 36 to 47 bytes of overhead.
+This is surprisingly expensive;
+other systems that I use consume just 8 bytes of
+overhead to represent an 8-byte record.
+
+<P>
+<a href="sec072.html">Section 7.2</a>
+also describes a little program
+for estimating the cost of one particular C operation.
+We can generalize that to the
+<a href="timemod.c">timemod.c</a>
+program that produces
+a one-page cost model for a set of C operations.
+(Brian Kernighan, Chris Van Wyk and I built a
+predecessor of this program in 1991.)
+The <i>main</i> function of that program consists of
+a sequence of a <i>T</i> (for title) lines
+followed by <i>M</i> lines to measure the cost of operations:
+<DL><DT><DD><TT><PRE>
+T("Integer Arithmetic");
+M({});
+M(k++);
+M(k = i + j);
+M(k = i - j);
+    ...
+</PRE></TT></DL>
+Those lines (and a few more like them)
+produce this output:
+<DL><DT><DD><TT><PRE>
+Integer Arithmetic (n=5000)
+ {}           250   261   250   250   251   10
+ k++          471   460   471   461   460   19
+ k = i + j    491   491   500   491   491   20
+ k = i - j    440   441   441   440   441   18
+ k = i * j    491   490   491   491   490   20
+ k = i / j   2414  2433  2424  2423  2414   97
+ k = i % j   2423  2414  2423  2414  2423   97
+ k = i & j    491   491   480   491   491   20
+ k = i | j    440   441   441   440   441   18
+</PRE></TT></DL>
+The first column gives the operation
+that is executed inside the loop
+<DL><DT><DD><TT><PRE>
+for i = [1, n]
+    for j = [1, n]
+        op
+</PRE></TT></DL>
+The next five columns show the raw time
+in clock clicks (milliseconds on this system)
+for five executions of that loop
+(these times are all consistent;
+inconsistent numbers help to identify suspicious runs).
+The final column gives the average cost
+in nanoseconds per operation.
+The first row of the table says that it takes
+about ten nanoseconds to execute a loop that
+contains the null operation.
+The next row says that incrementing the variable <i>k</i>
+consumes about 9 additional nanoseconds.
+All of the arithmetic and logical operations have
+about the same cost,
+with the exception of the division and remainder operators,
+which are an order-of-magnitude more expensive.
+
+<P>
+This approach gives rough estimates for my machine,
+and they must not be over-interpreted.
+I conducted all experiments with optimization disabled.
+When I enabled that option,
+the optimizer removed the entire timing loops
+and all times were zero.
+
+<P>
+The work is done by the <i>M</i> macro,
+which can be sketched in pseudocode as:
+<DL><DT><DD><TT><PRE>
+#define M(op)
+    print op as a string
+    timesum = 0
+    for trial = [0, trials)
+        start = clock()
+        for i = [1, n]
+            fi = i
+            for j = [1, n]
+                op
+        t = clock()-start
+        print t
+        timesum += t
+    print 1e9*timesum / (n*n * trials * CLOCKS_PER_SEC)
+</PRE></TT></DL>
+The complete code for this cost model can be found
+at this book's web site.
+
+<P>
+We'll now survey the output of the program
+on my particular system.
+Because the clock clicks are all consistent,
+we will omit them and report only
+the average time in nanoseconds.
+<DL><DT><DD><TT><PRE>
+Floating Point Arithmetic (n=5000)
+ fj=j;                 18
+ fj=j; fk = fi + fj    26
+ fj=j; fk = fi - fj    27
+ fj=j; fk = fi * fj    24
+ fj=j; fk = fi / fj    78
+Array Operations (n=5000)
+ k = i + j             17
+ k = x[i] + j          18
+ k = i + x[j]          24
+ k = x[i] + x[j]       27
+</PRE></TT></DL>
+The floating point operations originally assign the
+integer <i>j</i> to the floating-point <i>fj</i>
+(in about 8 nanoseconds);
+the outer loop assigns <i>i</i> to the floating-point <i>fi</i>.
+The floating operations themselves cost about as much
+as their integer counterparts,
+and the array operations are equally inexpensive.
+
+<P>
+The next tests give us insight into control flow
+in general and some sorting operations in particular:
+<DL><DT><DD><TT><PRE>
+Comparisons (n=5000)
+ if (i &lt; j) k++           20
+ if (x[i] &lt; x[j]) k++     25
+Array Comparisons and Swaps (n=5000)
+ k = (x[i]&lt;x[k]) ? -1:1   34
+ k = intcmp(x+i, x+j)     52
+ swapmac(i, j)            41
+ swapfunc(i, j)           65
+</PRE></TT></DL>
+The function versions of comparing and swapping
+each cost about 20 nanoseconds more
+than their inline counterparts.
+Section 9.2 compares the cost of computing the
+maximum of two values with functions, macros and inline code:
+<DL><DT><DD><TT><PRE>
+Max Function, Macro and Inline (n=5000)
+ k = (i > j) ? i : j   26
+ k = maxmac(i, j)      26
+ k = maxfunc(i, j)     54
+</PRE></TT></DL>
+
+<P>
+The <i>rand</i> function is relatively inexpensive
+(though recall that the <i>bigrand</i> function makes
+two calls to <i>rand</i>),
+square root is an order of magnitude greater than
+basic arithmetic operations
+(though only twice the cost of a division),
+simple trigonometric operations cost twice that,
+and advanced trigonometric operations run into microseconds.
+<DL><DT><DD><TT><PRE>
+Math Functions (n=1000)
+ k = rand()          40
+ fk = j+fi           20
+ fk = sqrt(j+fi)    188
+ fk = sin(j+fi)     344
+ fk = sinh(j+fi)   2229
+ fk = asin(j+fi)    973
+ fk = cos(j+fi)     353
+ fk = tan(j+fi)     465
+</PRE></TT></DL>
+Because those are so pricey,
+we shrunk the value of <i>n</i>.
+Memory allocation is more expensive yet,
+and merits an even smaller <i>n</i>:
+<DL><DT><DD><TT><PRE>
+Memory Allocation (n=500)
+ free(malloc(16))       2484
+ free(malloc(100))      3044
+ free(malloc(2000))     4959
+</PRE></TT></DL>
+
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 9 Aug 1999
+</BODY>
+</HTML>
+

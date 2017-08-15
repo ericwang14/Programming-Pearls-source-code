@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+<title>Implementation Sketch</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Implementation Sketch
+<br>(Section 1.4 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+Viewed in this light, the <i>bitmap</i>
+<i>bit vector</i>
+representation of a set screams out to be used.
+We can represent a toy set of nonnegative integers less than 20
+by a string of 20 bits.
+For instance,
+we can store the set {1, 2, 3, 5, 8, 13}
+in this string:
+<DL><DT><DD><TT><PRE>
+0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0
+</PRE></TT></DL>
+The bits representing numbers in the set are 1,
+and all other bits are 0.
+
+<p>
+In the real problem,
+the seven decimal digits of each integer
+denote a number less than ten million.
+We'll represent the file by a string of
+ten million bits in which the <i>i</i><sup>th</sup>
+bit is on if and only if the integer <i>i</i> is in the file.
+(The programmer found two million spare bits;
+Problem
+<a href="sec016.html#p5">5</a>
+investigates what happens when
+a megabyte is a firm limit.)
+This representation uses three attributes of this
+problem not usually found in sorting problems:
+the input is from a relatively small range,
+it contains no duplicates,
+and no data is associated with each record
+beyond the single integer.
+
+<p>
+Given the bitmap
+data structure to represent the set of integers in the file,
+the program can be written in three natural phases.
+The first phase 
+initializes the set to empty by turning off all bits.
+The second phase builds the set by reading each integer in the
+file and turning on the appropriate bit.
+The third phase
+produces the sorted output file by inspecting each bit and
+writing out the appropriate integer if the bit is one.
+If <i>n</i> is the number of bits in the vector
+(in this case 10,000,000), the program can be expressed in
+pseudocode as:
+<DL><DT><DD><TT><PRE>
+/* phase 1: initialize set to empty */
+    for i = [0, n)
+        bit[i] = 0
+/* phase 2: insert present elements into the set */
+    for each i in the input file
+        bit[i] = 1
+/* phase 3: write sorted output */
+    for i = [0, n)
+        if bit[i] == 1
+            write i on the output file
+</PRE></TT></DL>
+(Recall from the
+<a href="preface.html#pseudocode">preface</a>
+that the notation
+<i>for i = [0, n)</i>
+iterates <i>i</i> from 0 to <i>n</i>-1.)
+
+<p>
+This sketch was sufficient for the programmer
+to solve his problem.
+Some of the implementation details he faced
+are described in Problems
+<a href="sec016.html#p2">2</a>,
+<a href="sec016.html#p5">5</a>
+and
+<a href="sec016.html#p7">7</a>.
+
+
+
+<p><a href="sec015.html">Next: Section 1.5. Principles.</a>
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Thu 23 Sep 1999
+</BODY>
+</HTML>
+

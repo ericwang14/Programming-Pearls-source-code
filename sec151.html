@@ -1,0 +1,241 @@
+<HTML>
+<HEAD>
+<title>Words</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Words
+<br>(Section 15.1 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<p>
+Our first problem is to produce
+a list of the words contained in a document.
+(Feed such a program a few hundred books,
+and you have a fine start at a word list for a dictionary.)
+But what exactly is a word?
+We'll use the trivial definition of
+a sequence of characters surrounded by white space,
+but this means that web pages will contain
+many ``words'' like ``&lt;html&gt;'', ``&lt;body&gt;'' and ``&amp;nbsp;''.
+Problem
+<a href="sec155.html#p1">1</a>
+asks how you might avoid such problems.
+
+<p>
+Our first C++ program uses the <i>set</i>s and <i>string</i>s
+of the Standard Template Library,
+in a slight modification of the program in
+<a href="sol01.html#p1">Solution 1.1</a>:
+<DL><DT><DD><TT><PRE>
+int main(void)
+{   set<string> S;
+    set<string>::iterator j;
+    string t;
+    while (cin >> t)
+        S.insert(t);
+    for (j = S.begin(); j != S.end(); ++j)
+        cout << *j << "\n";
+    return 0;
+}
+</PRE></TT></DL>
+The <i>while</i> loop reads the input and <i>insert</i>s each
+word into the set <i>S</i>
+(by the STL specification, duplicates are ignored).
+The <i>for</i> loop then iterates through the set,
+and writes the words in sorted order.
+This program is elegant and fairly efficient
+(more on that topic soon).
+
+<p>
+<a name="wordfreqexample">
+Our next problem is to count the number of times
+each word occurs in the document.
+Here are the 21 most common words in the King James Bible,
+sorted in decreasing numeric order
+and aligned in three columns to save space:
+<DL><DT><DD><TT><PRE>
+the  62053         shall 9756         they 6890
+and  38546         he    9506         be   6672
+of   34375         unto  8929         is   6595
+to   13352         I     8699         with 5949
+And  12734         his   8352         not  5840
+that 12428         a     7940         all  5238
+in   12154         for   7139         thou 4629
+</PRE></TT></DL>
+Almost eight percent of the 789,616 words in the text
+were the word ``the''
+(as opposed to 16 percent of the words in this sentence).
+By our definition of word,
+``and'' and ``And'' have two separate counts.
+
+<p>
+<a href="wordfreqs.html">[Click for more examples of
+word frequency counts.]</a>
+
+<p>
+These counts were produced by the following C++ program,
+which uses the Standard Template Library
+<i>map</i> to associate an integer count with each string: 
+<DL><DT><DD><TT><PRE>
+int main(void)
+{   map<string, int> M;
+    map<string, int>::iterator j;
+    string t;
+    while (cin >> t)
+        M[t]++;
+    for (j = M.begin(); j != M.end(); ++j)
+        cout << j->first << " " << j->second << "\n";
+    return 0;
+}
+</PRE></TT></DL>
+The <i>while</i> statement inserts each word <i>t</i>
+into the map <i>M</i> and increments the associated counter
+(which is initialized to zero at initialization).
+The <i>for</i> statement iterates through the words in
+sorted order and prints each word
+(<i>first</i>) and its count (<i>second</i>).
+
+<p>
+This C++ code is straightforward, succinct
+and surprisingly fast.
+On my machine,
+it takes 7.6 seconds to process the Bible.
+About 2.4 seconds go to reading,
+4.9 seconds to the insertions,
+and 0.3 seconds to writing the ouput.
+
+<p>
+We can reduce the processing time by
+building our own hash table,
+using nodes that contain a pointer to a word,
+a count of how often the word has been seen,
+and a pointer to the next node in the table.
+Here is the hash table after inserting the strings
+``in'', ``the'' and ``in'',
+in the unlikely event that both strings hash to 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="hash table" ALIGN=center src="hashtab.jpg">
+<br>
+We'll implement the hash table with this C structure:
+<DL><DT><DD><TT><PRE>
+typedef struct node *nodeptr;
+typedef struct node {
+    char *word;
+    int count;
+    nodeptr next;
+} node;
+</PRE></TT></DL>
+
+<p>
+Even by our loose definition of ``word'',
+the Bible has only 29,131 distinct words.
+We'll follow the old lore of using a prime number
+near that for our hash table size,
+and the popular multiplier of 31:
+<DL><DT><DD><TT><PRE>
+#define NHASH 29989
+#define MULT 31
+nodeptr bin[NHASH];
+</PRE></TT></DL>
+Our hash function maps a string to a positive integer
+less than <i>NHASH</i>:
+<DL><DT><DD><TT><PRE>
+unsigned int hash(char *p)
+    unsigned int h = 0
+    for ( ; *p; p++)
+        h = MULT * h + *p
+    return h % NHASH
+</PRE></TT></DL>
+Using <i>unsigned</i> integers ensures that <i>h</i> remains positive.
+
+<p>
+The <i>main</i> function initializes every bin to <i>NULL</i>,
+reads the word and increments the count of each,
+then iterates through the hash table to write
+the (unsorted) words and counts:
+<DL><DT><DD><TT><PRE>
+int main(void)
+    for i = [0, NHASH)
+        bin[i] = NULL
+    while scanf("%s", buf) != EOF
+        incword(buf)
+    for i = [0, NHASH)
+        for (p = bin[i]; p != NULL; p = p->next)
+            print p->word, p->count
+    return 0
+</PRE></TT></DL>
+The work is done by <i>incword</i>, which increments
+the count associated with the input word
+(and initializes it if it is not already there):
+<DL><DT><DD><TT><PRE>
+void incword(char *s)
+    h = hash(s)
+    for (p = bin[h]; p != NULL; p = p->next)
+        if strcmp(s, p->word) == 0
+            (p->count)++
+            return
+    p = malloc(sizeof(hashnode))
+    p->count = 1
+    p->word = malloc(strlen(s)+1)
+    strcpy(p->word, s)
+    p->next = bin[h]
+    bin[h] = p
+</PRE></TT></DL>
+The <i>for</i> loop looks at every node with the
+same hash value.
+If the word is found,
+its count is incremented and the function returns.
+If the word is not found,
+the function makes a new node,
+allocates space and copies the string
+(experienced C programmers would use <i>strdup</i> for the task),
+and inserts the node at the front of the list.
+
+<p>
+This C program takes about 2.4 seconds to read its input
+(the same as the C++ version),
+but only 0.5 seconds for the insertions
+(down from 4.9)
+and only 0.06 seconds to write the output
+(down from 0.3).
+The complete run time is 3.0 seconds (down from 7.6),
+and the processing time is 0.55 seconds (down from 5.2).
+Our custom-made hash table (in 30 lines of C)
+is an order of magnitude faster than
+the maps from the C++ Standard Template Library.
+
+<p>
+This little exercise illustrates the two main ways
+to represent sets of words.
+Balanced search trees operate on strings as
+indivisible objects;
+these structures are used in most
+implementations of the STL's <i>set</i>s and <i>map</i>s.
+They always keep the elements in sorted order,
+so they can efficiently perform operations such
+as finding a predecessor or reporting the elements in order.
+Hashing, on the other hand,
+peeks inside the characters to compute a hash function,
+and then scatters keys across a big table.
+It is very fast on the average,
+but it does not offer the worst-case performance
+guarantees of balanced trees,
+or support other operations involving order.
+
+
+<p><a href="sec152.html">Next: Section 15.2. Phrases.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Wed 18 Oct 2000
+</BODY>
+</HTML>
+

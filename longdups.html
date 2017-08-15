@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<title>Long Repeated Strings</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Long Repeated Strings
+<br>(Illustrating Section 15.2 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<p>
+<a href="sec152.html">Section 15.2</a>
+describes long repeated strings in text and gives
+<a href="sec152.html#longdupexample">an example</a>.
+Here are some more examples,
+generated
+<a href="longdup.c">by this program</a>
+from several sources.
+
+
+<h3>
+King James Bible
+</h3>
+
+<h4>Verse Numbers Included</h4>
+the house of his precious things, the silver, and the gold, and the spices, and
+the precious ointment, and all the house of his armour, and all that was found
+in his treasures: there was nothing in his house, nor in all his dominion, that
+Hezekiah shewed them not.
+
+<p><i>
+This text is found in 2 Kings 20:13 and in Isaiah 39:2.
+Each text line in the original file begins with the chapter and verse
+(i.e., ``GEN 1:1  In the beginning God created ...'').
+Long repeated strings therefore could not cross verse boundaries;
+the next experiment deleted those identifiers.
+</i>
+
+
+<h4>Verse Numbers Excluded</h4>
+, offered:
+His offering was one silver charger, the weight whereof was an hundred and thirty
+shekels, one silver bowl of seventy shekels, after the shekel of the sanctuary;
+both of them full of fine flour mingled with oil for a meat offering:
+One golden spoon of ten shekels, full of incense:
+One young bullock, one ram, one lamb of the first year, for a burnt offering:
+One kid of the goats for a sin offering:
+And for a sacrifice of peace offerings, two oxen, five rams, five he goats, five
+lambs of the first year: this was the offering of Ahi
+
+<p><i>
+Numbers 7 describes offerings made over a period of twelve days;
+much of this string appears twelve times.
+</i>
+
+
+<h4>Longest String That Occurs Twelve Times</h4>
+, full of incense:
+One young bullock, one ram, one lamb of the first year, for a burnt offering:
+One kid of the goats for a sin offering:
+And for a sacrifice of peace offerings, two oxen, five rams, five he goats, five
+ lambs of the first year: this was the offering of
+
+<p><i>
+This string occurs twelve times in Numbers 7.
+This string was computed using the method of
+<a href="sol15.html#p8">Solution 15.8</a>.
+</i>
+
+
+<h3>
+Programming Pearls
+</h3>
+
+<h4>The Entire Text</h4>
+ 6, 8, 12, 17-18, 51-55, 59, 62, 70-72, 82, 87-98, 116, 119, 121,
+128, 137, 162, 164, 187-189, 206, 210, 214, 221, 230
+
+<p><i>
+I was surprised to find that the longest repeated string in the
+book was in the index.
+The same sequence of numbers are repeated for the entries for
+``experiments'', ``run time'' and ``time, run''.
+</i>
+
+<h4>Index Excluded</h4>
+expression is costly,
+replace it by an algebraically equivalent expression
+that is cheaper to evaluate.
+I
+
+<p><i>
+This text appears in both the Logic Rules and the Expression Rules of
+<a href="apprules.html">Appendix 4: Rules for Code Tuning</a>.
+</i>
+
+
+
+<h3>
+The Iliad
+</h3>
+
+<h4>The Entire Text</h4>
+whose sake so many of the Achaeans have
+died at Troy, far from their homes?
+Go about at once among the host,
+and speak fairly to them, man by man,
+that they draw not their ships into the sea.
+
+
+<p><i>
+<a href="sec152.html#longdupexample">This example</a>
+(on Samuel Butler's translation of Homer's Iliad)
+was used in
+<a href="sec152.html">Section 15.2</a>.
+describes long repeated strings in text and gives
+The text first occurs when Juno suggests it
+to Minerva as an argument that might keep
+the Greeks (Achaeans) from departing from Troy;
+it occurs shortly thereafter when Minerva
+repeats the argument verbatim to Ulysses.
+
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 6 Nov 2000
+</BODY>
+</HTML>
+

@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<title>First-Year Instruction</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>First-Year Instruction
+<br>in
+<font color="#a52a2a">Programming Pearls</font>
+</h1>
+
+<p>
+<a href="http://www.cs.duke.edu/~ola/">Owen Astrachan</a>
+organized a
+<a href="http://www.cs.duke.edu/csed/fyi/">
+Workshop on First Year Instruction</a>
+sponsored by the
+<a href="http://www.nsf.gov">National Science Foundation</a>
+and the
+<a href="http://www.cs.duke.edu">
+Duke University Computer Science Department</a>
+in July, 2000.
+When he invited me to give the keynote,
+my first response was that I haven't taught a freshman
+course for a quarter of a century.
+
+<p>
+On the other hand,
+I've enjoyed talking to undergraduates over the years,
+and <i>Programming Pearls</i> has been widely used
+as a supplementary text in college courses.
+My interest in the topic was also increased because
+my son was heading off to college later that summer.
+With Owen's guidance and encouragement,
+I agreed to talk on ``Truth, Beauty, and Engineering:
+What I'd Like My CS Freshman Kid to Learn Next Year''.
+(Let me clarify as a proud parent that Computer Science
+was only one of several possible majors that he was
+considering as he departed;
+I have high hopes that he can avoid repeating the sins
+of his father.)
+
+<p>
+The talk is available as a
+<a href="fyi.pps">Powerpoint Show</a>.
+It has this rough outline:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Engineering
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tricks of the Trade
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Eyes Open to the World
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Beauty
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elegance
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Communication
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Truth
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;History
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ethics
+<br>
+Several of these topics are covered in the book.
+
+<h4>Tricks of the Trade</h4>
+<p>
+This topic has
+<a href="tricks.html">its own web page</a>,
+complete with a talk.
+
+
+<h4>Elegance</h4>
+<p>
+Elegance is the moral of
+<a href="cto.html">Column 1</a>,
+and a theme through the rest of the book,
+complete with its own
+<a href="bookindex.html#elegance">entry in the index</a>.
+For a more general view of the topic,
+see the
+<a href="http://www.computerworld.com/">Computerworld</a>
+article on
+<a href="http://www.mirrorworlds.com/press/articles/computerworld/April201998/980420id.html">
+Elegance</a>
+in software.
+
+<p>
+I had the luxury of striving for elegance in the
+<a href="code.html">source code</a>
+for the book.
+The scaffolding is often (appropriately) rough,
+but I took same pains to trim excess fat from most of the code
+that found its way into the text.
+
+
+<h4>History</h4>
+<p>
+The book is peppered with little historical anecdotes
+that illustrate timeless truths.
+Section 10.1 introduces the topic of ``squeezing space''
+with this story from the dawn of computing:
+
+<p>
+``Fred Brooks observed the power of simplification
+when he wrote a payroll program
+for a national company in the mid 1950's.
+The bottleneck of the program was the representation of the
+Kentucky state income tax.
+The tax was specified in the law by a two-dimensional table
+with income as one dimension,
+and number of exemptions as the other.
+Storing the table explicitly required
+thousands of words of memory,
+more than the capacity of the machine.
+
+<p>
+``The first approach Brooks
+tried was to fit a mathematical function through the tax table,
+but it was so jagged that no simple function would come close.
+Knowing that it was made by legislators
+with no predisposition to crazy mathematical functions,
+Brooks consulted the minutes of the Kentucky legislature
+to see what arguments had led to the bizarre table.
+He found that the Kentucky tax was
+a simple function of the income that remained
+<i>after</i> federal tax was deducted.
+His program therefore calculated federal tax from existing tables,
+and then used the remaining income and a table
+of just a few dozen words of memory to find the Kentucky tax.
+
+<p>
+``By studying the context in which the problem arose,
+Brooks was able to replace the original problem to be solved
+with a simpler problem.
+While the original problem appeared to require
+thousands of words of data space,
+the modified problem was solved with
+a negligible amount of memory.''
+
+<p>
+I tried to sprinkle such historical nuggets throughout the book.
+From the 1960's,
+Sections 2.4 and 2.8 describe a program for computing anagrams,
+and Section 9.3 describes a svelte binary search.
+From the 1970's,
+Problem 2.6 describes a touch-tone phone directory,
+Column 8 describes the evolution of an algorithm,
+Section 10.3 describes storing symmetric matrices,
+and Section 15.2 describes suffix arrays.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 2000
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 3 Jul 2000
+</BODY>
+</HTML>
+

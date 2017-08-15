@@ -1,0 +1,186 @@
+<HTML>
+<HEAD>
+<title>Why A Second Edition of Programming Pearls?</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Why A Second Edition of
+<br><font color="#a52a2a">Programming Pearls?</font></h1>
+
+<P>
+In a draft
+<a href="preface.html">Preface</a>
+for the second edition,
+I explained why (and how) I undertook writing this version.
+The reviewers were unanimous about that Preface:
+a subtle reviewer said that it was ``more effusive''
+than the rest of the book,
+while a more forthright reviewer said only,
+``so little space, so many cliches''.
+They were right;
+it is gone from the book,
+replaced by
+<a href="preface.html#firstedition">
+a straightforward description of the changes</a>.
+But most of the draft preface now lives on
+in this tiny corner of the web,
+complete with effusive cliches.
+
+<P>
+A long time ago, in a Preface far, far away ...
+
+<P>
+________________________________
+<P>
+
+<P>
+I started writing this second edition as a duty,
+admittedly a labor of love,
+but still recalling full well the
+tribulations of producing a book.
+It was indeed all that, but more.
+It became a joy.
+It became a visit to old friends,
+seeing that while a few had fallen with time,
+most had grown into a proud maturity.
+And, oh, the delight of the next generation!
+The new sections and the new problems
+have the strong family resemblance,
+but they have the vitality of youth,
+and a freshness of their own.
+
+<P>
+But I'm getting ahead of myself;
+let me return to the beginning.
+I wrote my first program in high school,
+in 1969.
+The first magazine I saw about computing was
+<I>Communications of the ACM</I>.
+In 1983,
+I started to write a
+<I>CACM</I> column called ``Programming Pearls''.
+It was about about programs whose origins
+lie beyond solid engineering,
+in the realm of insight and creativity.
+A few years later,
+I collected the most fundamental columns into
+the first edition of this book.
+
+<P>
+It is hard for any programming book to survive
+the tremendous changes in our field,
+and I watched other books I had written
+enjoy their years in the sun and then
+go gently into that good night.
+This book was different:
+the examples were showing their age,
+but the principles seemed to stand the test of time.
+What to do?
+
+<P>
+I hemmed and hawed,
+consistently finding reasons not to undertake the hard work.
+Things finally came together in early 1999:
+I came across reviews with words like ``classic but dated'',
+respected colleagues asked about updating the book,
+and I had a chunk of free time in my work schedule.
+It was time to revisit the salt mines.
+
+<P>
+Following my preferred style of software development,
+I decided to prototype a single column.
+I chose
+<a href="sketch08.html">Column 8</a>
+on algorithm design techniques.
+The techniques were still relevant,
+but the implementations were painfully outdated
+(the run times were reported for the ancient VAX-11/750,
+and the code was not fit for public consumption).
+I had great fun recoding the algorithms in a modern style,
+complete with scaffolding for testing and timing.
+The tests reported a bug;
+were my old experiments flawed?
+No, but Problem 8.7 now describes an interesting
+aspect of floating-point computation.
+One tune-up I tried reduced the time
+of Algorithm 4 by 40 percent,
+but increased the time of Algorithm 3 by a factor of 100.
+Fascinating problems started trickling in at a steady rate.
+
+<a name="vaxtimes">
+<P>
+My first real shock came
+when I prepared a table of the run times of four algorithms.
+The times were <I>almost</I> unchanged across fifteen years:
+<br>
+<TABLE COLS=5 BORDER=ON ALIGN=CENTER>
+<THEAD>
+<TR><TH>ALGORITHM<TH>1<TH>2<TH>3<TH>4</TR>
+</THEAD>
+<TBODY>
+<TR><TD>First edition<TD>3.4n<sup>3</sup><TD>13n<sup>2</sup>
+<TD>46n log<sub>2</sub> n<TD>33n
+</TR>
+<TR><TD>Second edition<TD>1.3n<sup>3</sup><TD>10n<sup>2</sup>
+<TD>47n log<sub>2</sub> n<TD>48n</TR>
+</TBODY>
+</TABLE>
+I was astonished that the coefficients were so close.
+The only difference is that the top row reports the
+run time in
+<I>microseconds</I>,
+while the bottom row reports the time in
+<I>nanoseconds</I>!
+For these functions,
+my 400MHz Pentium II is almost exactly
+one thousand times faster than the venerable VAX.
+The more things change....
+
+<P>
+I next dug into
+<a href="sketch02.html">Column 2</a>.
+In 1983,
+I was able to find all anagrams in a dictionary of 72,000
+words in half an hour.
+Now,
+a dictionary of 230,000 words was processed in 18 seconds.
+Problem 2.4 had revealed fascinating
+paging behavior on the old VAX,
+and now led to the remarkable graph of
+Pentium II caching performance in Solution 2.4.
+
+<P>
+I tried a few more columns,
+and each one led to surprises.
+The ancient program in
+<a href="cto.html">Column 1</a>
+for sorting 27,000 political districts in a kilobyte
+turned into a modern program for sorting ten million
+toll-free telephone numbers in a megabyte.
+The old story in Section 3.5 about a new-fangled
+(for 1983) tool called a database
+turned into a little essay about
+hypertext, spreadsheets, databases,
+and other tools now familiar to high-school students.
+A section from old
+<a href="sketch04.html">Column 4</a>
+on implementing binary search
+grew into a fun program and then into the new Column 5.
+I was hooked.
+I called Peter Gordon,
+my editor at Addison Wesley Longman,
+and enthusiastically committed to write this second edition.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Sat 31 July 1999
+</BODY>
+</HTML>
+

@@ -1,0 +1,326 @@
+<HTML>
+<HEAD>
+<title>Preface to Programming Pearls</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>The Preface to
+<br><font color="#a52a2a">Programming Pearls</font></h1>
+
+<P>
+Computer programming has many faces.
+Fred Brooks paints the big picture in
+<I>The Mythical Man Month</I>;
+his essays underscore the crucial role of
+management in large software projects.
+At a finer grain,
+Steve McConnell teaches good programming style in
+<I>Code Complete</I>.
+The topics in those books are the key to
+good software and the hallmark of the professional programmer.
+Unfortunately, though,
+the workmanlike application of those sound
+engineering principles isn't always thrilling -- until the
+software is completed on time and works without surprise.
+
+<H3>About the Book</H3>
+
+The columns in this book are about a more glamorous
+aspect of the profession:
+programming pearls whose origins lie beyond solid engineering,
+in the realm of insight and creativity.
+Just as natural pearls grow from grains of sand
+that have irritated oysters,
+these programming pearls have grown from real
+problems that have irritated real programmers.
+The programs are fun,
+and they teach important programming techniques
+and fundamental design principles.
+
+<P>
+Most of these essays originally appeared in
+my ``Programming Pearls'' column in
+<I>Communications of the Association for Computing Machinery</I>.
+They were collected, revised
+and published as the first edition of this book in 1986.
+Twelve of the thirteen pieces in the first edition
+have been edited substantially for this edition,
+and three new columns have been added.
+
+<P>
+The only background the book assumes is
+programming experience in a high-level language.
+Advanced techniques (such as templates in C++)
+show up now and then,
+but the reader unfamiliar with such topics
+will be able to skip to the next section with impunity.
+
+<P>
+Although each column may be read by itself,
+there is a logical grouping to the complete set.
+Columns 1 through 5 form
+<a href="part1.html">Part I</a>
+of the book.
+They review programming fundamentals:
+problem definition, algorithms,
+data structures and program verification and testing.
+<a href="part2.html">Part II</a>
+is built around the theme of efficiency,
+which is sometimes important in itself and is always a fine
+springboard into interesting programming problems.
+<a href="part3.html">Part III</a>
+applies those techniques to several
+substantial problems in sorting, searching and strings.
+
+<P>
+One hint about reading the essays: don't go too fast.
+Read them carefully, one per sitting.
+Try the problems as they are posed -- some of them
+look easy until you've butted your head
+against them for an hour or two.
+Afterwards, work hard on the problems
+at the end of each column:
+most of what you learn from this book
+will come out the end of your
+pencil as you scribble down your solutions.
+If possible,
+discuss your ideas with friends and colleagues
+before peeking at the hints and solutions
+in the back of the book.
+The further reading at the end of each chapter isn't
+intended as a scholarly reference list;
+I've recommended some good books that are
+an important part of my personal library.
+
+<P>
+This book is written for programmers.
+I hope that the problems, hints, solutions,
+and further reading make it useful for individuals.
+The book has been used in classes including
+Algorithms, Program Verification and Software Engineering.
+The catalog of algorithms in Appendix 1
+is a reference for practicing programmers,
+and also shows how the book can be integrated into classes
+on algorithms and data structures.
+
+<H3>The Code</H3>
+
+<P>
+The pseudocode programs in the first edition
+of the book were all implemented,
+but I was the only person to see the real code.
+For this edition,
+I have rewritten all the old programs and
+written about the same amount of new code.
+The programs are available
+<a href="code.html">at this book's web site</a>.
+The code includes much of the scaffolding for
+testing, debugging and timing the functions.
+The site also contains other relevant material.
+Because so much software is now available online,
+a new theme in this edition is how to
+evaluate and use software components.
+
+<P>
+The programs use a terse coding style:
+short variable names, few blank lines,
+and little or no error checking.
+This is inappropriate in large software projects,
+but it is useful to convey the key ideas of algorithms.
+<a href="sol05.html">Solution 5.1</a>
+gives more background on this style.
+
+<P>
+<a name="pseudocode">
+The text includes a few real C and C++ programs,
+but most functions are expressed in a pseudocode
+that takes less space and avoids inelegant syntax.
+The notation
+<I>for i = [0, n)</I> iterates
+<I>i</I> from 0 through <I>n-1</I>.
+In these <I>for</I> loops,
+left and right parentheses denote open ranges
+(which do not include the end values),
+and left and right square brackets denote closed ranges
+(which do include the end values).
+The phrase <I>function(i, j)</I> still calls
+a function with parameters <I>i</I> and <I>j</I>,
+and <I>array[i, j]</I> still accesses an array element.
+
+<P>
+This edition reports the run times
+of many programs on ``my computer'',
+a 400MHz Pentium II with 128 megabytes of RAM
+running Windows NT 4.0.
+I timed the programs on several other machines,
+and the book reports the few substantial differences
+that I observed.
+All experiments used the highest available level
+of compiler optimization.
+I encourage you to time the programs on your machine;
+I bet that you'll find similar ratios of run times.
+
+<a name="firstedition">
+<H3>To Readers of the First Edition</H3>
+
+<P>
+I hope that your first response
+as you thumb through this edition of the book is,
+``This sure looks familiar.''
+A few minutes later,
+I hope that you'll observe,
+``I've never seen that before.''
+
+<P>
+This version has the same focus as the first edition,
+but is set in a larger context.
+Computing has grown substantially
+in important areas such as databases,
+networking and user interfaces.
+Most programmers should be familiar users
+of such technologies.
+At the center of each of those areas,
+though, is a hard core of programming problems.
+Those programs remain the theme of this book.
+This edition of the book is a slightly larger fish
+in a much larger pond.
+
+<P>
+One section from old Column 4 on implementing binary search
+grew into new
+<a href="sketch05.html">Column 5</a>
+on testing, debugging and timing.
+Old Column 11 grew and split into new
+Columns 12 (on the original problem) and
+13 (on set representations).
+Old Column 13 described a spelling checker
+that ran in a 64-kilobyte address space;
+it has been deleted,
+but its heart lives on in Section 13.8.
+New
+<a href="sol15.html">Column 15</a>
+is about string problems.
+Many sections have been inserted into the old columns,
+and other sections were deleted along the way.
+With new problems, new solutions,
+and four new appendices,
+this edition of the book is 25 percent longer.
+
+<P>
+Many of the old case studies in this edition are unchanged,
+for their historical interest.
+A few old stories have been recast in modern terms.
+
+<h3>Acknowledgments for the First Edition</h3>
+
+<P>
+I am grateful for much support from many people.
+The idea for a
+<I>Communications of the ACM</I>
+column was originally conceived by Peter Denning
+and Stuart Lynn.
+Peter worked diligently within ACM to make the column
+possible and recruited me for the job.
+ACM Headquarters staff,
+particularly Roz Steier and Nancy Adriance,
+have been very supportive as these columns
+were published in their original form.
+I am especially indebted to the ACM for encouraging
+publication of the columns in their present form,
+and to the many
+<i>CACM</i>
+readers who made this expanded version necessary
+and possible by their comments on the original columns.
+
+<P>
+Al Aho,
+Peter Denning,
+Mike Garey,
+David Johnson,
+Brian Kernighan,
+John Linderman,
+Doug McIlroy
+and
+Don Stanat
+have all read each column with great care,
+often under extreme time pressure.
+I am also grateful for the particularly helpful comments of
+Henry Baird,
+Bill Cleveland,
+David Gries,
+Eric Grosse,
+Lynn Jelinski,
+Steve Johnson,
+Bob Melville,
+Bob Martin,
+Arno Penzias,
+Marilyn Roper,
+Chris Van Wyk,
+Vic Vyssotsky
+and
+Pamela Zave.
+Al Aho,
+Andrew Hume,
+Brian Kernighan,
+Ravi Sethi,
+Laura Skinger
+and
+Bjarne Stroustrup
+provided invaluable help in bookmaking,
+and West Point cadets in EF 485 field tested
+the penultimate draft of the manuscript.
+Thanks, all.
+
+<h3>Acknowledgments for the Second Edition</h3>
+
+<p>
+Dan Bentley,
+Russ Cox,
+Brian Kernighan,
+Mark Kernighan,
+John Linderman,
+Steve McConnell,
+Doug McIlroy,
+Rob Pike,
+Howard Trickey
+and
+Chris Van Wyk
+have all read this edition with great care.
+I am also grateful for the particularly helpful comments of
+Paul Abrahams,
+Glenda Childress,
+Eric Grosse,
+Ann Martin,
+Peter McIlroy,
+Peter Memishian,
+Sundar Narasimhan,
+Lisa Ricker,
+Dennis Ritchie,
+Ravi Sethi,
+Carol Smith,
+Tom Szymanski
+and
+Kentaro Toyama.
+I thank Peter Gordon
+and his colleagues at Addison-Wesley for
+their help in preparing this edition.
+
+<br>
+<br>
+<br>J. B.
+<br>Murray Hill, New Jersey
+<br>December, 1985
+<br>August, 1999
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Sat 31 July 1999
+</BODY>
+</HTML>
+

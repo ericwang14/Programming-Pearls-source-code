@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<title>Errata for Programming Pearls, Second Edition</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Errata for
+<br><font color="#a52a2a">Programming Pearls,
+<br>Second Edition</font></h1>
+
+<p>
+The second printing had no changes from the first printing.
+
+<p>
+The following bugs need to be fixed in upcoming printings.
+
+<P>
+p. 38, line 23. The clause <i>cantbe(m, n)</i> should be
+<i>cantbe(m, n-1)</i>.
+
+<P>
+p. 121, line 11: The inequality sign is reversed; the test should read
+``<i>if u-l < cutoff</i>''.
+(The test is correct in the function <i>qsort4</i> later on the page.)
+
+<p>
+p. 129, line -14: The variables ``<i>m</i>''
+and ``<i>n</i>'' are swapped.
+The sentence should read:
+``Next, suppose that <i>m</i> is ten million
+and <i>n</i> is 2<sup>31</sup>.''
+
+<p>
+p. 181, line -6:
+Change ``structues'' to ``structures''.
+
+<P>
+p. 203, line 12:
+Change ``commutative'' to ``associative''.
+
+<P>
+p. 224, line -2: Remove the phrase
+``or print <i>n</i> + 1 - <i>i</i> rather than <i>i</i>''.
+
+<P>
+p. 231, line -13: Insert ``p'' after ``*'',
+so the line reads
+<DL><DT><DD><TT><PRE>
+unsigned int hash(char *p)
+</PRE></TT></DL>
+
+<p>
+I am grateful for the extremely careful reading
+and detailed bug reports provided by
+Nick Cox,
+Alexey Kudravtsev,
+Dan Pape,
+Arnold Robbins
+and Satoru Takabayashi.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+We 15 Nov 2000
+</BODY>
+</HTML>
+

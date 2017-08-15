@@ -1,0 +1,196 @@
+<HTML>
+<HEAD>
+<title>Epilog to Programming Pearls, Second Edition</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Epilog to the Second Edition of
+<br><font color="#a52a2a">Programming Pearls</font></h1>
+
+<P>
+Some
+<a href="epilog1.html">traditions</a>
+are continued for their inherent quality.
+Others persist anyway.
+
+<p><i>Q:</i>
+Welcome back; it's been a long time.
+<p><i>A:</i>
+Fourteen years.
+
+<p><i>Q:</i>
+Let's start where we did before.
+Why a new edition of the book?
+<p><i>A:</i>
+I like the book, a lot.
+It was fun to write,
+and the readers have been very kind over the years.
+The principles in the book
+have stood the test of time,
+but many examples in the
+<a href="firsted.html">first edition</a>
+were
+<a href="why2e.html#vaxtimes">woefully out of date</a>.
+Modern readers can't relate to a ``huge'' computer
+that has a half-megabyte of main memory.
+
+<p><i>Q:</i>
+So what did you change in this edition?
+<p><i>A:</i>
+Pretty much
+<a href="preface.html#firstedition">
+what I said I changed in the preface</a>.
+Don't you guys prepare before these interviews?
+
+<p><i>Q:</i>
+Oops -- sorry.
+I see that you talk there about how the code
+for this book is available at the web site.
+<p><i>A:</i>
+Writing that code was the most fun that I had
+in working on this edition.
+I implemented most of the programs in the first edition,
+but mine were the only eyes to see the real code.
+For this edition I wrote about
+2500 lines of C and C++,
+to be shown to the whole world.
+
+<p><i>Q:</i>
+You call that code ready for public view?
+I've read some of it; what dreadful style!
+Microscopic variable names,
+weird function definitions,
+global variables that should be parameters,
+and the list goes on.
+Aren't you embarrassed to let
+real software engineers see the code?
+<p><i>A:</i>
+The style I used can indeed prove fatal
+in large software projects.
+This book, however,
+is not a large software project.
+It's not even a large book.
+<a href="sol05.html">Solution 5.1</a>
+describes the terse coding style
+and why I chose it.
+Had I wanted to write a thousand-page book,
+I would have adopted a lengthier coding style.
+
+<p><i>Q:</i>
+Speaking of long code,
+your
+<a href="sort.cpp"><i>sort.cpp</i></a>
+program measures the C Standard Library <i>qsort</i>,
+the C++ Standard Template Library <i>sort</i>,
+and several hand-made Quicksorts.
+Can't you make up your mind?
+Should a programmer use library functions
+or build code from scratch?
+<p><i>A:</i>
+Tom Duff gave the best answer to that question:
+``Whenever possible, steal code.''
+Libraries are great; use them whenever they do the job.
+Start with your system library,
+then search other libraries for appropriate functions.
+In any engineering activity, though,
+not all artifacts can be all things to all customers.
+When the library functions don't measure up,
+you may have to build your own.
+I hope that the pseudocode fragments in the book
+(and the real code on the web site)
+will prove a useful starting point for programmers
+who have to write their own functions.
+I think that the scaffolding and the experimental
+approach of this book will help those programmers to
+evaluate a variety of algorithms and choose the
+best one for their application.
+
+<p><i>Q:</i>
+Apart from the public code and updating some stories,
+what is <i>really</i> new in this edition?
+<p><i>A:</i>
+I've tried to confront code tuning in the
+presence of caches and instruction-level parallelism.
+At a larger level,
+the three new columns reflect
+three major changes that pervade this edition:
+Column 5 describes real code and scaffolding,
+Column 13 gives details on data structures, and
+<a href="strings.html">Column 15</a>
+derives advanced algorithms.
+Most of the ideas in the book have appeared in
+print before,
+but the cost model for space in
+<a href="appmodels.html">Appendix 3</a>
+and the Markov-text algorithm in
+<a href="sec153.html">Section 15.3</a>
+are presented here for the first time.
+The new Markov-text algorithm compares quite
+favorably to the classic algorithm described by
+Kernighan and Pike.
+
+<p><i>Q:</i>
+There you go with more Bell Labs people.
+The last time we talked,
+you were enthusiastic about the place,
+but you had only been there a few years.
+Lots has changed at the Labs in the last 14 years;
+what do you now think about the place and the changes?
+<p><i>A:</i>
+When I wrote the first columns in the book,
+<a href="http://www.bell-labs.com/">Bell Labs</a>
+was part of the Bell System.
+When the first edition was published,
+we were part of AT&T;
+now we are part of
+<a href="http://www.lucent.com/">Lucent Technologies</a>.
+The companies,
+the telecommunications industry,
+and the field of computing
+have all changed dramatically in that period.
+Bell Labs
+has kept up with those changes,
+and has often led the way.
+I came to the Labs because I enjoy balancing
+the theoretical and the applied,
+because I want to build products and write books.
+The pendulum has swung back and forth during
+my years at the Labs,
+but my management has always encouraged
+a wide range of activities.
+
+<p>
+A reviewer of the first edition of this book
+<a href="http://www.ercb.com/ddj/1991/ddj.9106.html">wrote</a>
+``Bentley's everyday working environment is
+a programming nirvana.
+He is a Member of Technical Staff at
+<a href="http://www.bell-labs.com/">Bell Labs</a>
+in 
+<a href="http://cm.bell-labs.com/cm/ms/departments/sia/info/site.html">
+Murray Hill</a>,
+New Jersey,
+has immediate access to cutting-edge hardware
+and software technology,
+and stands in line at the cafeteria with some
+of the most brilliant software developers in the world.''
+Bell Labs is still that kind of place.
+
+<p><i>Q:</i>
+Nirvana every single day of the week?
+<p><i>A:</i>
+Nirvana many days,
+and pretty darn nice the others.
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Fri 24 Sep 1999
+</BODY>
+</HTML>
+

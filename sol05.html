@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+<title>Solutions to Column 5</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Solutions
+<br>(To Column 5 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+<a name="p1">
+1.
+When I write large programs,
+I use long names (ten or twenty characters)
+for my global variables.
+This column uses short variable names such as
+<i>x</i>, <i>n</i> and <i>t</i>.
+In most software projects,
+the shortest plausible names might be more like
+<i>elem</i>, <i>nelems</i> and <i>target</i>.
+I find the short names convenient for building scaffolding
+and essential for mathematical proofs like that in Section 4.3.
+Similar rules apply to mathematics:
+the unfamiliar may want to hear that
+``the square of the hypotenuse of a
+right triangle is equal to the sum of the squares of
+the two adjacent sides'',
+but people working on the problem usually say
+``<i>a</i><sup>2</sup> + <i>b</i><sup>2</sup> = <i>c</i><sup>2</sup>''.
+
+<p>
+I've tried to stick close to
+<a href="http://www.cs.bell-labs.com/cm/cs/cbook/index.html">
+Kernighan and Ritchie's C</a>
+coding style,
+but I put the first line of code with the opening
+curly brace of a function
+and delete other blank lines to save space
+(a substantial percentage,
+for the little functions in this book).
+
+<p>
+The binary search in Section 5.1 returns an integer
+that is -1 if the value is not present,
+and points to the value if it is present.
+Steve McConnell
+suggested that the search
+should properly return two values:
+a <i>boolean</i> telling whether it is present,
+and an index that is used only if the <i>boolean</i> is true:
+<DL><DT><DD><TT><PRE>
+boolean BinarySearch(DataType TargetValue, int *TargetIndex)
+ /* precondition: Element[0] <= Element[1] <=
+	... <= Element[NumElements-1]
+    postcondition:
+        result == false =>
+            TargetValue not in Element[0..NumElements-1]
+        result == true  =>
+            Element[*TargetIndex] == TargetValue
+  */
+</PRE></TT></DL>
+
+<p>
+Listing 18.3 on page 402 of McConnell's
+<a href="http://www.construx.com/stevemcc/cc.htm"><i>Code Complete</i></a>
+is a Pascal Insertion Sort that occupies one (large) page;
+the code and comments are together 41 lines.
+That style is appropriate for large software projects.
+Section 11.1 of this book presents the same algorithm
+in just five lines of code.
+
+<p>
+Few of the programs have error checking.
+Some functions read data from files into arrays
+of size <i>MAX</i>,
+and <i>scanf</i> calls can easily overflow their buffers.
+Array arguments that should be parameters
+are instead global variables.
+
+<p>
+Throughout this book,
+I've used shortcuts that are appropriate for
+textbooks and scaffolding,
+but not for large software projects.
+As Kernighan and Pike observe in Section 1.1 of their
+<a href="http://cm.bell-labs.com/cm/cs/tpop/">
+<i>The Practice of Programming</i></a>,
+``clarity is often achieved through brevity''.
+Even so,
+most of my code avoids the incredibly dense style
+illustrated in the C++ code in Section 14.3.
+
+<p>
+7.
+For <i>n</i>=1000,
+searching through the array in sorted order
+required 351 nanoseconds per search,
+while searching it in random order raised the
+average cost to 418 nanoseconds
+(about a twenty percent slowdown).
+For <i>n</i>=10<sup>6</sup>,
+the experiment overflows even the L2 cache
+and the slowdown is a factor of 2.7.
+For the highly-tuned binary search in Section 8.3, though,
+the ordered searches zipped right through
+an <i>n</i>=1000-element table
+in 125 nanoseconds each,
+while the random searches required 266 nanoseconds,
+a slowdown of over a factor of two.
+
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Thu 9 Sep 1999
+</BODY>
+</HTML>
+

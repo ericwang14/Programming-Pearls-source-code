@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<title>Principles</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Principles
+<br>(Section 1.5 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+The programmer told me about his problem in a phone call;
+it took us about fifteen minutes to get to the real problem
+and find the bitmap solution.
+It took him a couple of hours to implement the program in a
+few dozen lines of code,
+which was far superior to the hundreds of lines of code
+and the week of programming time that we had feared
+at the start of the phone call.
+And the program was lightning fast:
+while a Merge Sort on disk might have taken many minutes,
+this program took little more than the time to read the
+input and to write the output -- about ten seconds.
+Solution 3 contains timing details on several programs
+for the task.
+
+<p>
+Those facts contain the first lesson from this case study:
+careful analysis of a small problem can sometimes
+yield tremendous practical benefits.
+In this case a few minutes of careful study led to an order of
+magnitude reduction in code length,
+programmer time and run time.
+General Chuck Yeager
+(the first person to fly faster than sound)
+praised an airplane's engine system with the words
+``simple, few parts, easy to maintain, very strong'';
+this program shares those attributes.
+The program's specialized structure, however,
+would be hard to modify if certain dimensions
+of the specifications were changed.
+In addition to the advertising for clever programming,
+this case illustrates the following general principles.
+
+<p>
+<i>The Right Problem.</i>
+Defining the problem was about ninety percent
+of this battle -- I'm glad that the programmer didn't
+settle for the first program I described.
+Problems
+<a href="sec016.html#p10">10</a>,
+<a href="sec016.html#p11">11</a>
+and
+<a href="sec016.html#p12">12</a>
+have elegant solutions once you pose
+the right problem;
+think hard about them before looking at the hints and solutions.
+
+<p>
+<i>The Bitmap Data Structure.</i>
+This data structure represents a dense set
+over a finite domain when each element occurs at
+most once and no other data is associated with the element.
+Even if these conditions aren't satisfied
+(when there are multiple elements or extra data,
+for instance),
+a key from a finite domain can be used as
+an index into a table with more complicated entries;
+see Problems
+<a href="sec016.html#p6">6</a>
+and
+<a href="sec016.html#p8">8</a>.
+
+<p>
+<i>Multiple-Pass Algorithms.</i>
+These algorithms make several passes over their input
+data, accomplishing a little more each time.
+We saw a 40-pass algorithm in
+<a href="sec013.html">Section 1.3</a>; 
+Problem 5 encourages you to develop a two-pass algorithm.
+
+<p>
+<i>A Time-Space Tradeoff and One That Isn't.</i>
+Programming folklore and theory abound with
+time-space tradeoffs:
+by using more time, a program can run in less space.
+The two-pass algorithm in Solution 5, for instance,
+doubles a program's run time to halve its space.
+It has been my experience more frequently, though,
+that reducing a program's space requirements also
+reduces its run time.
+(Tradeoffs are common to all engineering disciplines;
+automobile designers, for instance, might trade
+reduced mileage for faster acceleration by adding
+heavy components.
+Mutual improvements are preferred, though.
+A review of a small car I once drove observed that
+``the weight saving on the car's basic structure translates
+into further weight reductions in the various chassis
+components -- and even the elimination of the need
+for some, such as power steering''.)
+The space-efficient structure of bitmaps dramatically
+reduced the run time of sorting.
+There were two reasons that the 
+reduction in space led to a reduction in time:
+less data to process means less time to process it,
+and keeping data in main memory rather than on disk
+avoids the overhead of disk accesses.
+Of course,
+the mutual improvement was possible only because the
+original design was far from optimal.
+
+<p>
+<i>A Simple Design.</i>
+Antoine de Saint-Exupery,
+the French writer and aircraft designer, said that,
+``A designer
+knows he has arrived at perfection not when there is no longer
+anything to add, but when there is no longer anything to take
+away.''
+More programmers should judge their work by this criterion.
+Simple programs are usually more
+reliable, secure, robust and efficient than their
+complex cousins,
+and easier to build and to maintain.
+
+<p>
+<i>Stages of Program Design.</i>
+This case illustrates the design process that is described in
+detail in Section 12.4.
+
+<p><a href="sec016.html">Next: Section 1.6. Problems.</a>
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Thu 23 Sep 1999
+</BODY>
+</HTML>
+

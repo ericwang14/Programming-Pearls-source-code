@@ -1,0 +1,129 @@
+<HTML>
+<HEAD>
+<title>Solutions to Column 15</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Solutions
+<br>(To Column 15 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+
+<P>
+1. Many document systems provide a way to strip out
+all formatting commands and see a raw text representation
+of the input.
+<a href="longdups.html">When I played with</a>
+<a href="longdup.c">the string duplication program</a>
+of
+<a href="sec152.html">Section 15.2</a>
+on long texts,
+I found that it was very sensitive to
+how the text was formatted.
+The program took 36 seconds to process the
+4,460,056 characters in the King James Bible,
+and the longest repeated string was
+269 characters in length.
+When I normalized the input text by removing
+the verse number from each line,
+so long strings could cross verse boundaries,
+the longest string increased to 563 characters,
+which the program found in about the same amount of run time.
+
+<P>
+3. Because this program performs many searches for
+each insertion,
+very little of its time is going to memory allocation.
+Incorporating the special-purpose memory allocator
+reduced the processing time by about 0.06 seconds,
+for a ten-percent speedup in that phase,
+but only a two-percent speedup for the entire program.
+
+<P>
+5. We could add another <i>map</i> to the C++ program
+to associate a sequence of words with each count.
+In the C program we might sort an array by count,
+then iterate through it
+(because some words tend to have large counts,
+that array will be much smaller than the input file).
+For typical documents,
+we might use key indexing and keep an array of linked lists
+for counts in the range (say) 1..1000.
+
+<P>
+7. Textbooks on algorithms warn about inputs like ``aaaaaaaa'',
+repeated thousands of times.
+I found it easier to time the program
+on a file of newlines.
+The program took
+2.09 seconds to process 5000 newlines,
+8.90 seconds on 10,000 newlines,
+and 37.90 seconds on 20,000 newlines.
+This growth appears to be slightly faster than quadratic,
+perhaps proportional to roughly <i>n</i> log<sub>2</sub> <i>n</i>
+comparisons,
+each at an average cost proportional to <i>n</i>.
+A more realistic bad case can be constructed by
+appending two copies of a large input file.
+
+<p>
+<a name="p8">
+8. The subarray <i>a[i..i+M]</i> represents <i>M+1</i> strings.
+Because the array is sorted,
+we can quickly determine how many characters
+those <i>M+1</i> strings have in common
+by calling <i>comlen</i> on the first and last strings:
+<DL><DT><DD><TT><PRE>
+comlen(a[i], a[i+M])
+</PRE></TT></DL>
+<a href="longdup.c">Code at this book's web site</a>
+implements this algorithm.
+
+<P>
+9. Read the first string into the array <i>c</i>,
+note where it ends,
+terminate it with a null character,
+then read in the second string and terminate it.
+Sort as before.
+When scanning through the array,
+use an ``exclusive or'' to ensure that precisely
+one of the strings starts before the transition point.
+
+<p>
+14. This function hashes a sequence of <i>k</i> words terminated by
+null characters:
+<DL><DT><DD><TT><PRE>
+unsigned int hash(char *p)
+    unsigned int h = 0
+    int n
+    for (n = k; n > 0; p++)
+        h = MULT * h + *p
+        if (*p == 0)
+            n--
+    return h % NHASH
+</PRE></TT></DL>
+<a href="markovhash.c">A program at this book's web site</a>
+uses this hash function to replace binary search in the
+Markov text generation algorithm,
+which reduces the O(<i>n</i> log <i>n</i>) time to
+O(<i>n</i>), on the average.
+The program uses a list representation
+for elements in the hash table
+to add only <i>nwords</i> additional 32-bit integers,
+where <i>nwords</i> is the number of words in the input.
+
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Wed 15 Nov 2000
+</BODY>
+</HTML>
+

@@ -1,0 +1,823 @@
+%!PS-Adobe-2.0
+%%Copyright: Copyright (c) 1993 AT&T, All Rights Reserved
+%%Version: 3.4
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+/DpostDict 200 dict def
+DpostDict begin
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 prologue for troff files.
+%
+
+/#copies 1 store
+/Prologue (dpost.ps) def
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/landscapepage {
+	landscape not {
+		0 height scaling div neg translate	% not quite
+		90 rotate
+	} if
+} bind def
+
+/portraitpage {
+	landscape {
+		width scaling div 0 translate	% not quite
+		-90 rotate
+	} if
+} bind def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+end
+%%EndProlog
+%%BeginSetup
+DpostDict begin
+mark
+/rotation 1 def
+/gotpagebbox true def
+/linewidth 0.5 def
+/xoffset 0 def
+/yoffset 0 def
+/#copies 1 store
+/magnification 1 def
+%%FormsPerPage: 1
+/formsperpage 1 def
+%%Patch from lp
+%%EndPatch from lp
+/landscape false def
+/resolution 720 def
+setup
+2 setdecoding
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 drawing procedures for dpost. Automatically pulled in when
+% needed.
+%
+
+/inpath false def
+/savematrix matrix def
+
+/Dl {
+	inpath
+		{pop pop neg lineto}
+		{newpath neg moveto neg lineto stroke}
+	ifelse
+} bind def
+
+/De {
+	/y1 exch 2 div def
+	/x1 exch 2 div def
+	/savematrix savematrix currentmatrix def
+	neg exch x1 add exch translate
+	x1 y1 scale
+	0 0 1 0 360
+	inpath
+		{1 0 moveto arc savematrix setmatrix}
+		{newpath arc savematrix setmatrix stroke}
+	ifelse
+} bind def
+
+/Da {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arc}
+		{newpath arc stroke}
+	ifelse
+} bind def
+
+/DA {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arcn}
+		{newpath arcn stroke}
+	ifelse
+} bind def
+
+/Ds {
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	/y0 exch def
+	/x0 exch def
+	x0 5 x1 mul add 6 div
+	y0 5 y1 mul add -6 div
+	x2 5 x1 mul add 6 div
+	y2 5 y1 mul add -6 div
+	x1 x2 add 2 div
+	y1 y2 add -2 div
+	inpath
+		{curveto}
+		{newpath x0 x1 add 2 div y0 y1 add -2 div moveto curveto stroke}
+	ifelse
+} bind def
+end
+%%EndSetup
+%%Page: 1 1
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+1 pagesetup
+20 H f
+(Linear Structures)1 1528 1 2116 960 t
+(The Problem)1 1148 1 1080 1620 t
+(Two Sequential Implementations)2 2912 1 1080 1860 t
+(Arrays)1580 2100 w
+(Linked Lists)1 1060 1 1580 2340 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-1)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 1 1
+%%Page: 2 2
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+2 pagesetup
+20 H f
+(The Problem)1 1148 1 2486 960 t
+(Implement this algorithm for random sorted sets)6 4248 1 720 1560 t
+20 CW f
+(initialize set S to empty)4 3000 1 720 2095 t
+(size = 0)2 960 1 720 2330 t
+(while size < m do)4 2040 1 720 2565 t
+(t = bigrand\(\) % maxval)4 2640 1 1200 2800 t
+(if t is not in S)5 1920 1 1200 3035 t
+(insert t into S)3 1800 1 1680 3270 t
+(size++)1680 3505 w
+(print the elements of S in sorted order)7 4680 1 720 3740 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-2)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 2 2
+%%Page: 3 3
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+3 pagesetup
+20 H f
+(A C++ Approach)2 1482 1 2319 960 t
+(A Set Implementation)2 1920 1 720 1560 t
+20 CW f
+(class IntSetImp {)2 2040 1 720 1855 t
+(public:)720 2090 w
+(IntSetImp\(int maxelems, int maxval\);)3 4320 1 1200 2325 t
+(void insert\(int t\);)2 2280 1 1200 2560 t
+(int size\(\);)1 1320 1 1200 2795 t
+(void report\(int *v\);)2 2400 1 1200 3030 t
+(};)720 3265 w
+20 H f
+(Algorithm Implementation)1 2274 1 720 3805 t
+20 CW f
+(void gensets\(int m, int maxval\))4 3720 1 720 4100 t
+( *v = new int[m];)4 2040({ int)1 840 2 720 4335 t
+(IntSetImp S\(m, maxval\);)2 2760 1 1200 4570 t
+(while \(S.size\(\) < m\))3 2400 1 1200 4805 t
+(S.insert\(bigrand\(\) % maxval\);)2 3480 1 1680 5040 t
+(S.report\(v\);)1200 5275 w
+(for \(int i = 0; i < m; i++\))8 3240 1 1200 5510 t
+(cout << v[i] << "\\n";)4 2520 1 1680 5745 t
+(})720 5980 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-3)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 562 726
+%%EndPage: 3 3
+%%Page: 4 4
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+4 pagesetup
+20 H f
+(An STL Implementation)2 2098 1 2011 960 t
+20 CW f
+(class IntSetSTL {)2 2040 1 720 1615 t
+(private:)720 1850 w
+(set<int> S;)1 1320 1 1200 2085 t
+(public:)720 2320 w
+(IntSetSTL\(int maxelems, int maxval\) { })5 4680 1 1200 2555 t
+(int size\(\) { return S.size\(\); })5 3720 1 1200 2790 t
+(void insert\(int t\) { S.insert\(t\); })5 4200 1 1200 3025 t
+(void report\(int *v\))2 2280 1 1200 3260 t
+( j = 0;)3 840({ int)1 840 2 1200 3495 t
+(set<int>::iterator i;)1 2520 1 1680 3730 t
+(for \(i=S.begin\(\); i!=S.end\(\); ++i\))3 4080 1 1680 3965 t
+(v[j++] = *i;)2 1440 1 2160 4200 t
+(})1200 4435 w
+(};)720 4670 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-4)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 598 726
+%%EndPage: 4 4
+%%Page: 5 5
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+5 pagesetup
+20 H f
+(\(Sorted\) Arrays)1 1358 1 2381 960 t
+20 CW f
+(class IntSetArray {)2 2280 1 720 1375 t
+(private:)720 1610 w
+(int n, *x;)2 1200 1 1200 1845 t
+(public:)720 2080 w
+(IntSetArray\(int maxelms, int maxval\))3 4320 1 1200 2315 t
+( = new int[1 + maxelms];)5 2880({ x)1 600 2 1200 2550 t
+(n = 0;)2 720 1 1680 2785 t
+(x[0] = maxval;)2 1680 1 1680 3020 t
+(})1200 3255 w
+(int size\(\) { return n; })5 2880 1 1200 3490 t
+(void insert\(int t\))2 2160 1 1200 3795 t
+( \(int i = 0; x[i] < t; i++\))8 3240({ for)1 840 2 1200 4030 t
+(;)2160 4265 w
+(if \(x[i] == t\))3 1680 1 1680 4500 t
+(return;)2160 4735 w
+(for \(int j = n; j >= i; j--\))8 3360 1 1680 4970 t
+(x[j+1] = x[j];)2 1680 1 2160 5205 t
+(x[i] = t;)2 1080 1 1680 5440 t
+(n++;)1680 5675 w
+(})1200 5910 w
+(void report\(int *v\))2 2280 1 1200 6215 t
+( \(int i = 0; i < n; i++\))8 2880({ for)1 840 2 1200 6450 t
+(v[i] = x[i];)2 1440 1 2160 6685 t
+(})1200 6920 w
+(};)720 7155 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-5)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 562 726
+%%EndPage: 5 5
+%%Page: 6 6
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+6 pagesetup
+20 H f
+(\(Sorted\) Linked Lists)2 1840 1 2140 960 t
+16 H f
+1526 1644 1526 1844 Dl
+1792 1644 1526 1644 Dl
+1793 1844 1793 1644 Dl
+1527 1844 1793 1844 Dl
+(26)1570 1776 w
+1793 1644 1793 1844 Dl
+2059 1644 1793 1644 Dl
+2059 1844 2059 1644 Dl
+1793 1844 2059 1844 Dl
+2460 1644 2460 1844 Dl
+2726 1644 2460 1644 Dl
+2726 1844 2726 1644 Dl
+2460 1844 2726 1844 Dl
+(31)2503 1776 w
+2726 1644 2726 1844 Dl
+2992 1644 2726 1644 Dl
+2993 1844 2993 1644 Dl
+2727 1844 2993 1844 Dl
+3393 1644 3393 1844 Dl
+3659 1644 3393 1644 Dl
+3659 1844 3659 1644 Dl
+3393 1844 3659 1844 Dl
+(41)3436 1776 w
+3659 1644 3659 1844 Dl
+3925 1644 3659 1644 Dl
+3926 1844 3926 1644 Dl
+3660 1844 3926 1844 Dl
+4326 1644 4326 1844 Dl
+4592 1644 4326 1644 Dl
+4593 1844 4593 1644 Dl
+4327 1844 4593 1844 Dl
+(59)4369 1776 w
+4593 1644 4593 1844 Dl
+4859 1644 4593 1644 Dl
+4860 1844 4860 1644 Dl
+4594 1844 4860 1844 Dl
+2459 1744 1926 1744 Dl
+2459 1744 2353 1770 Dl
+2459 1743 2353 1717 Dl
+3392 1744 2859 1744 Dl
+3392 1744 3286 1770 Dl
+3392 1743 3286 1717 Dl
+4326 1744 3793 1744 Dl
+4325 1744 4219 1770 Dl
+4325 1743 4219 1717 Dl
+4859 1644 4593 1844 Dl
+1525 1744 1419 1770 Dl
+1525 1743 1419 1717 Dl
+1260 1744 1526 1744 Dl
+16 HI f
+(head)765 1776 w
+16 H f
+(:)1125 1776 w
+20 CW f
+(class IntSetList {)2 2160 1 720 2295 t
+(private:)720 2530 w
+(int n;)1 720 1 1200 2765 t
+(struct node {)2 1560 1 1200 3000 t
+(int val;)1 960 1 1680 3235 t
+(node *next;)1 1320 1 1680 3470 t
+(node\(int v, node *p\))3 2400 1 1680 3705 t
+({ val = v; next = p; })7 2640 1 2160 3940 t
+(};)1200 4175 w
+(node *head, *sentinel;)2 2640 1 1200 4410 t
+(node *rinsert\(node *p, int t\))4 3480 1 1200 4645 t
+( \(p->val < t\) {)4 1800({ if)1 720 2 1200 4880 t
+(p->next = rinsert\(p->next, t\);)3 3600 1 2160 5115 t
+(} else if \(p->val > t\) {)6 2880 1 1680 5350 t
+(p = new node\(t, p\);)4 2280 1 2160 5585 t
+(n++;)2160 5820 w
+(})1680 6055 w
+(return p;)1 1080 1 1680 6290 t
+(})1200 6525 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-6)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 586 726
+%%EndPage: 6 6
+%%Page: 7 7
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+7 pagesetup
+20 H f
+(Lists, Cont.)1 1004 1 2558 960 t
+20 CW f
+(public:)720 1375 w
+(IntSetList\(int maxelms, int maxval\))3 4200 1 960 1610 t
+( = head =)3 1080({ sentinel)1 1440 2 960 1845 t
+(new node\(maxval, 0\);)2 2400 1 2640 2080 t
+(n = 0;)2 720 1 1680 2315 t
+(})960 2550 w
+(int size\(\) { return n; })5 2880 1 960 2785 t
+(void insert\(int t\))2 2160 1 960 3020 t
+({ head = rinsert\(head, t\); })5 3360 1 1440 3255 t
+(void report\(int *v\))2 2280 1 960 3490 t
+( j = 0;)3 840({ int)1 840 2 960 3725 t
+(node *p;)1 960 1 1440 3960 t
+(for \(p=head; p!=sentinel; p=p->next\))3 4320 1 1440 4195 t
+(v[j++] = p->val;)2 1920 1 1920 4430 t
+(})960 4665 w
+(};)720 4900 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-7)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 586 726
+%%EndPage: 7 7
+%%Page: 8 8
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+8 pagesetup
+20 H f
+(Run Times)1 968 1 2576 960 t
+(Experiments \()1 1236 1 720 1560 t
+20 HI f
+(n)1956 1560 w
+20 S f
+(=)2173 1560 w
+20 H f
+(10)2388 1560 w
+17 H f
+(6)2626 1480 w
+20 H f
+(\))2737 1560 w
+20 S f
+(_ __________________________________________________)1 5052 1 720 1710 t
+(_ __________________________________________________)1 5052 1 720 1730 t
+20 H f
+(Set Size \()2 870 1 3997 1960 t
+20 HI f
+(m)4867 1960 w
+20 H f
+(\))5033 1960 w
+(Structure)1465 2080 w
+(10,000 20,000 40,000)2 2448 1 3324 2200 t
+20 S f
+(_ __________________________________________________)1 5052 1 720 2240 t
+20 H f
+( 11.1)1 972( 2.6)1 972(Arrays 0.6)1 3052 3 720 2480 t
+( 170.0)1 972( 31.2)1 972( 5.7)1 1972(Simple Lists)1 1080 4 720 2720 t
+( 12.6 73.8)2 1944( 1.8)1 748(Lists \(Remove Recursion\))2 2304 3 720 2960 t
+( 25.4)1 972( 5.7)1 972( 1.2)1 968(Lists \(Group Allocation\))2 2084 4 720 3200 t
+20 S f
+( \347)1 -2598(_ __________________________________________________)1 5052 2 720 3240 t
+(\347)3174 3130 w
+(\347)3174 2930 w
+(\347)3174 2730 w
+(\347)3174 2530 w
+(\347)3174 2330 w
+(\347)3174 2130 w
+(\347)3174 1930 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-8)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 587 726
+%%EndPage: 8 8
+%%Page: 9 9
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+9 pagesetup
+20 H f
+(Advanced Structures)1 1864 1 2128 960 t
+20 HI f
+(n)720 1520 w
+20 S f
+(=)881 1520 w
+20 H f
+(10)1024 1520 w
+17 H f
+(8)1262 1440 w
+20 H f
+(, raise)1 546 1 1373 1520 t
+20 HI f
+(m)1975 1520 w
+20 H f
+(until thrashing.)1 1306 1 2197 1520 t
+16 S f
+(_ ___________________________________________________________)1 4766 1 720 1650 t
+(_ ___________________________________________________________)1 4766 1 720 1670 t
+16 H f
+(Set Size \()2 697 1 3108 1860 t
+16 HI f
+(m)3805 1860 w
+16 H f
+(\))3938 1860 w
+16 S f
+(_ _________________________________________________)1 3993 1 1493 1900 t
+16 H f
+( 10,000,000)1 1424(1,000,000 5,000,000)1 2099 2 1810 2100 t
+(Structure)720 2080 w
+( Secs Mbytes)2 1355( Secs Mbytes)2 1403(Secs Mbytes)1 1115 3 1613 2300 t
+16 S f
+(_ ___________________________________________________________)1 4766 1 720 2340 t
+16 H f
+( 72)1 610(STL 9.38)1 1229 2 720 2540 t
+( 56)1 610(BST 7.30)1 1229 2 720 2740 t
+( 25.26 80)2 1403( 16)1 610(BST* 3.71)1 1229 3 720 2940 t
+( 60)1 610(Bins 2.36)1 1229 2 720 3140 t
+( 80)1 589( 5.55)1 814( 16)1 610(Bins* 1.02)1 1229 4 720 3340 t
+( 8.36 52)2 1355( 32)1 589( 5.70)1 814( 16)1 610(BitVec 3.72)1 1229 5 720 3540 t
+16 S f
+( \347)1 -3993(_ ___________________________________________________________)1 4766 2 720 3580 t
+(\347)1493 3430 w
+(\347)1493 3270 w
+(\347)1493 3110 w
+(\347)1493 2950 w
+(\347)1493 2790 w
+(\347)1493 2630 w
+(\347)1493 2470 w
+(\347)1493 2310 w
+(\347)1493 2150 w
+(\347)1493 1990 w
+(\347)1493 1830 w
+(\347)2848 3580 w
+(\347)2848 3500 w
+(\347)2848 3340 w
+(\347)2848 3180 w
+(\347)2848 3020 w
+(\347)2848 2860 w
+(\347)2848 2700 w
+(\347)2848 2540 w
+(\347)2848 2380 w
+(\347)2848 2220 w
+(\347)2848 2060 w
+(\347)4251 3580 w
+(\347)4251 3500 w
+(\347)4251 3340 w
+(\347)4251 3180 w
+(\347)4251 3020 w
+(\347)4251 2860 w
+(\347)4251 2700 w
+(\347)4251 2540 w
+(\347)4251 2380 w
+(\347)4251 2220 w
+(\347)4251 2060 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-13-9)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 559 726
+%%EndPage: 9 9
+%%Trailer
+DpostDict begin
+done
+end
+%%Pages: 9
+%%DocumentFonts: Courier Helvetica Times-Italic Times-Roman Symbol Helvetica-Oblique

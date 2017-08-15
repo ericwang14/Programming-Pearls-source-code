@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<title>Heaps</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Heaps
+<br>(A Sketch of Column 14 of
+<font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+This column is about ``heaps'',
+a data structure that we'll use to solve two
+important problems.
+<DL>
+<DT><DD>
+<i>Sorting</i>.
+Heapsort never takes more than O(<i>n</i> log <i>n</i>) time
+to sort an <i>n</i>-element array, 
+and uses just a few words of extra space.
+<DT><DD>
+<i>Priority Queues</i>.
+Heaps maintain a set of elements under the operations
+of inserting new elements and
+extracting the smallest element in the set;
+each operation requires O(log  <i>n</i>) time.
+</DL>
+For both problems,
+heaps are simple to code and computationally efficient.
+
+<p>
+This column has a bottom-up organization:
+we start at the details and work up to the big picture.
+The next two sections describe the heap data structure and
+two functions to operate on it.
+The two subsequent sections use those tools
+to solve the problems mentioned above.
+
+
+<h3>The Rest of the Column</h3>
+
+<br>14.1 The Data Structure
+<br>14.2 Two Critical Functions
+<br>14.3 Priority Queues
+<br>14.4 A Sorting Algorithm
+<br>14.5 Principles
+<br>14.6 Problems
+<br>14.7 Further Reading
+
+<P>
+The <a href="teaching.html">teaching material</a>
+contains overhead transparencies based on this column;
+the slides are available in both
+<a href="s14.ps">Postscript</a>
+and
+<a href="s14.pdf">Acrobat</a>.
+
+<P>
+The <a href="code.html#col14">code for Column 14</a>
+contains the code for priority queues,
+and the <a href="code.html#col11">code for Column 11</a>
+contains the code for Heapsort.
+
+<P>
+The <a href="sortanim.html">animations of sorting algorithms</a>
+show Heapsort at work.
+(But heed the warning on that page that the sleazy
+implementation leaves the first element of the array
+dangling in mid-air.)
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+We 6 Oct 1999
+</BODY>
+</HTML>
+

@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+<title>Solutions to Column 1</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Solutions
+<br>(To Column 1 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+
+<P>
+<a name="p1">
+1.
+<a href="qsortints.c">This C program</a>
+uses the Standard Library <i>qsort</i>
+to sort a file of integers.
+<DL><DT><DD><TT><PRE>
+int intcomp(int *x, int *y)
+{   return *x - *y; }
+
+int a[1000000];
+int main(void)
+{   int i, n=0;
+    while (scanf("%d", &a[n]) != EOF)
+        n++;
+    qsort(a, n, sizeof(int), intcomp);
+    for (i = 0; i < n; i++)
+        printf("%d\n", a[i]);
+    return 0;
+}
+</PRE></TT></DL>
+<a href="sortints.cpp">This C++ program</a>
+uses the <i>set</i>
+container from the Standard Template Library
+for the same job.
+<DL><DT><DD><TT><PRE>
+int main(void)
+{   set<int> S;
+    int i;
+    set<int>::iterator j;
+    while (cin >> i)
+        S.insert(i);
+    for (j = S.begin(); j != S.end(); ++j)
+        cout << *j << "\n";
+    return 0;
+}
+</PRE></TT></DL>
+Solution 3 sketches the performance of both programs.
+
+<p>
+2.
+These functions use the constants to set, clear and test
+the value of a bit:
+<DL><DT><DD><TT><PRE>
+#define BITSPERWORD 32
+#define SHIFT 5
+#define MASK 0x1F
+#define N 10000000
+int a[1 + N/BITSPERWORD];
+
+void set(int i) {        a[i>>SHIFT] |=  (1<<(i & MASK)); }
+void clr(int i) {        a[i>>SHIFT] &= ~(1<<(i & MASK)); }
+int  test(int i){ return a[i>>SHIFT] &   (1<<(i & MASK)); }
+</PRE></TT></DL>
+
+<p>
+3.
+<a href="bitsort.c">This C code</a>
+implements the sorting algorithm,
+using the functions defined in Solution 2.
+<DL><DT><DD><TT><PRE>
+int main(void)
+{   int i;
+    for (i = 0; i < N; i++)
+        clr(i);
+    while (scanf("%d", &i) != EOF)
+        set(i);
+    for (i = 0; i < N; i++)
+        if (test(i))
+            printf("%d\n", i);
+    return 0;
+}
+</PRE></TT></DL>
+I used the program in Solution 4 to generate a file
+of one million distinct positive integers,
+each less than ten million.
+This table reports the cost of sorting them
+with the system command-line sort,
+the C++ and C programs in Solution 1,
+and the bitmap code:
+<br>
+<TABLE COLS=5 BORDER=ON ALIGN=CENTER>
+<THEAD>
+<TR><TH><TH>System Sort<TH>C++/STL<TH>C/qsort<TH>C/bitmaps</TR>
+</THEAD>
+<TBODY>
+<TR><TD>Total Secs<TD>89<TD>38<TD>12.6<TD>10.7</TR>
+<TR><TD>Compute Secs<TD>79<TD>28<TD>2.4<TD>.5</TR>
+<TR><TD>Megabytes<TD>.8<TD>70<TD>4<TD>1.25</TR>
+</TBODY>
+</TABLE>
+<br>
+The first line reports the total time,
+and the second line subtracts out the 10.2 seconds
+of input/output required to read and write the files.
+Even though the general C++ program uses 50 times the
+memory and CPU time of the specialized C program,
+it requires just half the code and is much easier to extend
+to other problems.
+
+<p>
+4.
+See Column 12, especially Problem 12.8.
+<a href="bitsortgen.c">This code</a>
+assumes that <i>randint(l, u)</i> returns
+a random integer in <i>l..u</i>.
+<DL><DT><DD><TT><PRE>
+for i = [0, n)
+    x[i] = i
+for i = [0, k)
+    swap(i, randint(i, n-1))
+    print x[i]
+</PRE></TT></DL>
+The <i>swap</i> function exchanges the two elements in <i>x</i>.
+The <i>randint</i> function is discussed in detail in Section 12.1.
+
+<p>
+5.
+Representing all ten million numbers with a bitmap
+requires that many bits,
+or 1.25 million bytes.
+Employing the fact that no phone numbers begin
+with the digits zero or one reduces the memory
+to exactly one million bytes.
+Alternatively, a two-pass algorithm first sorts the integers
+0 through 4,999,999 using 5,000,000/8 = 625,000
+words of storage,
+then sorts 5,000,000 through 9,999,999 in a second pass.
+A <i>k</i>-pass algorithm sorts at most <i>n</i> nonrepeated
+positive integers less than <i>n</i>
+in time <i>kn</i> and space <i>n</i>/<i>k</i>.
+
+<p>
+6.
+If each integer appears at most ten times, then we can count
+its occurrences in a four-bit half-byte (or nybble).
+Using the solution to Problem 5,
+we can sort the complete file
+in a single pass with 10,000,000/2 bytes,
+or in <i>k</i> passes with 10,000,000/2<i>k</i> bytes.
+
+<p>
+9.
+The effect of initializing the vector <i>data</i>[0..<i>n</i>-1]
+can be accomplished with a signature contained
+in two additional <i>n</i>-element vectors,
+<i>from</i> and <i>to</i>, and an integer <i>top</i>.
+If the element <i>data</i>[<i>i</i>] has been initialized,
+then <i>from</i>[<i>i</i>] < <i>top</i>
+and <i>to</i>[<i>from</i>[<i>i</i>]]=<i>i</i>.
+Thus <i>from</i> is a simple signature,
+and <i>to</i> and <i>top</i> together make sure that <i>from</i>
+is not accidentally signed by the random contents of memory.
+Blank entries of <i>data</i> are
+uninitialized in this picture:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="Initialization Structure" ALIGN=center src="ahuinit.jpg">
+<br>
+The variable <i>top</i> is initially zero;
+the array element <i>i</i> is first accessed by the code
+<DL><DT><DD><TT><PRE>
+from[i] = top
+to[top] = i
+data[i] = 0
+top++
+</PRE></TT></DL>
+This problem and solution are from Exercise 2.12 of
+Aho, Hopcroft and Ullman's
+<i>Design and Analysis of Computer Algorithms</i>,
+published by Addison-Wesley in 1974.
+It combines key indexing and a wily signature scheme.
+It can be used for matrices as well as vectors.
+
+<p>
+10.
+The store placed the paper order forms in a
+10x10 array of bins,
+using the last two digits of the
+customer's phone number as the hash index.
+When the customer telephoned an order,
+it was placed in the proper bin.
+When the customer arrived to retrieve the merchandise,
+the salesperson sequentially searched through the orders in the
+appropriate bin -- this is classical ``open
+hashing with collision resolution by sequential search''.
+The last two digits of the phone number are quite close to random
+and therefore an excellent hash function,
+while the first two digits would be
+a horrible hash function -- why?
+Some municipalities use a similar scheme to record
+deeds in sets of record books.
+
+<p>
+11.
+The computers at the two facilities were linked by microwave,
+but printing the drawings at the test base would have
+required a printer that was very expensive at the time.
+The team therefore drew the pictures at the main plant,
+photographed them,
+and sent 35mm film to the test station by carrier pigeon,
+where it was enlarged and printed photographically.
+The pigeon's 45-minute flight took half the time of the car,
+and cost only a few dollars per day.
+During the 16 months of the project the pigeons transmitted
+several hundred rolls of film,
+and only two were lost
+(hawks inhabit the area;
+no classified data was carried).
+Because of the low price of modern printers,
+a current solution to the problem would probably use
+the microwave link.
+
+<p>
+12.
+According to the urban legend,
+the Soviets solved their problem with a pencil,
+of course.
+For background on the true story, learn about the
+<a href="http://www.spacepen.com">
+Fisher Space Pen company</a>.
+The company was founded in 1948,
+and its writing instruments have been used by
+the Russian Space Agency,
+underwater explorers,
+and Himalayan climbing expeditions.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Thu 23 Sep 1999
+</BODY>
+</HTML>
+

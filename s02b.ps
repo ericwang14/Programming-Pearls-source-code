@@ -1,0 +1,1190 @@
+%!PS-Adobe-2.0
+%%Copyright: Copyright (c) 1993 AT&T, All Rights Reserved
+%%Version: 3.4
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+/DpostDict 200 dict def
+DpostDict begin
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 prologue for troff files.
+%
+
+/#copies 1 store
+/Prologue (dpost.ps) def
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/landscapepage {
+	landscape not {
+		0 height scaling div neg translate	% not quite
+		90 rotate
+	} if
+} bind def
+
+/portraitpage {
+	landscape {
+		width scaling div 0 translate	% not quite
+		-90 rotate
+	} if
+} bind def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+end
+%%EndProlog
+%%BeginSetup
+DpostDict begin
+mark
+/rotation 1 def
+/gotpagebbox true def
+/linewidth 0.5 def
+/xoffset 0 def
+/yoffset 0 def
+/#copies 1 store
+/magnification 1 def
+%%FormsPerPage: 1
+/formsperpage 1 def
+%%Patch from lp
+%%EndPatch from lp
+/landscape false def
+/resolution 720 def
+setup
+2 setdecoding
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 drawing procedures for dpost. Automatically pulled in when
+% needed.
+%
+
+/inpath false def
+/savematrix matrix def
+
+/Dl {
+	inpath
+		{pop pop neg lineto}
+		{newpath neg moveto neg lineto stroke}
+	ifelse
+} bind def
+
+/De {
+	/y1 exch 2 div def
+	/x1 exch 2 div def
+	/savematrix savematrix currentmatrix def
+	neg exch x1 add exch translate
+	x1 y1 scale
+	0 0 1 0 360
+	inpath
+		{1 0 moveto arc savematrix setmatrix}
+		{newpath arc savematrix setmatrix stroke}
+	ifelse
+} bind def
+
+/Da {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arc}
+		{newpath arc stroke}
+	ifelse
+} bind def
+
+/DA {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arcn}
+		{newpath arcn stroke}
+	ifelse
+} bind def
+
+/Ds {
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	/y0 exch def
+	/x0 exch def
+	x0 5 x1 mul add 6 div
+	y0 5 y1 mul add -6 div
+	x2 5 x1 mul add 6 div
+	y2 5 y1 mul add -6 div
+	x1 x2 add 2 div
+	y1 y2 add -2 div
+	inpath
+		{curveto}
+		{newpath x0 x1 add 2 div y0 y1 add -2 div moveto curveto stroke}
+	ifelse
+} bind def
+end
+%%EndSetup
+%%Page: 1 1
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+1 pagesetup
+20 H f
+(Vector Rotation)1 1384 1 2188 960 t
+(The Problem)1 1148 1 1080 1620 t
+(Three Algorithms)1 1526 1 1080 1860 t
+(Implementations)1080 2100 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2-1)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 1 1
+%%Page: 2 2
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+2 pagesetup
+20 H f
+(The Problem)1 1148 1 2486 960 t
+(The Problem)1 1148 1 720 1560 t
+(Rotate vector)1 1194 1 1008 2040 t
+20 HI f
+(x)2258 2040 w
+20 H f
+([)2374 2040 w
+20 HI f
+(n)2446 2040 w
+20 H f
+(] left by)2 648 1 2574 2040 t
+20 HI f
+(d)3278 2040 w
+20 H f
+(positions.)3446 2040 w
+(For)1008 2520 w
+20 HI f
+(n)1364 2520 w
+20 H f
+(=8 and)1 620 1 1476 2520 t
+20 HI f
+(d)2152 2520 w
+20 H f
+(=3, change)1 1000 1 2264 2520 t
+20 HI f
+(abcdefgh)3320 2520 w
+20 H f
+(to)4204 2520 w
+20 HI f
+(defghabc)4428 2520 w
+20 H f
+(.)5256 2520 w
+(Constraints:)1008 3000 w
+20 HI f
+(O)2134 3000 w
+20 H f
+(\()2306 3000 w
+20 HI f
+(n)2388 3000 w
+20 H f
+(\) time,)1 556 1 2516 3000 t
+20 HI f
+(O)3128 3000 w
+20 H f
+( extra space.)2 1150(\( 1 \))2 276 2 3300 3000 t
+(Pricey Solutions)1 1438 1 720 3480 t
+(Store)1008 3960 w
+20 HI f
+(d)1544 3960 w
+20 H f
+(in intermediate vector, shift the rest, store)6 3682 1 1712 3960 t
+(back. [)1 648 1 1008 4200 t
+20 HI f
+(O)1656 4200 w
+20 H f
+(\()1828 4200 w
+20 HI f
+(n)1910 4200 w
+20 H f
+(\) extra space.])2 1272 1 2038 4200 t
+(Rotate by 1)2 1028 1 1008 4680 t
+20 HI f
+(d)2092 4680 w
+20 H f
+(times. [)1 702 1 2260 4680 t
+20 HI f
+(O)2962 4680 w
+20 H f
+(\()3134 4680 w
+20 HI f
+(n)3216 4680 w
+20 H f
+(\) time.])1 612 1 3344 4680 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2-2)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 2 2
+%%Page: 3 3
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+3 pagesetup
+20 H f
+(A Juggling Algorithm)2 1840 1 2284 960 t
+(The Idea \()2 916 1 720 1560 t
+20 HI f
+(n)1636 1560 w
+20 S f
+(=)1797 1560 w
+20 H f
+(12,)1940 1560 w
+20 HI f
+(d)2276 1560 w
+20 S f
+(=)2437 1560 w
+20 H f
+(3\))2580 1560 w
+16 H f
+1260 2484 1260 2784 Dl
+1560 2483 1260 2483 Dl
+1560 2783 1560 2483 Dl
+1260 2784 1560 2784 Dl
+(1)1364 2666 w
+1560 2484 1560 2784 Dl
+1860 2483 1560 2483 Dl
+1859 2783 1859 2483 Dl
+1559 2784 1859 2784 Dl
+1859 2484 1859 2784 Dl
+2159 2483 1859 2483 Dl
+2160 2783 2160 2483 Dl
+1860 2784 2160 2784 Dl
+2160 2484 2160 2784 Dl
+2460 2483 2160 2483 Dl
+2460 2783 2460 2483 Dl
+2160 2784 2460 2784 Dl
+(2)2264 2666 w
+2460 2484 2460 2784 Dl
+2760 2483 2460 2483 Dl
+2759 2783 2759 2483 Dl
+2459 2784 2759 2784 Dl
+2759 2484 2759 2784 Dl
+3059 2483 2759 2483 Dl
+3060 2783 3060 2483 Dl
+2760 2784 3060 2784 Dl
+3060 2484 3060 2784 Dl
+3360 2483 3060 2483 Dl
+3360 2783 3360 2483 Dl
+3060 2784 3360 2784 Dl
+(3)3164 2666 w
+3360 2484 3360 2784 Dl
+3660 2483 3360 2483 Dl
+3659 2783 3659 2483 Dl
+3359 2784 3659 2784 Dl
+3659 2484 3659 2784 Dl
+3959 2483 3659 2483 Dl
+3960 2783 3960 2483 Dl
+3660 2784 3960 2784 Dl
+3960 2484 3960 2784 Dl
+4260 2483 3960 2483 Dl
+4260 2783 4260 2483 Dl
+3960 2784 4260 2784 Dl
+(4)4064 2666 w
+4260 2484 4260 2784 Dl
+4560 2483 4260 2483 Dl
+4559 2783 4559 2483 Dl
+4259 2784 4559 2784 Dl
+4559 2484 4559 2784 Dl
+4859 2483 4559 2483 Dl
+4860 2783 4860 2483 Dl
+4560 2784 4860 2784 Dl
+2610 1884 2610 2184 Dl
+2910 1884 2610 1884 Dl
+2910 2184 2910 1884 Dl
+2610 2184 2910 2184 Dl
+16 HI f
+(t)2737 2065 w
+2160 2483 -300 360 -300 -360 Da
+1560 2483 1702 2353 Dl
+1560 2483 1747 2436 Dl
+3060 2483 -300 360 -300 -360 Da
+2460 2483 2602 2353 Dl
+2460 2483 2647 2436 Dl
+3960 2483 -300 360 -300 -360 Da
+3360 2483 3502 2353 Dl
+3360 2483 3547 2436 Dl
+2609 2033 2420 1996 Dl
+2609 2034 2460 1912 Dl
+2610 2033 -481 804 -868 -354 Da
+4258 2484 4130 2340 Dl
+4259 2483 4213 2296 Dl
+4260 2483 -868 354 -481 -804 Da
+20 H f
+(The Code)1 882 1 720 3420 t
+20 CW f
+(for i = [0, gcd\(d, n\)\))5 2640 1 1296 3715 t
+(/* move i-th values of blocks */)6 3840 1 1776 3950 t
+(t = x[i])2 960 1 1776 4185 t
+(j = i)2 600 1 1776 4420 t
+(loop)1776 4655 w
+(k = j + d)4 1080 1 2256 4890 t
+(if k >= n)3 1080 1 2256 5125 t
+(k -= n)2 720 1 2736 5360 t
+(if k == i)3 1080 1 2256 5595 t
+(break)2736 5830 w
+(x[j] = x[k])2 1320 1 2256 6065 t
+(j = k)2 600 1 2256 6300 t
+(x[j] = t)2 960 1 1776 6535 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2-3)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 572 726
+%%EndPage: 3 3
+%%Page: 4 4
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+4 pagesetup
+20 H f
+(The Block-Swap Algorithm)2 2362 1 1879 960 t
+(The Idea: Change)2 1610 1 720 1560 t
+20 HI f
+(ab)2386 1560 w
+20 H f
+(to)2666 1560 w
+20 HI f
+(ba)2890 1560 w
+20 H f
+(If)1008 2040 w
+20 HI f
+(a)1176 2040 w
+20 H f
+(is shorter, divide)2 1460 1 1344 2040 t
+20 HI f
+(b)2860 2040 w
+20 H f
+(into)3028 2040 w
+20 HI f
+(b)3408 2040 w
+17 HI f
+(l)3548 2080 w
+20 H f
+(and)3657 2040 w
+20 HI f
+(b)4049 2040 w
+17 HI f
+(r)4189 2080 w
+20 H f
+(.)4261 2040 w
+(Swap)1008 2520 w
+20 HI f
+(a)1566 2520 w
+20 H f
+(and)1734 2520 w
+20 HI f
+(b)2126 2520 w
+17 HI f
+(r)2266 2560 w
+20 H f
+(to change)1 884 1 2394 2520 t
+20 HI f
+(ab)3334 2520 w
+17 HI f
+(l)3586 2560 w
+20 HI f
+(b)3655 2520 w
+17 HI f
+(r)3795 2560 w
+20 H f
+(into)3923 2520 w
+20 HI f
+(b)4303 2520 w
+17 HI f
+(r)4443 2560 w
+20 HI f
+(b)4531 2520 w
+17 HI f
+(l)4671 2560 w
+20 HI f
+(a)4740 2520 w
+20 H f
+(.)4852 2520 w
+(Recur on pieces of)3 1674 1 1008 3000 t
+20 HI f
+(b)2738 3000 w
+20 H f
+(.)2850 3000 w
+(The Code)1 882 1 720 3480 t
+20 CW f
+(if d == 0 || d == n)7 2280 1 1296 3775 t
+(return)1776 4010 w
+(i = p = d)4 1080 1 1296 4245 t
+(j = n - p)4 1080 1 1296 4480 t
+(while i != j)3 1440 1 1296 4715 t
+(if i > j)3 960 1 1776 4950 t
+(swap\(p-i, p, j\))2 1800 1 2256 5185 t
+(i -= j)2 720 1 2256 5420 t
+(else)1776 5655 w
+(swap\(p-i, p+j-i, i\))2 2280 1 2256 5890 t
+(j -= i)2 720 1 2256 6125 t
+(swap\(p-i, p, i\))2 1800 1 1296 6360 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2-4)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 4 4
+%%Page: 5 5
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+5 pagesetup
+20 H f
+(The Reversal Algorithm)2 2094 1 2013 960 t
+(The Idea)1 794 1 720 1560 t
+(Reverse)1008 2040 w
+20 HI f
+(a)1810 2040 w
+20 H f
+(to get)1 504 1 1978 2040 t
+20 HI f
+(a)2538 2040 w
+17 HI f
+(r)2678 1960 w
+20 HI f
+(b)2750 2040 w
+20 H f
+(.)2862 2040 w
+(Reverse)1008 2520 w
+20 HI f
+(b)1810 2520 w
+20 H f
+(to get)1 504 1 1978 2520 t
+20 HI f
+(a)2538 2520 w
+17 HI f
+(r)2678 2440 w
+20 HI f
+(b)2750 2520 w
+17 HI f
+(r)2890 2440 w
+20 H f
+(.)2962 2520 w
+(Reverse all to get \()4 1684 1 1008 3000 t
+20 HI f
+(a)2708 3000 w
+17 HI f
+(r)2848 2920 w
+20 HI f
+(b)2920 3000 w
+17 HI f
+(r)3060 2920 w
+20 H f
+(\))3148 3000 w
+17 HI f
+(r)3242 2912 w
+20 S f
+(=)3419 3000 w
+20 HI f
+(ba)3634 3000 w
+20 H f
+(.)3858 3000 w
+(The Code /* rotate)3 1642 1 720 3480 t
+20 HI f
+(abcdefgh)2418 3480 w
+20 H f
+(left three */)2 972 1 3302 3480 t
+20 CW f
+( cbadefgh */)2 1440( /*)1 840(reverse\(0, d-1\))1 1800 3 1296 3775 t
+( cbahgfed */)2 1440( /*)1 840(reverse\(d, n-1\))1 1800 3 1296 4010 t
+( defghabc */)2 1440( /*)1 840(reverse\(0, n-1\))1 1800 3 1296 4245 t
+20 H f
+(Doug McIlroy's Handwaving Description)3 3542 1 720 4785 t
+12 H f
+1461 5604 830 5604 Dl
+1462 5530 1462 5604 Dl
+1239 5530 1462 5530 Dl
+1536 5530 1239 5530 Dl
+1536 5456 1536 5530 Dl
+1239 5456 1536 5456 Dl
+1573 5456 1239 5456 Dl
+1573 5382 1573 5456 Dl
+1239 5381 1573 5381 Dl
+1498 5381 1239 5381 Dl
+1499 5307 1499 5381 Dl
+1016 5307 1499 5307 Dl
+1200 5307 1015 5307 Dl
+1201 5233 1201 5307 Dl
+830 5232 1201 5232 Dl
+830 5603 830 5232 Dl
+(1)1243 5275 w
+(2)1577 5368 w
+(3)1615 5442 w
+(4)1577 5516 w
+(5)1540 5598 w
+942 6223 1573 6223 Dl
+941 6149 941 6223 Dl
+1164 6149 941 6149 Dl
+867 6149 1164 6149 Dl
+867 6075 867 6149 Dl
+1164 6075 867 6075 Dl
+830 6075 1164 6075 Dl
+830 6001 830 6075 Dl
+1164 6001 830 6001 Dl
+905 6001 1164 6001 Dl
+904 5927 904 6001 Dl
+1387 5926 904 5926 Dl
+1202 5926 1387 5926 Dl
+1201 5852 1201 5926 Dl
+1572 5852 1201 5852 Dl
+1573 6223 1573 5852 Dl
+(6)1094 5894 w
+(7)760 5987 w
+(8)723 6061 w
+(9)760 6136 w
+(10)763 6218 w
+14 H f
+(Flip Left Hand)2 872 1 1385 6495 t
+12 H f
+1821 6347 1821 5109 Dl
+2700 5232 2069 5232 Dl
+2700 5306 2700 5232 Dl
+2477 5307 2700 5307 Dl
+2774 5307 2477 5307 Dl
+2774 5381 2774 5307 Dl
+2477 5381 2774 5381 Dl
+2811 5381 2477 5381 Dl
+2812 5455 2812 5381 Dl
+2478 5456 2812 5456 Dl
+2736 5456 2477 5456 Dl
+2738 5530 2738 5456 Dl
+2255 5530 2738 5530 Dl
+2440 5530 2255 5530 Dl
+2440 5604 2440 5530 Dl
+2069 5604 2440 5604 Dl
+2069 5233 2069 5604 Dl
+(1)2481 5609 w
+(2)2816 5516 w
+(3)2853 5442 w
+(4)2816 5368 w
+(5)2779 5286 w
+2181 6223 2812 6223 Dl
+2180 6149 2180 6223 Dl
+2403 6149 2180 6149 Dl
+2106 6149 2403 6149 Dl
+2106 6075 2106 6149 Dl
+2403 6075 2106 6075 Dl
+2069 6075 2403 6075 Dl
+2069 6001 2069 6075 Dl
+2403 6001 2069 6001 Dl
+2144 6001 2403 6001 Dl
+2143 5927 2143 6001 Dl
+2626 5926 2143 5926 Dl
+2441 5926 2626 5926 Dl
+2440 5852 2440 5926 Dl
+2811 5852 2440 5852 Dl
+2812 6223 2812 5852 Dl
+(6)2333 5894 w
+(7)1998 5987 w
+(8)1961 6061 w
+(9)1998 6136 w
+(10)2002 6218 w
+1944 5233 1697 5604 Dl
+1944 5603 1697 5232 Dl
+14 H f
+(Flip Right Hand)2 965 1 2578 6495 t
+12 H f
+3060 6347 3060 5109 Dl
+3938 5232 3307 5232 Dl
+3939 5306 3939 5232 Dl
+3716 5307 3939 5307 Dl
+4013 5307 3716 5307 Dl
+4014 5381 4014 5307 Dl
+3717 5381 4014 5381 Dl
+4050 5381 3716 5381 Dl
+4050 5455 4050 5381 Dl
+3716 5456 4050 5456 Dl
+3975 5456 3716 5456 Dl
+3976 5530 3976 5456 Dl
+3493 5530 3976 5530 Dl
+3678 5530 3493 5530 Dl
+3679 5604 3679 5530 Dl
+3308 5604 3679 5604 Dl
+3307 5233 3307 5604 Dl
+(1)3720 5609 w
+(2)4055 5516 w
+(3)4092 5442 w
+(4)4055 5368 w
+(5)4017 5286 w
+3419 5852 4050 5852 Dl
+3419 5926 3419 5852 Dl
+3642 5926 3419 5926 Dl
+3345 5926 3642 5926 Dl
+3345 6000 3345 5926 Dl
+3642 6001 3345 6001 Dl
+3308 6001 3642 6001 Dl
+3307 6075 3307 6001 Dl
+3641 6075 3307 6075 Dl
+3383 6075 3642 6075 Dl
+3381 6149 3381 6075 Dl
+3864 6149 3381 6149 Dl
+3679 6149 3864 6149 Dl
+3679 6223 3679 6149 Dl
+4050 6223 3679 6223 Dl
+4050 5852 4050 6223 Dl
+(6)3572 6229 w
+(7)3237 6136 w
+(8)3200 6061 w
+(9)3237 5987 w
+(10)3240 5906 w
+3183 6223 2936 5852 Dl
+3183 5852 2936 6223 Dl
+14 H f
+(Flip Both)1 553 1 4022 6495 t
+12 H f
+4298 6347 4298 5109 Dl
+4658 5604 5289 5604 Dl
+4657 5530 4657 5604 Dl
+4880 5530 4657 5530 Dl
+4583 5530 4880 5530 Dl
+4583 5456 4583 5530 Dl
+4880 5456 4583 5456 Dl
+4546 5456 4880 5456 Dl
+4546 5382 4546 5456 Dl
+4880 5381 4546 5381 Dl
+4621 5381 4880 5381 Dl
+4620 5307 4620 5381 Dl
+5103 5307 4620 5307 Dl
+4919 5307 5104 5307 Dl
+4918 5233 4918 5307 Dl
+5289 5232 4918 5232 Dl
+5289 5603 5289 5232 Dl
+(6)4810 5275 w
+(7)4476 5368 w
+(8)4438 5442 w
+(9)4476 5516 w
+(10)4479 5598 w
+5177 6223 4546 6223 Dl
+5178 6149 5178 6223 Dl
+4955 6149 5178 6149 Dl
+5252 6149 4955 6149 Dl
+5252 6075 5252 6149 Dl
+4955 6075 5252 6075 Dl
+5289 6075 4955 6075 Dl
+5289 6001 5289 6075 Dl
+4955 6001 5289 6001 Dl
+5214 6001 4955 6001 Dl
+5215 5927 5215 6001 Dl
+4732 5926 5215 5926 Dl
+4917 5926 4732 5926 Dl
+4918 5852 4918 5926 Dl
+4547 5852 4918 5852 Dl
+4546 6223 4546 5852 Dl
+(1)4959 5894 w
+(2)5293 5987 w
+(3)5331 6061 w
+(4)5293 6136 w
+(5)5256 6218 w
+4421 6222 4174 5232 Dl
+4421 5233 4174 6223 Dl
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2-5)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 5 5
+%%Page: 6 6
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+6 pagesetup
+20 H f
+(An Experiment on Run Times)4 2620 1 1750 960 t
+20 HI f
+(n)720 1560 w
+20 H f
+(= 10)1 396 1 888 1560 t
+17 H f
+(6)1298 1480 w
+20 H f
+(, 400MHz Pentium II.)3 1874 1 1409 1560 t
+16 H f
+5339 1830 1739 1830 Dl
+5339 6870 1739 6870 Dl
+1739 1830 1739 6870 Dl
+5339 1830 5339 6870 Dl
+1667 6870 1739 6870 Dl
+(0)1532 6902 w
+1667 5610 1739 5610 Dl
+(50)1442 5642 w
+1667 4350 1739 4350 Dl
+(100)1352 4382 w
+1667 3090 1739 3090 Dl
+(150)1352 3122 w
+1667 1830 1739 1830 Dl
+(200)1352 1862 w
+(Nanosecs)615 4182 w
+(Per)847 4382 w
+(Element)677 4582 w
+(Rotation Distance)1 1270 1 2904 7202 t
+1795 6942 1795 6870 Dl
+(1)1750 7064 w
+2294 6942 2294 6870 Dl
+(10)2204 7064 w
+2847 6942 2847 6870 Dl
+(20)2757 7064 w
+3401 6942 3401 6870 Dl
+(30)3311 7064 w
+3955 6942 3955 6870 Dl
+(40)3865 7064 w
+4508 6942 4508 6870 Dl
+(50)4418 7064 w
+(Reversal)4636 5390 w
+(Juggling)4652 2366 w
+(Block)4756 5794 w
+(Swap)4751 5994 w
+1850 5411 1795 5416 Dl
+1905 5451 1850 5411 Dl
+1961 5189 1906 5451 Dl
+2016 5455 1961 5188 Dl
+2071 5416 2016 5456 Dl
+2127 5416 2072 5416 Dl
+2182 5426 2127 5416 Dl
+2238 5416 2183 5426 Dl
+2293 5406 2238 5415 Dl
+2349 5456 2294 5406 Dl
+2403 5194 2348 5456 Dl
+2459 5455 2404 5193 Dl
+2514 5416 2459 5456 Dl
+2570 5416 2515 5416 Dl
+2625 5426 2570 5416 Dl
+2681 5411 2626 5426 Dl
+2736 5415 2681 5411 Dl
+2791 5451 2736 5415 Dl
+2847 5194 2792 5451 Dl
+2902 5460 2847 5194 Dl
+2958 5421 2903 5460 Dl
+3013 5421 2958 5421 Dl
+3069 5426 3014 5421 Dl
+3123 5411 3068 5426 Dl
+3179 5416 3124 5411 Dl
+3234 5451 3179 5416 Dl
+3290 5194 3235 5451 Dl
+3345 5455 3290 5193 Dl
+3401 5416 3346 5456 Dl
+3456 5416 3401 5416 Dl
+3511 5426 3456 5416 Dl
+3567 5416 3512 5426 Dl
+3622 5416 3567 5416 Dl
+3678 5451 3623 5416 Dl
+3733 5194 3678 5451 Dl
+3789 5455 3734 5193 Dl
+3843 5411 3788 5456 Dl
+3899 5411 3844 5411 Dl
+3954 5421 3899 5411 Dl
+4010 5406 3955 5421 Dl
+4065 5406 4010 5406 Dl
+4121 5446 4066 5406 Dl
+4176 5184 4121 5446 Dl
+4231 5450 4176 5183 Dl
+4287 5406 4232 5451 Dl
+4342 5410 4287 5406 Dl
+4398 5416 4343 5411 Dl
+4453 5406 4398 5416 Dl
+4509 5406 4454 5406 Dl
+1850 4816 1795 5542 Dl
+1905 4946 1850 4815 Dl
+1961 4365 1906 4946 Dl
+2016 3856 1961 4365 Dl
+2071 3230 2016 3856 Dl
+2127 2650 2072 3230 Dl
+2182 2075 2127 2650 Dl
+2238 2109 2183 2075 Dl
+2293 2115 2238 2110 Dl
+2349 2140 2294 2115 Dl
+2403 2126 2348 2141 Dl
+2459 2145 2404 2125 Dl
+2514 2155 2459 2146 Dl
+2570 2155 2515 2155 Dl
+2625 2126 2570 2156 Dl
+2681 2150 2626 2125 Dl
+2736 2165 2681 2151 Dl
+2791 2170 2736 2165 Dl
+2847 2201 2792 2171 Dl
+2902 2226 2847 2201 Dl
+2958 2171 2903 2226 Dl
+3013 2195 2958 2171 Dl
+3069 2146 3014 2195 Dl
+3123 2272 3068 2146 Dl
+3179 2186 3124 2272 Dl
+3234 2331 3179 2185 Dl
+3290 2176 3235 2332 Dl
+3345 2206 3290 2176 Dl
+3401 2186 3346 2206 Dl
+3456 2301 3401 2185 Dl
+3511 2171 3456 2302 Dl
+3567 2620 3512 2171 Dl
+3622 2191 3567 2620 Dl
+3678 2205 3623 2190 Dl
+3733 2181 3678 2206 Dl
+3789 2644 3734 2180 Dl
+3843 2196 3788 2645 Dl
+3899 2705 3844 2196 Dl
+3954 2696 3899 2706 Dl
+4010 2197 3955 2696 Dl
+4065 2241 4010 2196 Dl
+4121 2196 4066 2241 Dl
+4176 2186 4121 2196 Dl
+4231 2220 4176 2186 Dl
+4287 2331 4232 2220 Dl
+4342 2212 4287 2332 Dl
+4398 2196 4343 2211 Dl
+4453 2200 4398 2196 Dl
+4509 3225 4454 2200 Dl
+1850 5365 1795 4740 Dl
+1905 5591 1850 5365 Dl
+1961 5713 1906 5592 Dl
+2016 5728 1961 5714 Dl
+2071 5664 2016 5728 Dl
+2127 5724 2072 5664 Dl
+2182 5809 2127 5724 Dl
+2238 5815 2183 5810 Dl
+2293 5871 2238 5815 Dl
+2349 5835 2294 5871 Dl
+2403 5930 2348 5835 Dl
+2459 5956 2404 5931 Dl
+2514 5896 2459 5956 Dl
+2570 5891 2515 5895 Dl
+2625 5795 2570 5891 Dl
+2681 5875 2626 5794 Dl
+2736 5876 2681 5876 Dl
+2791 5865 2736 5875 Dl
+2847 5805 2792 5865 Dl
+2902 5931 2847 5805 Dl
+2958 5805 2903 5931 Dl
+3013 5885 2958 5805 Dl
+3069 5850 3014 5885 Dl
+3123 5870 3068 5850 Dl
+3179 5855 3124 5870 Dl
+3234 5860 3179 5855 Dl
+3290 5851 3235 5860 Dl
+3345 5846 3290 5851 Dl
+3401 5860 3346 5845 Dl
+3456 5845 3401 5860 Dl
+3511 5810 3456 5845 Dl
+3567 5845 3512 5810 Dl
+3622 5845 3567 5845 Dl
+3678 5855 3623 5845 Dl
+3733 5855 3678 5855 Dl
+3789 5850 3734 5855 Dl
+3843 5845 3788 5850 Dl
+3899 5855 3844 5845 Dl
+3954 5815 3899 5855 Dl
+4010 5850 3955 5815 Dl
+4065 5845 4010 5850 Dl
+4121 5840 4066 5845 Dl
+4176 5845 4121 5840 Dl
+4231 5850 4176 5845 Dl
+4287 5840 4232 5850 Dl
+4342 5845 4287 5840 Dl
+4398 5810 4343 5845 Dl
+4453 5840 4398 5810 Dl
+4509 5840 4454 5840 Dl
+6 H f
+(From)720 7760 w
+6 I f
+(Programming Pearls)1 507 1 878 7760 t
+6 R f
+(, Copyright)1 274 1 1385 7760 t
+6 S f
+(\323)1674 7760 w
+6 R f
+( Pearls-2-6)1 3011(2000, Lucent Technologies)2 653 2 1736 7760 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 51 2 550 726
+%%EndPage: 6 6
+%%Page: 7 7
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+7 pagesetup
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-2-7)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 28
+%%EndPage: 7 7
+%%Trailer
+DpostDict begin
+done
+end
+%%Pages: 7
+%%DocumentFonts: Courier Helvetica Times-Italic Times-Roman Symbol Helvetica-Oblique

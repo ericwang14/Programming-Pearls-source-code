@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<title>Problems</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Problems
+<br>(Section 15.5 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+The
+<a href="sol15.html">Solutions to Column 15</a>
+give answers for some of these problems.
+
+
+<P>
+<a name="p1">
+1.
+Throughout this column we have used the simple definition
+that words are separated by white space.
+Many real documents, such as those in HTML or RTF,
+contain formatting commands.
+How could you deal with such commands?
+Are there any other tasks that you might need to perform?
+
+<P>
+<a name="p2">
+2.
+On a machine with ample main memory,
+how could you use the C++ STL <i>set</i>s or <i>map</i>s
+to solve the searching problem in Section 13.8?
+How much memory does it consume compared to McIlroy's
+structure?
+
+<P>
+<a name="p3">
+3.
+How much speedup can you achieve by incorporating
+the special-purpose <i>malloc</i> of Solution 9.2
+into the hashing program of Section 15.1?
+
+<P>
+<a name="p4">
+4.
+When a hash table is large and
+the hash function scatters the data well,
+almost every list in the table has only a few elements.
+If either of these conditions is violated,
+though,
+the time spent searching down the list can be substantial.
+When a new string is not found in the hash table
+in
+<a href="sec151.html">Section 15.1</a>,
+it is placed at the front of the list.
+To simulate hashing trouble,
+set <i>NHASH</i> to 1 and experiment with
+this and other list strategies,
+such as appending to the end of the list,
+or moving the most recently found element to the
+front of the list.
+
+<P>
+<a name="p5">
+5.
+When we looked at the output of the word frequency
+programs in
+<a href="sec151.html">Section 15.1</a>,
+it was most interesting to print the words in
+decreasing frequency.
+How would you modify the C and C++ programs to
+accomplish this task?
+How would you print only the <i>M</i> most common words,
+where <i>M</i> is a constant such as 10 or 1000?
+
+<P>
+<a name="p6">
+6.
+Given a new input string,
+how would you search a suffix array to find
+the longest match in the stored text?
+How would you build a GUI interface for this task?
+
+<P>
+<a name="p7">
+7.
+Our program for finding duplicated strings was
+very fast for ``typical'' inputs,
+but it can be very slow (greater than quadratic)
+for some inputs.
+Time the program on such an input.
+Do such inputs ever arise in practice?
+
+<P>
+<a name="p8">
+8.
+How would you modify the program for finding
+duplicated strings to find
+the longest string that occurs more than <i>M</i> times?
+
+<P>
+<a name="p9">
+9.
+Given two input texts,
+find the longest string that occurs in both.
+
+<P>
+<a name="p10">
+10.
+Show how to reduce the number of pointers
+in the duplication program
+by pointing only to suffixes that start on word boundaries.
+What effect does this have on the output
+produced by the program?
+
+<P>
+<a name="p11">
+11.
+Implement a program to generate letter-level Markov text.
+
+<P>
+<a name="p12">
+12.
+How would you use the tools and techniques of
+<a href="sec151.html">Section 15.1</a>
+to generate (order-0 or non-Markov) random text?
+
+<P>
+<a name="p13">
+13.
+The
+<a href="markov.c">program for generating word-level Markov text</a>
+is at this book's web site.
+Try it on some of your documents.
+
+<P>
+<a name="p14">
+14.
+How could you use hashing to speed up the Markov program?
+
+<P>
+<a name="p15">
+15.
+<a href="sec153.html#shannon">Shannon's quote in Section 15.3</a>
+describes the
+algorithm he used to construct Markov text;
+implement that algorithm in a program.
+It gives a good approximation to the Markov frequencies,
+but not the exact form;
+explain why not.
+Implement a program that scans the entire string
+from scratch to generate each word
+(and thereby uses the true frequencies).
+
+<P>
+<a name="p16">
+16.
+How would you use the techniques of this column
+to assemble a word list for a dictionary
+(the problem that Doug McIlroy faced in Section 13.8)?
+How would you build a spelling checker without using
+a dictionary?
+How would you build a grammar checker without using
+rules of grammar?
+
+<P>
+<a name="p17">
+17.
+Investigate how techniques related to <i>k</i>-gram analysis
+are used in applications such as speech recognition
+and data compression.
+
+
+
+<p><a href="sec156.html">Next: Section 15.6. Further Reading.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Wed 18 Oct 2000
+</BODY>
+</HTML>
+

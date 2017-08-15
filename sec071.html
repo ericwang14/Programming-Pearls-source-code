@@ -1,0 +1,256 @@
+<HTML>
+<HEAD>
+<title>Basic Skills</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+
+<P>
+<h1>Basic Skills
+<br>(Section 7.1 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+These reminders can be helpful in making
+back-of-the-envelope calculations.
+
+<P>
+<i>Two Answers Are Better Than One.</i>
+When I asked Peter Weinberger how much water flows out of
+the Mississippi per day,
+he responded, ``As much as flows in.''
+He then estimated that the Mississippi basin
+was about 1000 by 1000 miles,
+and that the annual runoff from rainfall
+there was about one foot
+(or one five-thousandth of a mile).
+That gives
+<small>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+1000 miles * 1000 miles * 1/5000 mile/year
+&nbsp;~&nbsp;
+200 miles<sup>3</sup>/year
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+(200 miles<sup>3</sup>/year) / (400 days/year)
+&nbsp;~&nbsp;
+1/2 mile<sup>3</sup>/day
+</small>
+<br>
+or a little more than half a cubic mile per day.
+It's important to double check all calculations,
+and especially so for quick ones.
+
+
+<p>
+As a cheating triple check,
+an almanac reported that the river's
+discharge is 640,000 cubic feet per second.
+Working from that gives
+
+<small>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+640,000ft<sup>3</sup>/sec * 3600 secs/hr
+&nbsp;~&nbsp;
+2.3x10<sup>9</sup>ft<sup>3</sup> / hr
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+2.3x10<sup>9</sup>ft<sup>3</sup>/hr * 24hrs/day
+&nbsp;~&nbsp;
+6x10<sup>10</sup>ft<sup>3</sup>/day
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+6x10<sup>10</sup>ft<sup>3</sup>/day  / (5000ft/mile)<sup>3</sup>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;~
+6x10<sup>10</sup>ft<sup>3</sup>/day /
+(125x10<sup>9</sup>ft<sup>3</sup>/mile<sup>3</sup>)
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;~
+60/125 mile<sup>3</sup>/day
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;~
+1/2 mile<sup>3</sup>/day
+</small>
+<br>
+The proximity of the two estimates to one another,
+and especially to the almanac's answer,
+is a fine example of sheer dumb luck.
+
+
+<P>
+<i>Quick Checks.</i>
+Polya devotes three pages of his
+<i>How to Solve It</i>
+to ``Test by Dimension'', which he describes as a
+``well-known, quick and efficient means to check
+geometrical or physical formulas''.
+The first rule is that the dimensions in a sum must be the same,
+which is in turn the dimension of the sum -- you
+can add feet together to get feet,
+but you can't add seconds to pounds.
+The second rule is that the dimension of a product is the
+product of the dimensions.
+The examples above obey both rules;
+multiplying
+<small>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+(miles + miles) x miles x miles / day
+&nbsp;~&nbsp;
+miles<sup>3</sup>/day
+</small>
+<br>
+has the right form, apart from any constants.
+
+<P>
+A simple table can help you keep track of dimensions
+in complicated expressions like those above.
+To perform Weinberger's calculation,
+we first write down the three original factors.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="formula 1" ALIGN=center src="misstab1.jpg">
+<br>
+Next we simplify the expression by cancelling terms,
+which shows that the output is 200 miles<sup>3</sup>/year.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="formula 2" ALIGN=center src="misstab2.jpg">
+<br>
+Now we multiply by the identity (well, almost)
+that there are 400 days per year.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="formula 3" ALIGN=center src="misstab3.jpg">
+<br>
+Cancellation yields the (by now familiar)
+answer of half a cubic mile per day.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="formula 4" ALIGN=center src="misstab4.jpg">
+<br>
+These tabular calculations help you keep track of dimensions.
+
+<P>
+Dimension tests check the form of equations.
+Check your multiplications and divisions with an old
+trick from slide rule days:
+independently compute the leading digit and the exponent.
+One can make several quick checks for addition.
+<small>
+<DL><DT><DD><TT><PRE>
+ 3142        3142        3142
+ 2718        2718        2718	
+<u>+1123</u>       <u>+1123</u>       <u>+1123</u>
+  983        6982        6973
+</PRE></TT></DL>
+</small>
+The first sum has too few digits and the second sum errs
+in the least significant digit.
+The technique of ``casting out nines''
+reveals the error in the third example:
+the digits in the summands sum to 8 modulo 9,
+while those in the answer sum to 7 modulo 9.
+In a correct addition, the sums of the digits
+are equal after ``casting out'' groups of digits
+that sum to nine.
+
+<P>
+Above all, don't forget common sense:
+be suspicious of any calculations that show
+that the Mississippi River discharges 100
+gallons of water per day.
+
+<P>
+<i>Rules of Thumb.</i>
+I first learned the ``Rule of 72'' in a course
+on accounting.
+Assume that you invest a sum of money for
+<i>y</i> years at an interest rate of <i>r</i> percent per year.
+The financial version of the rule says that if
+<i>r times y = 72</i>,
+then your money will roughly double.
+The approximation is quite accurate:
+investing $1000 at 6 percent interest
+for 12 years gives $2,012,
+and $1000 at 8 percent for 9 years gives $1,999.
+
+<P>
+The Rule of 72 is handy for estimating the growth of any
+exponential process.
+If a bacterial colony in a dish grows
+at the rate of three percent per hour,
+then it doubles in size every day.
+And doubling brings programmers back to
+familiar rules of thumb:
+because 2<sup>10</sup>=1024,
+ten doublings is about a thousand,
+twenty doublings is about a million,
+and thirty doublings is about a billion.
+
+<P>
+Suppose that an exponential program
+takes ten seconds to solve a problem of size <i>n</i>=40,
+and that increasing <i>n</i> by one
+increases the run time by 12 percent
+(we probably learned this by
+plotting its growth on a logarithmic scale).
+The Rule of 72 tells us that the run time doubles
+when <i>n</i> increases by 6,
+or goes up by a factor of about 1000 when <i>n</i> increases by 60.
+When <i>n</i>=100,
+the program should therefore take about 10,000 seconds,
+or a few hours.
+But what happens when <i>n</i> increases to 160,
+and the time rises to 10<sup>7</sup> seconds?
+How much time is that?
+
+<P>
+You might find it hard to memorize that there are
+3.155x10<sup>7</sup> seconds in a year.
+On the other hand, it is hard to forget
+Tom Duff's handy rule of thumb that,
+to within half a percent,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+<i>Pi seconds is a nanocentury.</i>
+<br>
+Because the exponential program takes 10<sup>7</sup> seconds,
+we should be prepared to wait about four months.
+
+<P>
+<i>Practice.</i>
+As with many activities,
+your estimation skills can only be improved with practice.
+Try the problems at the end of this column,
+and the estimation quiz in
+<a href="quiz.html">Appendix 2</a>
+(a similar quiz once gave me a much-needed dose of
+humility about my estimation prowess).
+<a href="sec078.html">Section 7.8</a>
+describes quick calculations in everyday life.
+Most workplaces provide ample opportunities for
+back-of-the-envelope estimates.
+How many foam ``packing peanuts'' came in that box?
+How much time do people at your facility spend
+waiting in line every day,
+for morning coffee, lunch, photocopiers and the like?
+How much does that cost the company in (loaded) salary?
+And the next time you're
+<i>really</i>
+bored at the lunch table,
+ask your colleagues how much water flows out of the
+Mississippi River each day.
+
+
+<p><a href="sec072.html">Next: Section 7.2. Performance Estimates.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Sun 15 Aug 1999
+</BODY>
+</HTML>
+

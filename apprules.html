@@ -1,0 +1,393 @@
+<HTML>
+<HEAD>
+<title>Rules for Code Tuning</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Rules for Code Tuning
+<br>(Appendix 4 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+
+<P>
+My 1982 book
+<i>Writing Efficient Programs</i>
+was built around 27 rules for code tuning.
+That book is now out of print,
+so the rules are repeated here
+(with only a few small changes),
+together with examples of how they are used in this book.
+
+<h2>Space-For-Time Rules</h2>
+
+<b>Data Structure Augmentation.</b>
+The time required for common operations on data can often
+be reduced by augmenting the structure with extra information
+or by changing the information within the structure
+so that it can be accessed more easily.
+<DL><DT><DD>
+In Section 9.2,
+Wright wanted to find nearest neighbors
+(by angle) among a set of points on the surface
+of the globe represented by latitude and longitude,
+which involved expensive trigonometric operations.
+Appel augmented her data structure
+with the <i>x</i>, <i>y</i> and <i>z</i> coordinates,
+which allowed her to use Euclidean distances
+with much less compute time.
+</DL>
+
+<b>Store Precomputed Results.</b>
+The cost of recomputing an expensive function
+can be reduced by computing the function only once
+and storing the results.
+Subsequent requests for the function are then handled
+by table lookup rather than by computing the function.
+<DL><DT><DD>
+The cumulative arrays in Section 8.2 and Solution 8.11
+replace a sequence of additions with two
+table lookups and a subtraction.
+<br><br><DT><DD>
+Solution 9.7 speeds up a program to count bits
+by looking up a byte or a word at a time.
+<br><br><DT><DD>
+Solution 10.6 replaces shifting and logical operations
+with a table lookup.
+</DL>
+
+<b>Caching.</b>
+Data that is accessed most often should be
+the cheapest to access.
+<DL><DT><DD>
+Section 9.1 describes how Van Wyk cached the most
+common size of node to avoid expensive calls to the system
+storage allocator.
+Solution 9.2 gives the details on one kind of node cache.
+<br><br><DT><DD>
+Column 13 caches nodes for lists, bins and binary search trees.
+<br><br><DT><DD>
+Caching can backfire and increase the run time of a program
+if locality is not present in the underlying data.
+</DL>
+
+
+<b>Lazy Evaluation.</b>
+The strategy of never evaluating an item until it is needed
+avoids evaluations of unnecessary items.
+
+
+<h2>Time-For-Space Rules</h2>
+
+<b>Packing.</b>
+Dense storage representations can decrease storage costs
+by increasing the time required to store and retrieve data.
+<DL><DT><DD>
+The sparse array representations in Section 10.2 greatly
+reduce storage costs by slightly increasing the time to access
+the structures.
+<br><br><DT><DD>
+McIlroy's dictionary for a spelling checker in Section 13.8
+squeezes 75,000 English words into 52 kilobytes.
+<br><br><DT><DD>
+Kernighan's arrays in Section 10.3 and
+the Heapsort in Section 14.4 both use
+<i>overlaying</i>
+to reduce data space by storing data items
+that are never simultaneously active
+in the same memory space.
+<br><br><DT><DD>
+Although packing sometimes trades time for space,
+the smaller representations are often also faster to process.
+</DL>
+
+<b>Interpreters.</b>
+The space required to represent a program can often
+be decreased by the use of interpreters
+in which
+common sequences of operations are represented compactly.
+<DL><DT><DD>
+Section 3.2 uses an interpreter for ``form-letter programming''
+and Section 10.4 uses an interpreter for a simple graphics program.
+</DL>
+
+<h2>Loop Rules</h2>
+
+<b>Code Motion Out of Loops.</b>
+Instead of performing a certain computation
+in each iteration of a loop,
+it is better to perform it only once,
+outside the loop.
+<DL><DT><DD>
+Section 11.1 moves an assignment to the variable <i>t</i>
+out of the main loop of <i>isort2</i>.
+</DL>
+
+<b>Combining Tests.</b>
+An efficient inner loop should contain
+as few tests as possible,
+and preferably only one.
+The programmer should therefore try to simulate
+some of the exit conditions of the loop
+by other exit conditions.
+<DL><DT><DD>
+<i>Sentinels</i>
+are a common application of this rule:
+we place a sentinel at the boundary of a data structure
+to reduce the cost of testing whether
+our search has exhausted the structure.
+Section 9.2 uses a sentinel in sequentially
+searching an array.
+Column 13 uses sentinels to yield clean
+(and incidentally efficient) code
+for arrays, linked lists, bins and binary search trees.
+Solution 14.1 places a sentinel at one end of a heap.
+</DL>
+
+<b>Loop Unrolling.</b>
+Unrolling a loop can remove the cost of modifying loop indices,
+and also help to avoid pipeline stalls,
+to reduce branches,
+and to increase instruction-level parallelism.
+<DL><DT><DD>
+Unrolling a sequential search in Section 9.2 reduces
+its run time by about 50 percent,
+and unrolling a binary search in Section 9.3 reduces
+its run time by between 35 and 65 percent.
+</DL>
+
+<b>Transfer-Driven Loop Unrolling.</b>
+If a large cost of an inner loop
+is devoted to trivial assignments,
+then those assignments can often be removed
+by repeating the code and changing the use of variables.
+Specifically, to remove the assignment <i>i = j</i>,
+the subsequent code must treat <i>j</i> as though it were <i>i</i>.
+
+<br><br>
+<b>Unconditional Branch Removal.</b>
+A fast loop should contain no unconditional branches.
+An unconditional branch at the end of a loop can be removed
+by ``rotating'' the loop to have a conditional branch
+at the bottom.
+<DL><DT><DD>
+This operation is usually done by optimizing compilers.
+</DL>
+
+<b>Loop Fusion.</b>
+If two nearby loops operate on the same set of elements,
+then combine their operational parts
+and use only one set of loop control operations.
+
+
+<h2>Logic Rules</h2>
+
+<b>Exploit Algebraic Identities.</b>
+If the evaluation of a logical expression is costly,
+replace it by an algebraically equivalent expression
+that is cheaper to evaluate.
+
+<br><br>
+<b>Short-Circuiting Monotone Functions.</b>
+If we wish to test whether
+some monotone nondecreasing function of several variables
+is over a certain threshold,
+then we need not evaluate any of the variables
+once the threshold has been reached.
+<DL><DT><DD>
+A more sophisticated application of this rule
+exits from a loop as soon as the purpose of the loop
+has been accomplished.
+The search loops in Columns 10, 13 and 15 all
+terminate once they find the desired element.
+</DL>
+
+<b>Reordering Tests.</b>
+Logical tests should be arranged
+such that inexpensive and often successful tests
+precede expensive and rarely successful tests.
+<DL><DT><DD>
+Solution 9.6 sketches a series of tests
+that might be reordered.
+</DL>
+
+<b>Precompute Logical Functions.</b>
+A logical function over a small finite domain can be replaced
+by a lookup in a table that represents the domain.
+<DL><DT><DD>
+Solution 9.6 describes how the Standard C library
+character classification functions
+can be implemented by table lookup.
+</DL>
+
+<b>Boolean Variable Elimination.</b>
+We can remove boolean variables from a program
+by replacing the assignment to a boolean variable <i>v</i>
+by an <i>if-else</i> statement
+in which one branch represents the case that <i>v</i> is true
+and the other represents the case that <i>v</i> is false.
+
+
+<h2>Procedure Rules</h2>
+
+<b>Collapsing Function Hierarchies.</b>
+The run times of the elements of a set of functions
+that (nonrecursively) call themselves
+can often be reduced by rewriting functions in line
+and binding the passed variables.
+<DL><DT><DD>
+Replacing the <i>max</i> function in Section 9.2 with a macro
+gives a speedup of almost a factor of two.
+<br><br><DT><DD>
+Writing the <i>swap</i> function inline in Section 11.1 gave
+a speedup of a factor of almost 3;
+writing the <i>swap</i> inline in Section 11.3
+gave less of a speedup.
+</DL>
+
+<b>Exploit Common Cases.</b>
+Functions should be organized to handle all cases correctly
+and common cases efficiently.
+<DL><DT><DD>
+In Section 9.1,
+Van Wyk's storage allocator handled all node sizes correctly,
+but handled the most common node size particularly efficiently.
+<br><br><DT><DD>
+In Section 6.1,
+Appel treated the expensive case of near objects
+with a special-purpose small time step,
+which allowed the rest of his program to use
+a more efficient large time step.
+</DL>
+
+<b>Coroutines.</b>
+A multiple-pass algorithm can often be turned into
+a single-pass algorithm by use of coroutines.
+<DL><DT><DD>
+The anagram program in Section 2.8 uses a pipeline,
+which can be implemented as a set of coroutines.
+</DL>
+
+<b>Transformations on Recursive Functions.</b>
+The run time of recursive functions can often be reduced
+by applying the following transformations:
+<DL><DT><DD>
+Rewrite recursion to iteration,
+as in the lists and binary search trees in Column 13.
+<br><br><DT><DD>
+Convert the recursion to iteration
+by using an explicit program stack.
+(If a function contains only one recursive call to itself,
+then it is not necessary to store
+the return address on the stack.)
+<br><br><DT><DD>
+If the final action of a function
+is to call itself recursively,
+replace that call by a branch to its first statement;
+this is usually known as removing tail recursion.
+The code in Solution 11.9 is a candidate for this transformation.
+That branch can often be transformed into a loop.
+Compilers often perform this optimization.
+<br><br><DT><DD>
+It is often more efficient to solve small subproblems
+by use of an auxiliary procedure,
+rather than by recurring down to problems of size zero or one.
+The <i>qsort4</i> function in Section 11.3 uses a
+value of <i>cutoff</i> near 50.
+</DL>
+
+<b>Parallelism.</b>
+
+A program should be structured to exploit
+as much of the
+parallelism as possible in the underlying hardware.
+
+
+<h2>Expression Rules</h2>
+
+<b>Compile-Time Initialization.</b>
+As many variables as possible should be
+initialized before program execution.
+
+<br><br>
+<b>Exploit Algebraic Identities.</b>
+If the evaluation of an expression is costly,
+replace it by an algebraically equivalent expression
+that is cheaper to evaluate.
+<DL><DT><DD>
+In Section 9.2,
+Appel replaced expensive trigonometric operations
+with multiplications and additions,
+and also used monotonicity to remove an
+expensive square root operation.
+<br><br><DT><DD>
+Section 9.2 replaces an expensive C remainder operator
+% in an inner loop with a cheaper <i>if</i> statement.
+<br><br><DT><DD>
+We can often multiply or divide by powers of two
+by shifting left or right.
+Solution 13.9 replaces an arbitrary division
+used by bins with a shift.
+Solution 10.6 replaces a division by 10 with a shift by 4.
+<br><br><DT><DD>
+In Section 6.1,
+Appel exploited additional numeric accuracy
+in a data structure to replace 64-bit floating point
+numbers with faster 32-bit numbers.
+<br><br><DT><DD>
+Strength reduction on a loop that iterates through
+the elements of an array
+replaces a multiplication by an addition.
+Many compilers perform this optimization.
+This technique generalizes to a large class
+of incremental algorithms.
+</DL>
+
+<b>Common Subexpression Elimination.</b>
+If the same expression is evaluated twice
+with none of its variables altered between evaluations,
+then the second evaluation can be avoided
+by storing the result of the first
+and using that in place of the second.
+<DL><DT><DD>
+Modern compilers are usually good at
+eliminating common subexpressions
+that do not contain function calls.
+</DL>
+
+<b>Pairing Computation.</b>
+If two similar expressions are frequently evaluated together,
+then we should make a new procedure
+that evaluates them as a pair.
+<DL><DT><DD>
+In Section 13.1,
+our first pseudocode always uses <i>member</i> and <i>insert</i>
+functions in concert;
+the C++ code replaces those two functions with an <i>insert</i>
+that does nothing if its argument is already in the set.
+</DL>
+
+<b>Exploit Word Parallelism.</b>
+Use the full data-path width of the
+underlying computer architecture
+to evaluate expensive expressions.
+<DL><DT><DD>
+Problem 13.8 shows how bit vectors can operate on many
+bits at once by operating on <i>char</i>s or <i>int</i>s.
+<br><br><DT><DD>
+Solution 9.7 counts bits in parallel.
+</DL>
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Mon 23 Oct 2000
+</BODY>
+</HTML>
+

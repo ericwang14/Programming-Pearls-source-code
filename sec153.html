@@ -1,0 +1,412 @@
+<HTML>
+<HEAD>
+<title>Generating Text</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Generating Text
+<br>(Section 15.3 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<p>
+How can you generate random text?
+A classic approach is to let loose
+that poor monkey on his aging typewriter.
+If the beast is equally likely to hit any
+lower case letter or the space bar,
+the output might look like this:
+<DL><DT><DD>
+uzlpcbizdmddk njsdzyyvfgxbgjjgbtsak rqvpgnsbyputvqqdtmgltz
+ynqotqigexjumqphujcfwn ll jiexpyqzgsdllgcoluphl
+sefsrvqqytjakmav bfusvirsjl wprwqt
+</DL>
+This is pretty unconvincing English text.
+
+<p>
+If you count the letters in word games
+(like Scrabble or Boggle),
+you will notice that there are different numbers
+of the various letters.
+There are many more A's, for instance,
+than there are Z's.
+A monkey could produce more convincing text
+by counting the letters in a document --
+if A occurs 300 times in the text
+while B occurs just 100 times, then the monkey should be 3 times more likely to type an A than a B.
+This takes us a small step closer to English:
+<DL><DT><DD>
+saade ve mw hc n entt da k eethetocusosselalwo gx
+fgrsnoh,tvettaf aetnlbilo fc lhd okleutsndyeoshtbogo
+eet ib nheaoopefni ngent
+</DL>
+
+<p>
+Most events occur in context.
+Suppose that we wanted to generate randomly
+a year's worth of Fahrenheit temperature data.
+A series of 365 random integers between 0 and 100
+wouldn't fool the average observer.
+We could be more convincing by making today's temperature
+a (random) function of yesterday's temperature:
+if it is 85 degrees today, it is unlikely to be 15 degrees tomorrow.
+
+<p>
+The same is true of English words:
+if this letter is a Q,
+then the next letter is quite likely to be a U.
+A generator can make more interesting text by making
+each letter a random function of its predecessor.
+We could, therefore,
+read a sample text and count
+how many times every letter follows an A,
+how many times they follow a B,
+and so on for each letter of the alphabet.
+When we write the random text,
+we produce the next letter
+as a random function of the current letter.
+The ``order-1'' text was made by exactly this scheme:
+<a name="letterexamples">
+<DL>
+
+<DT><DD>
+<i>Order-1:</i>
+t I amy, vin. id wht omanly heay atuss
+n macon aresethe hired boutwhe t, tl, ad torurest t plur I wit
+hengamind tarer-plarody thishand.
+
+<br><br><DT><DD>
+<i>Order-2:</i>
+Ther I the heingoind of-pleat,
+blur it dwere wing waske hat trooss.
+Yout lar on wassing, an sit."
+"Yould," "I that vide was nots ther.
+
+<br><br><DT><DD>
+<i>Order-3:</i>
+I has them the saw the secorrow. And wintails on
+my my ent, thinks, fore voyager lanated the been elsed
+helder was of him a very free bottlemarkable,
+
+<br><br><DT><DD>
+<i>Order-4:</i>
+His heard." "Exactly he very glad trouble, and by Hopkins!
+That it on of the who difficentralia.
+He rushed likely?" "Blood night that.
+</DL>
+
+<p>
+<a href="markovlet.html">[Click for more examples of
+letter-level Markov text]</a>
+
+<p>
+We can extend this idea to longer sequences of letters.
+The order-2 text was made by generating each
+letter as a function of the two letters preceding it
+(a letter pair is often called a digram).
+The digram TH, for instance, is often followed in English by
+the vowels A, E, I, O, U and Y, less frequently by R and W,
+and rarely by other letters.
+The order-3 text is built by choosing the next letter
+as a function of the three previous letters (a trigram).
+By the time we get to the order-4 text,
+most words are English,
+and you might not be surprised to learn that it was
+generated from a Sherlock Holmes story
+(``The Adventure of Abbey Grange'').
+A classically educated reader of a draft of this column
+commented that this sequence of fragments
+reminded him of the evolution from
+Old English to Victorian English.
+
+<p>
+Readers with a mathematical background might recognize
+this process as a Markov chain.
+One state represents each <i>k</i>-gram,
+and the odds of going from one to another don't change,
+so this is a
+``finite-state Markov chain with
+stationary transition probabilities''.
+
+<p>
+We can also generate random text at the word level.
+The dumbest approach is to spew forth the words in
+a dictionary at random.
+A slightly better approach reads a document,
+counts each word,
+and then selects the next word to be printed
+with the appropriate probability.
+(The programs in 
+<a href="sec151.html">Section 15.1</a>
+use tools
+appropriate for such tasks.)
+We can get more interesting text,
+though,
+by using Markov chains that take into account
+a few preceding words as they generate the next word.
+Here is some random text produced after reading
+a draft of the first 14 columns of this book:
+<a name="wordexamples">
+<DL>
+
+<DT><DD>
+<i>Order-1:</i>
+The table shows how many contexts; it uses
+two or equal to the sparse matrices were not chosen.
+In Section 13.1, for a more efficient that ``the more
+time was published by calling recursive structure translates
+to build scaffolding to try to know of selected and testing
+and more robust and a binary search).
+
+<br><br><DT><DD>
+<i>Order-2:</i>
+The program is guided by verification ideas,
+and the second errs in the STL implementation
+(which guarantees good worst-case performance),
+and is especially rich in speedups due to Gordon Bell.
+Everything should be to use a macro:
+for <i>n=10,000</i>, its run time;
+that point Martin picked up from his desk
+
+<br><br><DT><DD>
+<i>Order-3:</i>
+A Quicksort would be quite efficient for
+the main-memory sorts,
+and it requires only a few distinct values
+in this particular problem,
+we can write them all down in the program,
+and they were making progress towards a solution at a
+snail's pace.
+</DL>
+The order-1 text is almost readable aloud,
+while the order-3 text consists of very long phrases from the
+original input,
+with random transitions between them.
+For purposes of parody, order-2 text is usually juiciest.
+
+<p>
+<a href="markovword.html">[Click for more examples of
+word-level Markov text]</a>
+
+<p>
+<a name="shannon">
+I first saw letter-level and word-level
+order-</i>k</i> approximations to English text
+in Shannon's 1948 classic
+<i>Mathematical Theory of Communication</i>.
+Shannon writes,
+``To construct [order-1 letter-level text] for example,
+one opens a book at random and selects a letter
+at random on the page.
+This letter is recorded.
+The book is then opened to another page and one reads until
+this letter is encountered.
+The succeeding letter is then recorded.
+Turning to another page this second letter is searched for
+and the succeeding letter recorded, etc.
+A similar process was used for
+[order-1 and order-2 letter-level text,
+and order-0 and order-1 word-level text].
+It would be interesting if further approximations
+could be constructed,
+but the labor involved becomes enormous at the next stage.''
+
+<p>
+A program can automate this laborious task.
+Our C program to generate order-</i>k</i> Markov chains will store
+at most five megabytes of text in the array <i>inputchars</i>:
+<DL><DT><DD><TT><PRE>
+int k = 2;
+char inputchars[5000000];
+char *word[1000000];
+int nword = 0;
+</PRE></TT></DL>
+<a href="markovlet.c">We could implement Shannon's algorithm directly</a>
+by scanning through the complete input text to
+generate each word
+(though this might be slow on large texts).
+We will instead employ the array <i>word</i> as
+a kind of suffix array pointing to the characters,
+except that it starts only on word boundaries
+(a common modification).
+The variable <i>nword</i> holds the number of words.
+We read the file with this code:
+<DL><DT><DD><TT><PRE>
+word[0] = inputchars
+while scanf("%s", word[nword]) != EOF
+    word[nword+1] = word[nword] + strlen(word[nword]) + 1
+    nword++
+</PRE></TT></DL>
+Each word is appended to <i>inputchars</i>
+(no other storage allocation is needed),
+and is terminated by the null character
+supplied by <i>scanf</i>.
+
+<p>
+After we read the input,
+we will sort the <i>word</i> array
+to bring together all pointers that 
+point to the same sequence of <i>k</i> words.
+This function does the comparisons:
+<DL><DT><DD><TT><PRE>
+int wordncmp(char *p, char* q)
+    n = k
+    for ( ; *p == *q; p++, q++)
+        if (*p == 0 && --n == 0)
+            return 0
+    return *p - *q
+</PRE></TT></DL>
+It scans through the two strings
+while the characters are equal.
+At every null character,
+it decrements the counter <i>n</i> and returns equal after
+seeing <i>k</i> identical words.
+When it finds unequal characters,
+it returns the difference.
+
+<p>
+After reading the input,
+we append <i>k</i> null characters
+(so the comparison function doesn't run off the end),
+print the first <i>k</i> words in the document
+(to start the random output),
+and call the sort:
+<DL><DT><DD><TT><PRE>
+for i = [0, k)
+    word[nword][i] = 0
+for i = [0, k)
+    print word[i]
+qsort(word, nword, sizeof(word[0]), sortcmp)
+</PRE></TT></DL>
+The <i>sortcmp</i> function,
+as usual,
+adds a level of indirection to its pointers.
+
+<P>
+Our space-efficient structure now contains
+a great deal of information about the <i>k</i>-grams
+in the text.
+If <i>k</i> is 1 and the input text is
+``of the people, by the people, for the people'',
+the <i>word</i> array might look like this:
+<DL><DT><DD><TT><PRE>
+word[0]: by the
+word[1]: for the
+word[2]: of the
+word[3]: people
+word[4]: people, for
+word[5]: people, by
+word[6]: the people,
+word[7]: the people
+word[8]: the people,
+</PRE></TT></DL>
+For clarity,
+this picture shows only the first <i>k+1</i> words pointed
+to by each element of <i>word</i>,
+even though more words usually follow.
+If we seek a word to follow the phrase ``the'',
+we look it up in the suffix array to discover three choices:
+``people,'' twice and ``people'' once.
+
+<p>
+We may now generate nonsense text with this pseudocode sketch:
+<DL><DT><DD><TT><PRE>
+phrase = first phrase in input array
+loop
+    perform a binary search for phrase in word[0..nword-1]
+    for all phrases equal in the first k words
+        select one at random, pointed to by p
+    phrase = word following p
+    if k-th word of phrase is length 0
+        break
+    print k-th word of phrase
+</PRE></TT></DL>
+We initialize the loop by setting <i>phrase</i> to the
+first characters in the input
+(recall that those words were already printed on
+the output file).
+The binary search uses the code in Section 9.3
+to locate the first occurrence of <i>phrase</i>
+(it is crucial to find the very first occurrence;
+the binary search of Section 9.3 does just this).
+The next loop scans through all equal phrases,
+and uses Solution 12.10
+to select one of them at random.
+If the <i>k</i>-th word of that phrase is of length zero,
+the current phrase is the last in the document,
+so we break the loop.
+
+<p>
+The complete pseudocode implements those ideas,
+and also puts an upper bound on the
+number of words it will generate:
+<DL><DT><DD><TT><PRE>
+phrase = inputchars
+for (wordsleft = 10000; wordsleft > 0; wordsleft--)
+    l = -1
+    u = nword
+    while l+1 != u
+        m = (l + u) / 2
+        if wordncmp(word[m], phrase) < 0
+            l = m
+        else
+            u = m
+    for (i = 0; wordncmp(phrase, word[u+i]) == 0; i++)
+        if rand() % (i+1) == 0
+            p = word[u+i]
+    phrase = skip(p, 1)
+    if strlen(skip(phrase, k-1)) == 0
+        break
+    print skip(phrase, k-1)
+</PRE></TT></DL>
+
+<p>
+Chapter 3 of
+<a href="http://www.cs.bell-labs.com/who/bwk/">Kernighan</a> and
+<a href="http://www.cs.bell-labs.com/who/rob/">Pike</a>'s
+<a href="http://cm.bell-labs.com/cm/cs/tpop/">
+<i>Practice of Programming</i></a>
+(described in Section 5.9)
+is devoted to the general topic of ``Design and Implementation''.
+They build their chapter around the problem of word-level
+Markov-text generation because
+``it is typical of many programs:
+some data comes in, some data goes out,
+and the processing depends on a little ingenuity.''
+They give some interesting history of the problem,
+and implement programs for the task in
+C, Java, C++, Awk and Perl.
+
+<p>
+<a href="markov.c">The program in this section</a>
+compares favorably with their C program for the task.
+This code is about half the length of theirs;
+representing a phrase by a pointer to <i>k</i> consecutive
+words is space-efficient and easy to implement.
+For inputs of size near a megabyte,
+the two programs are of roughly comparable speed.
+Because Kernighan and Pike use a slightly larger structure
+and make extensive use of the inefficient <i>malloc</i>,
+the program in this column uses an order of
+magnitude less memory on my system.
+If we incorporate the speedup of Solution 14
+and replace the binary search and sorting by a hash table,
+<a href="markovhash.c">the program in this section</a>
+becomes about a factor of two
+faster (and increases memory use by about 50%).
+
+
+<p><a href="sec154.html">Next: Section 15.4. Principles.</a>
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Wed 18 Oct 2000
+</BODY>
+</HTML>
+

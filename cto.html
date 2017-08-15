@@ -1,0 +1,159 @@
+<HTML>
+<HEAD>
+<title>Cracking the Oyster</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Cracking the Oyster
+<br>(Column 1 of
+<font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+<P>
+The programmer's question was simple:
+``How do I sort a disk file?''
+Before I tell you how I made my first mistake,
+let me give you a chance to do better than I did.
+What would you have said?
+
+<h3>1.1 A Friendly Conversation</h3>
+
+<p>
+My mistake was to answer his question.
+I gave him a thumbnail sketch of how to
+implement a Merge Sort on disk.
+My suggestion that he dig into an algorithms text
+met with less than
+enthusiasm -- he was more concerned about 
+solving the problem than furthering his education.
+I then told him about a disk sorting program in
+a popular programming book.
+The program consisted of about two hundred lines
+of code in a dozen functions;
+I estimated that implementing and testing the code
+would have taken the programmer at most a week.
+
+<p>
+I thought that I had solved his problem, but his
+hesitation led me back to the right track.
+The conversation then went something like this, with
+my questions in <i>italics</i>.
+<DL>
+<DT><DD>
+<i>
+Why do you want to write your own sort at all?
+Why not use a sort provided by your system?
+</i>
+<br><br><DT><DD>
+I need the sort in the middle of a large system,
+and for obscure technical reasons,
+I can't use the system file-sorting program.
+<br><br><DT><DD>
+<i>
+What exactly are you sorting?
+How many records are in the file?
+What is the format of each record?
+</i>
+<br><br><DT><DD>
+The file contains at most ten million records;
+each record is a seven-digit integer.
+<br><br><DT><DD>
+<i>
+Wait a minute.
+If the file is that small, why bother going to disk at all?
+Why not just sort it in main memory?
+</i>
+<br><br><DT><DD>
+Although the machine has many megabytes of main memory,
+this function is part of a big system.
+I expect that I'll have only about a megabyte
+free at that point.
+<br><br><DT><DD>
+<i>
+Is there anything else you can tell me about the records?
+</i>
+<br><br><DT><DD>
+Each one is a seven-digit positive integer
+with no other associated data,
+and no integer can appear more than once.
+</DL>
+
+<p>
+The context makes the problem clearer.
+In the United States,
+telephone numbers consist of a three-digit ``area code''
+followed by seven additional digits.
+Telephone calls to numbers with the ``toll-free''
+area code of 800 (the only such code at the time) were not charged.
+A real database of toll-free telephone numbers includes
+a great deal of information:
+the toll-free telephone number,
+the real number to which calls are routed
+(sometimes several numbers,
+with rules on which calls go where when),
+the name and address of the subscriber, and so on.
+
+<p>
+The programmer was building a small corner of
+a system for processing such a database,
+and the integers to be sorted were toll-free telephone numbers.
+The input file was a list of numbers
+(with all other information removed),
+and it was an error to include the same number twice.
+The desired output was a file of the numbers,
+sorted in increasing numeric order.
+The context also defines the performance requirements.
+During a long session with the system,
+the user requested a sorted file roughly
+once an hour and could do nothing until the sort was completed.
+The sort therefore couldn't take more than a few minutes,
+while ten seconds was a more desirable run time.
+
+
+<h3>The Rest of the Column</h3>
+
+<P>
+These are the remaining sections in the column.
+
+<br><a href="sec012.html">1.2 Precise Problem Statement</a>
+<br><a href="sec013.html">1.3 Program Design</a>
+<br><a href="sec014.html">1.4 Implementation Sketch</a>
+<br><a href="sec015.html">1.5 Principles</a>
+<br><a href="sec016.html">1.6 Problems</a>
+<br><a href="sec017.html">1.7 Further Reading</a>
+
+<P>
+The
+<a href="sol01.html">Solutions to Column 1</a>
+give answers for some of the
+<a href="sec016.html">Problems</a>.
+
+<p>
+Several of the programs in the column and the solutions
+can be found with the other
+<a href="code.html">source code</a>
+for this book.
+
+<P>
+The <a href="webrefs.html#cto">web references</a>
+describe web sites related to the topic.
+
+<P>
+An excerpt from this column appears in the November 1999
+issue of
+<a href="http://www.ddj.com/">
+<i>Dr. Dobb's Journal</i></a>.
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Thu 22 Sep 1999
+</BODY>
+</HTML>
+

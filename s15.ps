@@ -1,0 +1,853 @@
+%!PS-Adobe-2.0
+%%Copyright: Copyright (c) 1993 AT&T, All Rights Reserved
+%%Version: 3.4
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+/DpostDict 200 dict def
+DpostDict begin
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 prologue for troff files.
+%
+
+/#copies 1 store
+/Prologue (dpost.ps) def
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/landscapepage {
+	landscape not {
+		0 height scaling div neg translate	% not quite
+		90 rotate
+	} if
+} bind def
+
+/portraitpage {
+	landscape {
+		width scaling div 0 translate	% not quite
+		-90 rotate
+	} if
+} bind def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+end
+%%EndProlog
+%%BeginSetup
+DpostDict begin
+mark
+/rotation 1 def
+/gotpagebbox true def
+/linewidth 0.5 def
+/xoffset 0 def
+/yoffset 0 def
+/#copies 1 store
+/magnification 1 def
+%%FormsPerPage: 1
+/formsperpage 1 def
+%%Patch from lp
+%%EndPatch from lp
+/landscape false def
+/resolution 720 def
+setup
+2 setdecoding
+end
+%%EndSetup
+%%Page: 1 1
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+1 pagesetup
+20 H f
+(String Algorithms)1 1526 1 2117 960 t
+(The Longest Duplicated String)3 2702 1 1080 1620 t
+(Markov Text)1 1102 1 1080 1860 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-1)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 1 1
+%%Page: 2 2
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+2 pagesetup
+20 H f
+(Longest Duplicated String)2 2300 1 1910 960 t
+(The Problem)1 1148 1 720 1560 t
+(Input: ``Ask not what your country can do for you,)9 4344 1 1008 2040 t
+(but what you can do for your country''.)7 3394 1 1008 2280 t
+(Output: `` can do for you'' \(15 chars\))7 3180 1 1008 2760 t
+(A Simple Algorithm \(at least quadratic\))5 3422 1 720 3240 t
+20 CW f
+(maxlen = -1)2 1320 1 1296 3535 t
+(for i = [0, n\))4 1680 1 1296 3770 t
+(for j = \(i, n\))4 1680 1 1776 4005 t
+(if \(l=comlen\(&c[i], &c[j]\)\))2 3240 1 2256 4240 t
+(> maxlen)1 960 1 3216 4475 t
+(maxlen = l)2 1200 1 2736 4710 t
+(maxi = i)2 960 1 2736 4945 t
+(maxj = j)2 960 1 2736 5180 t
+20 H f
+(An Important Function)2 1976 1 720 5720 t
+20 CW f
+(int comlen\(char *p, char *q\))4 3360 1 1296 6015 t
+(i = 0)2 600 1 1776 6250 t
+(while *p && \(*p++ == *q++\))5 3120 1 1776 6485 t
+(i++)2256 6720 w
+(return i)1 960 1 1776 6955 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-2)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 560 726
+%%EndPage: 2 2
+%%Page: 3 3
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+3 pagesetup
+20 H f
+(A Fast Algorithm)2 1482 1 2319 960 t
+(Key Data Structures)2 1796 1 720 1560 t
+20 CW f
+(#define MAXN 5000000)2 2400 1 1296 1855 t
+(char c[MAXN], *a[MAXN];)2 2760 1 1296 2090 t
+20 H f
+(Input ``Suf\256x Array'' for ``banana'':)4 2966 1 720 2630 t
+20 CW f
+(a[0]: banana)1 1440 1 1296 2925 t
+(a[1]: anana)1 1320 1 1296 3160 t
+(a[2]: nana)1 1200 1 1296 3395 t
+(a[3]: ana)1 1080 1 1296 3630 t
+(a[4]: na)1 960 1 1296 3865 t
+(a[5]: a)1 840 1 1296 4100 t
+20 H f
+(The Sorted Suf\256x Array)3 2086 1 720 4640 t
+20 CW f
+(a[0]: a)1 840 1 1296 4935 t
+(a[1]: ana)1 1080 1 1296 5170 t
+(a[2]: anana)1 1320 1 1296 5405 t
+(a[3]: banana)1 1440 1 1296 5640 t
+(a[4]: na)1 960 1 1296 5875 t
+(a[5]: nana)1 1200 1 1296 6110 t
+20 H f
+(Scan through to \256nd longest duplicated string)6 4022 1 720 6410 t
+(\(``ana''\).)720 6650 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-3)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 3 3
+%%Page: 4 4
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+4 pagesetup
+20 H f
+(The Suf\256x Array Code)3 1974 1 2073 960 t
+(The Code \(usually about)3 2188 1 720 1560 t
+20 HI f
+(O)2964 1560 w
+20 H f
+(\()3136 1560 w
+20 HI f
+(n)3218 1560 w
+20 H f
+(log)3395 1560 w
+20 HI f
+(n)3728 1560 w
+20 H f
+(\)\))3856 1560 w
+20 CW f
+(while \(ch = getchar\(\)\) != EOF)5 3480 1 720 1855 t
+(a[n] = &c[n])2 1440 1 1200 2090 t
+(c[n++] = ch)2 1320 1 1200 2325 t
+(c[n] = 0)2 960 1 720 2560 t
+(qsort\(a, n, sizeof\(char *\), pstrcmp\))4 4320 1 720 2795 t
+(for i = [0, n\))4 1680 1 720 3030 t
+(if comlen\(a[i], a[i+1]\) > maxlen)4 3840 1 1200 3265 t
+(maxlen = comlen\(a[i], a[i+1]\))3 3480 1 1680 3500 t
+(maxi = i)2 960 1 1680 3735 t
+(printf\("%.*s\\n", maxlen, a[maxi]\))2 3960 1 720 3970 t
+20 H f
+(4.8 secs on 807,503 characters of Homer's)6 3828 1 720 4510 t
+20 HI f
+(Iliad)4604 4510 w
+20 H f
+(:)4972 4510 w
+(whose sake so many of the Achaeans have died)8 4312 1 1008 4990 t
+( about at once)3 1276( Go)1 380(at Troy, far from their homes?)5 2642 3 1008 5230 t
+(among the host, and speak fairly to them, man)8 4132 1 1008 5470 t
+(by man, that they draw not their ships into the)9 4054 1 1008 5710 t
+(sea.)1008 5950 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-4)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 4 4
+%%Page: 5 5
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+5 pagesetup
+20 H f
+(Markov English Letters)2 2040 1 2040 960 t
+20 HI f
+(Monkey Typing:)1 1416 1 720 1560 t
+20 H f
+(uzlpcbizdmddk njsdzyyvfgxbgjjgbt-)1 3076 1 2192 1560 t
+(sak rqvpgnsbyputvqqdtmgltz ynqotqigexjumqphu-)2 4408 1 720 1800 t
+(jcfwn ll jiexpyqzgsdllgcoluphl sefsrvqqytjakmav)3 4144 1 720 2040 t
+20 HI f
+(Order-0:)720 2520 w
+20 H f
+(saade ve mw hc n entt da k eethetocusos-)8 3764 1 1522 2520 t
+(selalwo gx fgrsnoh,tvettaf aetnlbilo fc lhd okleut-)6 4264 1 720 2760 t
+(sndyeoshtbogo eet ib nheaoopefni ngent)4 3636 1 720 3000 t
+20 HI f
+(Order-1:)720 3480 w
+20 H f
+(t I amy, vin. id wht omanly heay atuss n)9 3504 1 1522 3480 t
+(macon aresethe hired boutwhe t, tl, ad torurest t plur)9 4656 1 720 3720 t
+(I wit hengamind tarer-plarody thishand.)4 3470 1 720 3960 t
+20 HI f
+(Order-2:)720 4440 w
+20 H f
+(Ther I the heingoind of-pleat, blur it dwere)7 3718 1 1522 4440 t
+( lar on wassing, an sit.")5 2058( Yout)1 526(wing waske hat trooss.)3 2030 3 720 4680 t
+("Yould," "I that vide was nots ther.)6 3020 1 720 4920 t
+20 HI f
+(Order-3:)720 5400 w
+20 H f
+(I has them the saw the secorrow. And win-)8 3782 1 1522 5400 t
+(tails on my my ent, thinks, fore voyager lanated the)9 4532 1 720 5640 t
+(been elsed helder was of him a very free)8 3616 1 720 5880 t
+20 HI f
+(Order-4:)720 6360 w
+20 H f
+(His heard." "Exactly he very glad trouble,)6 3636 1 1522 6360 t
+( it on of the who dif\256centralia.)6 2602( That)1 514(and by Hopkins!)2 1440 3 720 6600 t
+(He rushed likely?" "Blood night that.)5 3192 1 720 6840 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-5)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 5 5
+%%Page: 6 6
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+6 pagesetup
+20 H f
+(Markov English Words)2 2004 1 2058 960 t
+(A \256nite-state Markov chain with stationary transition)6 4572 1 720 1560 t
+(probabilities.)720 1800 w
+20 HI f
+(Order-1:)720 2280 w
+20 H f
+(The table shows how many contexts; it)6 3448 1 1522 2280 t
+(uses two or equal to the sparse matrices were not)9 4430 1 720 2520 t
+( Section 13.1, for a more ef\256cient that)7 3340(chosen. In)1 984 2 720 2760 t
+(``the more time was published by calling recursive)7 4402 1 720 3000 t
+(structure translates to build scaffolding to try to know)8 4676 1 720 3240 t
+(of selected and testing and more robust)6 3530 1 720 3480 t
+20 HI f
+(Order-2:)720 3960 w
+20 H f
+(The program is guided by veri\256cation)5 3290 1 1522 3960 t
+(ideas, and the second errs in the STL implementa-)8 4498 1 720 4200 t
+(tion \(which guarantees good worst-case perfor-)5 4194 1 720 4440 t
+(mance\), and is especially rich in speedups due to)8 4386 1 720 4680 t
+( should be to use a macro:)6 2368( Everything)1 1060(Gordon Bell.)1 1116 3 720 4920 t
+(for)720 5160 w
+20 HI f
+(n)1010 5160 w
+20 S f
+(=)1171 5160 w
+20 H f
+( its run time;)3 1092(10 , 000,)2 704 2 1314 5160 t
+20 HI f
+(Order-3:)720 5640 w
+20 H f
+(A Quicksort would be quite ef\256cient for the)7 3762 1 1522 5640 t
+(main-memory sorts, and it requires only a few dis-)8 4434 1 720 5880 t
+(tinct values in this particular problem, we can write)8 4470 1 720 6120 t
+(them all down in the program, and they were making)9 4664 1 720 6360 t
+(progress towards a solution at a snail's pace.)7 4006 1 720 6600 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-6)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 6 6
+%%Page: 7 7
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+7 pagesetup
+20 H f
+(Algorithms and Programs)2 2262 1 1929 960 t
+(Shannon, 1948: ``To construct [order-1 letter-level)5 4408 1 720 1560 t
+(text] for example, one opens a book at random and)9 4548 1 720 1800 t
+( letter is)2 702( This)1 490(selects a letter at random on the page.)7 3430 3 720 2040 t
+( book is then opened to another page)7 3334(recorded. The)1 1306 2 720 2280 t
+( The)1 458(and one reads until this letter is encountered.)7 4010 2 720 2520 t
+( to)1 224( Turning)1 792(succeeding letter is then recorded.)4 3070 3 720 2760 t
+(another page this second letter is searched for and)8 4524 1 720 3000 t
+( similar pro-)2 1044( A)1 246(the succeeding letter recorded, etc.)4 3138 3 720 3240 t
+(cess was used for [order-1 and order-2 letter-level)7 4438 1 720 3480 t
+( It)1 224(text, and order-0 and order-1 word-level text].)6 4028 2 720 3720 t
+(would be interesting if further approximations could)6 4530 1 720 3960 t
+(be constructed, but the labor involved becomes)6 4210 1 720 4200 t
+(enormous at the next stage.'')4 2580 1 720 4440 t
+(Kernighan and Pike's Exposition, 1999)4 3440 1 720 4920 t
+(Build a data structure while training)5 3124 1 1008 5400 t
+(Randomly traverse the structure to generate)5 3928 1 1008 5880 t
+(Implemented in C, C++, Java, Awk, Perl)6 3554 1 1008 6360 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-7)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 7 7
+%%Page: 8 8
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+8 pagesetup
+20 H f
+(Suf\256x Arrays to the Rescue)4 2432 1 1988 960 t
+(Word array for)2 1280 1 720 1560 t
+20 HI f
+(k)2056 1560 w
+20 S f
+(=)2205 1560 w
+20 H f
+(1 ``of the people, by the people,)6 2796 1 2348 1560 t
+(for the people'':)2 1374 1 720 1800 t
+20 CW f
+(word[0]: by the)2 1800 1 1296 2095 t
+(word[1]: for the)2 1920 1 1296 2330 t
+(word[2]: of the)2 1800 1 1296 2565 t
+(word[3]: people)1 1800 1 1296 2800 t
+(word[4]: people, for)2 2400 1 1296 3035 t
+(word[5]: people, by)2 2280 1 1296 3270 t
+(word[6]: the people,)2 2400 1 1296 3505 t
+(word[7]: the people)2 2280 1 1296 3740 t
+(word[8]: the people,)2 2400 1 1296 3975 t
+20 H f
+(The Critical Function)2 1838 1 720 4515 t
+20 CW f
+(int wordncmp\(char *p, char* q\))4 3600 1 720 4810 t
+(n = k)2 600 1 1200 5045 t
+(for \( ; *p == *q; p++, q++\))7 3240 1 1200 5280 t
+(if \(*p == 0 && --n == 0\))7 2880 1 1680 5515 t
+(return 0)1 960 1 2160 5750 t
+(return *p - *q)3 1680 1 1200 5985 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-8)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 8 8
+%%Page: 9 9
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+9 pagesetup
+20 H f
+(Code Sketch, Part 1)3 1798 1 2161 960 t
+(Read and Store Training Sample)4 2924 1 720 1560 t
+20 CW f
+(word[0] = inputchars)2 2400 1 720 1855 t
+(while scanf\("%s", word[nword]\) != EOF)4 4440 1 720 2090 t
+(word[nword+1] = word[nword] +)3 3480 1 1200 2325 t
+(strlen\(word[nword]\) + 1)2 2760 1 3120 2560 t
+(nword++)1200 2795 w
+(/* put k null characters at end */)7 4080 1 720 3030 t
+(for i = [0, k\))4 1680 1 720 3265 t
+(word[nword][i] = 0)2 2160 1 1200 3500 t
+20 H f
+(Print First)1 856 1 720 4040 t
+20 HI f
+(k)1632 4040 w
+20 H f
+(Words)1788 4040 w
+20 CW f
+(for i = [0, k\))4 1680 1 720 4335 t
+(print word[i])1 1560 1 1200 4570 t
+20 H f
+(Sort The Array)2 1304 1 720 5110 t
+20 CW f
+(qsort\(word, nword, sizeof\(word[0]\), sortcmp\))3 5280 1 720 5405 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-9)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 610 726
+%%EndPage: 9 9
+%%Page: 10 10
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+10 pagesetup
+20 H f
+(Code Sketch, Part 2)3 1798 1 2161 960 t
+(Generate Text)1 1284 1 720 1560 t
+20 CW f
+(phrase = first phrase in input array)6 4320 1 720 1855 t
+(loop)720 2090 w
+(perform a binary search for phrase)5 4080 1 1200 2325 t
+(in word[0..nword-1])1 2280 1 1680 2560 t
+(for all phrases equal in k words)6 3840 1 1200 2795 t
+(select one at random,)3 2520 1 1680 3030 t
+(pointed to by p)3 1800 1 2160 3265 t
+(phrase = word following p)4 3000 1 1200 3500 t
+(if k-th word of phrase is length 0)7 4080 1 1200 3735 t
+(break)1680 3970 w
+(print k-th word of phrase)4 3000 1 1200 4205 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-10)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 10 10
+%%Page: 11 11
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+11 pagesetup
+20 H f
+(Pseudocode for Text Generation)3 2904 1 1608 960 t
+20 CW f
+(phrase = inputchars)2 2280 1 720 1615 t
+(for \(left = 10000; left > 0; left--\))7 4320 1 720 1850 t
+(l = -1)2 720 1 1200 2085 t
+(u = nword)2 1080 1 1200 2320 t
+(while l+1 != u)3 1680 1 1200 2555 t
+(m = \(l + u\) / 2)6 1800 1 1680 2790 t
+(if wordncmp\(word[m], phrase\) < 0)4 3840 1 1680 3025 t
+(l = m)2 600 1 2160 3260 t
+(else)1680 3495 w
+(u = m)2 600 1 2160 3730 t
+(for \(i = 0; wordncmp\(phrase, word[u+i]\))5 4680 1 1200 3965 t
+(== 0; i++\))2 1200 1 2640 4200 t
+(if rand\(\) % \(i+1\) == 0)5 2640 1 1680 4435 t
+(p = word[u+i])2 1560 1 2160 4670 t
+(phrase = skip\(p, 1\))3 2280 1 1200 4905 t
+(if strlen\(skip\(phrase, k-1\)\) == 0)4 3960 1 1200 5140 t
+(break)1680 5375 w
+(print skip\(phrase, k-1\))2 2760 1 1200 5610 t
+20 H f
+(Comparison to Typical Approaches)3 3122 1 720 6150 t
+(Similar speed, less space, less code)5 3234 1 1008 6630 t
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-11)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 598 726
+%%EndPage: 11 11
+%%Page: 12 12
+%%PageBoundingBox: (atend)
+DpostDict begin
+/saveobj save def
+mark
+12 pagesetup
+20 H f
+(The Complete Code)2 1796 1 2306 960 t
+8 CW f
+(#include <stdio.h>)1 864 1 1008 1235 t
+(#include <stdlib.h>)1 912 1 1008 1330 t
+(#include <string.h>)1 912 1 1008 1425 t
+(char inputchars[4300000];)1 1200 1 1008 1615 t
+(char *word[800000];)1 912 1 1008 1710 t
+(int nword = 0;)3 672 1 1008 1805 t
+(int k = 2;)3 480 1 1008 1900 t
+(int wordncmp\(char *p, char* q\))4 1440 1 1008 2090 t
+( n = k;)3 336({ int)1 528 2 1008 2185 t
+(for \( ; *p == *q; p++, q++\))7 1296 1 1392 2280 t
+(if \(*p == 0 && --n == 0\))7 1152 1 1776 2375 t
+(return 0;)1 432 1 2160 2470 t
+(return *p - *q;)3 720 1 1392 2565 t
+(})1008 2660 w
+(int sortcmp\(char **p, char **q\))4 1488 1 1008 2850 t
+( wordncmp\(*p, *q\);)2 864({ return)1 672 2 1008 2945 t
+(})1008 3040 w
+(char *skip\(char *p, int n\))4 1248 1 1008 3230 t
+( \( ; n > 0; p++\))6 768({ for)1 528 2 1008 3325 t
+(if \(*p == 0\))3 576 1 1776 3420 t
+(n--;)2160 3515 w
+(return p;)1 432 1 1392 3610 t
+(})1008 3705 w
+(int main\(\))1 480 1 1008 3895 t
+( i, wordsleft = 10000, l, m, u;)7 1488({ int)1 528 2 1008 3990 t
+(char *phrase, *p;)2 816 1 1392 4085 t
+(word[0] = inputchars;)2 1008 1 1392 4180 t
+(while \(scanf\("%s", word[nword]\) != EOF\) {)5 1968 1 1392 4275 t
+(word[nword+1] = word[nword] + strlen\(word[nword]\) + 1;)6 2592 1 1776 4370 t
+(nword++;)1776 4465 w
+(})1392 4560 w
+(for \(i = 0; i < k; i++\))7 1104 1 1392 4655 t
+(word[nword][i] = 0;)2 912 1 1776 4750 t
+(for \(i = 0; i < k; i++\))7 1104 1 1392 4845 t
+(printf\("%s0, word[i]\);)1 1056 1 1776 4940 t
+(qsort\(word, nword, sizeof\(word[0]\), sortcmp\);)3 2160 1 1392 5035 t
+(phrase = inputchars;)2 960 1 1392 5130 t
+(for \( ; wordsleft > 0; wordsleft--\) {)7 1776 1 1392 5225 t
+(l = -1;)2 336 1 1776 5320 t
+(u = nword;)2 480 1 1776 5415 t
+(while \(l+1 != u\) {)4 864 1 1776 5510 t
+(m = \(l + u\) / 2;)6 768 1 2160 5605 t
+(if \(wordncmp\(word[m], phrase\) < 0\))4 1632 1 2160 5700 t
+(l = m;)2 288 1 2544 5795 t
+(else)2160 5890 w
+(u = m;)2 288 1 2544 5985 t
+(})1776 6080 w
+(for \(i = 0; wordncmp\(phrase, word[u+i]\) == 0; i++\))8 2400 1 1776 6175 t
+(if \(rand\(\) % \(i+1\) == 0\))5 1152 1 2160 6270 t
+(p = word[u+i];)2 672 1 2544 6365 t
+(phrase = skip\(p, 1\);)3 960 1 1776 6460 t
+(if \(strlen\(skip\(phrase, k-1\)\) == 0\))4 1680 1 1776 6555 t
+(break;)2160 6650 w
+(printf\("%s0, skip\(phrase, k-1\)\);)2 1536 1 1776 6745 t
+(})1392 6840 w
+(return 0;)1 432 1 1392 6935 t
+(})1008 7030 w
+6 H f
+(From)720 7800 w
+6 I f
+(Programming Pearls)1 507 1 878 7800 t
+6 R f
+(, Copyright)1 274 1 1385 7800 t
+6 S f
+(\323)1674 7800 w
+6 R f
+( Pearls-15-12)1 3011(2000, Lucent Technologies)2 653 2 1736 7800 t
+cleartomark
+showpage
+saveobj restore
+end
+%%PageBoundingBox: 61 -1 550 726
+%%EndPage: 12 12
+%%Trailer
+DpostDict begin
+done
+end
+%%Pages: 12
+%%DocumentFonts: Courier Helvetica Times-Italic Times-Roman Symbol Helvetica-Oblique

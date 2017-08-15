@@ -1,0 +1,183 @@
+<HTML>
+<HEAD>
+<title>Problems</title>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<a href="index.html">
+<img alt="book cover" ALIGN=right hspace=20 src="pp2e.jpg">
+</a>
+<P>
+<h1>Problems
+<br>(Section 1.6 of
+<br><font color="#a52a2a">Programming Pearls</font>)
+</h1>
+
+
+<P>
+The
+<a href="sol01.html">Solutions to Column 1</a>
+give answers for some of these problems.
+
+<P>
+<a name="p1">
+1.
+If memory were not scarce,
+how would you implement a sort in a language
+with libraries for representing and sorting sets?
+
+<P>
+<a name="p2">
+2.
+How would you implement bit vectors
+using bitwise logical operations
+(such as and, or and shift)?
+
+<P>
+<a name="p3">
+3.
+Run-time efficiency was an important part of the design goal,
+and the resulting program was efficient enough.
+Implement the bitmap sort on your system
+and measure its run time;
+how does it compare to the system sort
+and to the sorts in Problem 1?
+Assume that <i>n</i> is 10,000,000,
+and that the input file contains 1,000,000 integers.
+
+<P>
+<a name="p4">
+4.
+If you take Problem 3 seriously,
+you will face the problem of generating
+<i>k</i> integers less than <i>n</i> without duplicates.
+The simplest approach uses the first <i>c</i> positive integers.
+This extreme data set won't alter the run time of the
+bitmap method by much,
+but it might skew the run time of a system sort.
+How could you generate a file of <i>k</i> unique random
+integers between 0 and <i>n</i>-1 in random order?
+Strive for a short program that is also efficient.
+
+<P>
+<a name="p5">
+5.
+The programmer said that he had
+about a megabyte of free storage,
+but the code we sketched uses 1.25 megabytes.
+He was able to scrounge the extra space without much trouble.
+If the megabyte had been a hard and fast boundary,
+what would you have recommended?
+What is the run time of your algorithm?
+
+<P>
+<a name="p6">
+6.
+What would you recommend to the programmer if,
+instead of saying that each integer could appear at most once,
+he told you that each integer could appear at most ten times?
+How would your solution change
+as a function of the amount of available storage?
+
+<P>
+<a name="p7">
+7.
+[R. Weil]
+The program as sketched has several flaws.
+The first is that
+it assumes that no integer appears twice in the input.
+What happens if one does show up more than once?
+How could the program
+be modified to call an error function in that case?
+What happens when an input integer is less than zero or
+greater than or equal to <i>n</i>?
+What if an input is not numeric?
+What should a program do under those circumstances?
+What other sanity checks could the program incorporate?
+Describe small data sets that test the program,
+including its proper handling of these and other
+ill-behaved cases.
+
+<P>
+<a name="p8">
+8.
+When the programmer faced the problem,
+all toll-free phone numbers in the United States
+had the 800 area code.
+Toll-free codes now include 800, 877 and 888,
+and the list is growing.
+How would you sort all of the toll-free numbers using
+only a megabyte?
+How can you store a set of toll-free numbers
+to allow very rapid lookup to determine whether
+a given toll-free number is available or already taken?
+
+<P>
+<a name="p9">
+9.
+One problem with trading more space to use less time is that
+initializing the space can itself take a great deal of time.
+Show how to circumvent this problem by designing a technique
+to initialize an entry of a vector to zero the
+first time it is accessed.
+Your scheme should use constant time for initialization and for
+each vector access,
+and use extra space proportional to
+the size of the vector.
+Because this method reduces initialization time by using even
+more space,
+it should be considered only when space is cheap,
+time is dear and the vector is sparse.
+
+<P>
+<a name="p10">
+10.
+Before the days of low-cost overnight deliveries,
+a store allowed customers to order items over the telephone,
+which they picked up a few days later.
+The store's database used the customer's telephone number
+as the primary key for retrieval
+(customers know their phone numbers
+and the keys are close to unique).
+How would you organize the store's database to allow orders
+to be inserted and retrieved efficiently?
+
+<P>
+<a name="p11">
+11.
+In the early 1980's Lockheed engineers transmitted daily
+a dozen drawings from a Computer Aided Design (CAD)
+system in their Sunnyvale, California,
+plant to a test station in Santa Cruz.
+Although the facilities were just 25 miles apart,
+an automobile courier service took over an hour
+(due to traffic jams and mountain roads)
+and cost a hundred dollars per day.
+Propose alternative data transmission schemes and
+estimate their cost.
+
+<P>
+<a name="p12">
+12.
+Pioneers of human space flight soon realized the
+need for writing implements that work well
+in the extreme environment of space.
+A popular urban legend asserts that the United States
+National Aeronautics and Space Administration (NASA)
+solved the problem with a million dollars
+of research to develop a special pen.
+According to the legend,
+how did the Soviets solve the same problem?
+
+
+<p><a href="sec017.html">Next: Section 1.7. Further Reading.</a>
+
+
+<p>
+<FONT SIZE=1>Copyright &#169; 1999
+<B>Lucent Technologies.</B> All rights reserved.</FONT>
+<font size=-2>
+Th 23 Oct 1999
+</BODY>
+</HTML>
+
